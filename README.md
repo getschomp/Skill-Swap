@@ -6,7 +6,6 @@ A website that will allow people to barter for skills based on a one-to-one trad
 <h3>User Stories</h3>
 
 <h5>Home Page</h5>
-
 ```
 As someone who knows japanese(example skill)
 I want to find out how many other users both want to learn japanese(example skill)
@@ -43,10 +42,11 @@ Acceptance Criteria:
 ```
 As someone who wants to trade skills
 I want to fill out a profile
-so that other users can see what I know and what I want to learn.
+so that other users can see what I know my level of expertise and what I want to learn.
 ```
-
+Note: I want this to look more like you are editing an existing profile rather than just filling out a form.
 Acceptance Criteria:
-- [ ] Once you are signed in there is a link to fill out your profile on the homepage
-- [ ] If I fill in my first name, last name, email, password, city and state correctly I am able to sign up for an account.
-- [ ] If the password and password confirmation don't match I am not able to sign up for an account.
+- [ ] Once you are signed in there is a link to fill out and view your profile on the homepage
+- [ ] When you click on the link expect to see the current users user name
+- [ ] Expect to see profile fields including, "Skills I know",  "Skills I want to Learn", "Reviews(not editable by user),
+- [ ] Expect to see field "describe your expertise" beneath each already entered skill
