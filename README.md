@@ -26,7 +26,7 @@ than if users exist in the database that match the current users criteria.
 - [ ] If the skills are not in the database expect the page to propmt the user to sign up for an account
 and add the skill
 
-<h5>Sign up</h5>
+<h5>Sign Up</h5>
 ```
 As someone who wants to trade skills
 I want to sign up for the skill trade app
@@ -36,9 +36,12 @@ so that I can use all of its awesome features.
 Acceptance Criteria:
 - [ ] There is a link to sign up on the homepage (will be in header if you want to bypass the select boxes)
 - [ ] If I fill in my first name, last name, email, password, city and state correctly I am able to sign up for an account.
+- [ ] I am able to optionally fill out a skill that i want to learn and a skill that i already know.
 - [ ] If the password and password confirmation don't match I am not able to sign up for an account.
 
-<h5>Fill out profiles</h5>
+
+
+<h5>Fill Out Profile</h5>
 ```
 As someone who wants to trade skills
 I want to fill out a profile
@@ -50,3 +53,7 @@ Acceptance Criteria:
 - [ ] When you click on the link expect to see the current users user name
 - [ ] Expect to see profile fields including, "Skills I know",  "Skills I want to Learn", "Reviews(not editable by user),
 - [ ] Expect to see field "describe your expertise" beneath each already entered skill
+- [ ] Expect to see one skill
+
+
+<h5>   </h5>
