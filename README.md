@@ -35,5 +35,5 @@ so that I can use all of its awesome features.
 
 Acceptance Criteria:
 - [ ] There is a link to sign up on the homepage (will be in header if you want to bypass the select boxes)
-- [ ] If I fill in my first name, last name, email and password correctly I am able to sign up for an account
-- [ ] If the password and password confirmation correctly I am able to sign up for an account
+- [ ] If I fill in my first name, last name, email, password, city and state correctly I am able to sign up for an account.
+- [ ] If the password and password confirmation don't match I am not able to sign up for an account.
