@@ -7,6 +7,7 @@ A website that will allow people to barter for skills based on a one-to-one trad
 
 <h5>Home Page</h5>
 ```
+```
 As someone who knows japanese(example skill)
 I want to find out how many other users both want to learn japanese(example skill)
 and already know ruby(example skill)
@@ -25,7 +26,7 @@ than if users exist in the database that match the current users criteria.
 - [ ] expect the new form on the next page to already have inputed skills filled out in appropriate places
 - [ ] if the skills are not in the database expect the page to propmt the user to sign up for an account
 and add the skill
-
+```
 <h5>Sign up</h5>
 ```
 As someone who wants to trade skills
