@@ -3,7 +3,9 @@
 A website that will allow people to barter for skills based on a one-to-one trade.
 
 
-<h4>User Stories</h4>
+<h3>User Stories</h3>
+
+<h3>See how many users</h3>
 
 ```
 As someone who knows japanese(example skill)
@@ -13,6 +15,7 @@ So that I can decide whether I want to sign up for an account and barter for ski
 ```
 
 Acceptance Criteria:
+- [ ] Only goto this page as the root if user is not signed in
 - [ ] user inputs a skill they want to learn from a drop down menu of skills
 - [ ] user inputs a skill that they already know and are willing to teach from a drop down menu of skills
 - [ ] user clicks a button("Find People") to signify that they are done
@@ -31,6 +34,6 @@ so that I can use all of its awesome features.
 ```
 
 Acceptance Criteria:
-- [ ] There is a link to sign up on the homepage (can be one in header if you want to bypass the select boxes)
+- [ ] There is a link to sign up on the homepage (will be in header if you want to bypass the select boxes)
 - [ ] If I fill in my first name, last name, email and password correctly I am able to sign up for an account
 - [ ] If the password and password confirmation correctly I am able to sign up for an account
