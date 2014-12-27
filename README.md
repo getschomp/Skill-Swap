@@ -26,6 +26,16 @@ than if users exist in the database that match the current users criteria.
 - [ ] If the skills are not in the database expect the page to propmt the user to sign up for an account
 and add the skill
 
+<h5>Home Page part 2</h5>
+```
+As a curious user
+I want to see a news feed with the most recent skill trades that took place on the home page
+```
+
+Acceptance Criteria:
+- [ ] 
+- [ ] 
+
 <h5>Sign Up</h5>
 ```
 As someone who wants to trade skills
