@@ -33,8 +33,7 @@ I want to see a news feed with the most recent skill trades that took place on t
 ```
 
 Acceptance Criteria:
-- [ ] 
-- [ ] 
+
 
 <h5>Sign Up</h5>
 ```
