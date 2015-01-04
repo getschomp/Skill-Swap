@@ -25,7 +25,7 @@ feature "Any user can edit the skill desciptors", %q{
     #create object
 
     #sad path
-    scenario "User tries to change name and gets and error"
+    scenario "User tries to change name and gets and error" do
       fill_in "Name"
       #expect page to have content
 
