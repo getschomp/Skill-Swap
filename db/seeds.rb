@@ -5,15 +5,15 @@
 #
 
 # Begin:Two users that would create a match
-  #  Skill.create(name: "Japanese", category: "Language" , description: "A language spoken in Japan" , url: "http://en.wikipedia.org/wiki/Japanese_language")
-  #  Skill.create(name: "Ruby", category: "Programming Languages" , description: "A elegant and syntatically clear programming language." , url: "http://en.wikipedia.org/wiki/Japanese_language")
-  #  UserSkill.create(skill_id: 1, user_id: 1, have_or_want: "want", expertise_level: "Novice")
-  #  UserSkill.create(skill_id: 2, user_id: 1, have_or_want: "have", expertise_level: "Novice")
-  #  User.create(username: "fakeuser1" , email: "fakeusersemail1@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
-   #
-  #  UserSkill.create(skill_id: 1, user_id: 2, have_or_want: "have", expertise_level: "Novice")
-  #  UserSkill.create(skill_id: 2, user_id: 2, have_or_want: "want", expertise_level: "Novice")
-  #  User.create(username: "fakeuser2" , email: "fakeusersemail2@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
+    skill1 = Skill.create(name: "Japanese", category: "Language" , description: "A language spoken in Japan" , url: "http://en.wikipedia.org/wiki/Japanese_language")
+    skill2 = Skill.create(name: "Ruby", category: "Programming Languages" , description: "A elegant and syntatically clear programming language." , url: "http://en.wikipedia.org/wiki/Japanese_language")
+    us1 = UserSkill.create(skill_id: 1, user_id: 1, have_or_want: "want", expertise_level: "Novice")
+    us2 = UserSkill.create(skill_id: 2, user_id: 1, have_or_want: "have", expertise_level: "Novice")
+    u1 = User.create(username: "fakeuser1" , email: "fakeusersemail1@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
+
+    us3 = UserSkill.create(skill_id: 1, user_id: 2, have_or_want: "have", expertise_level: "Novice")
+    us4 = UserSkill.create(skill_id: 2, user_id: 2, have_or_want: "want", expertise_level: "Novice")
+    u2 = User.create(username: "fakeuser2" , email: "fakeusersemail2@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
 # End:Two users that would create a match
 
 
