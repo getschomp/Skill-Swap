@@ -1,9 +1,9 @@
 class Skill < ActiveRecord::Base
-  validate :name,
+  validates :name,
     presence: true
     # max length
 
-  validate :category,
+  validates :category,
     presence: true
     # max length
 
