@@ -18,7 +18,11 @@ feature "Any user can edit the skill desciptors", %q{
 
     #happy path!
     scenario "user can navigate from the skills show page to the skill edit page" do
-      #create object
+      visit skill_path
+      click_link "Edit Skill"
+      expect(page).to have_content "Name"
+      expect(page).to have_content "Description"
+      expect(page).to have_content "Description"
 
     #happy path!
     scenario "User fills out description, url and avatar" do

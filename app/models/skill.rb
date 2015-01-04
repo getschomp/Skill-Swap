@@ -7,5 +7,5 @@ class Skill < ActiveRecord::Base
     presence: true
     # max length
 
-  has_many :users, through: user_skills
+  has_many :users, through: :user_skills
 end
