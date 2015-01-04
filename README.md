@@ -46,8 +46,8 @@ so that I can use all of its awesome features.
 
 Acceptance Criteria:
 - [ ] There is a link to sign up on the homepage (will be in header if you want to bypass the select boxes)
-- [ ] If I fill in my first name, last name, email, password, city and state correctly I am able to sign up for an account.
-- [ ] I am able to optionally fill out a skill that i want to learn and a skill that i already know.
+- [ ] If I specify my username, email, password, city and state correctly I am able to sign up for an account.
+- [ ] I am able to optionally fill out a skill that I want to learn and a skill that i already know.
 - [ ] If the password and password confirmation don't match I am not able to sign up for an account.
 
 
@@ -65,6 +65,35 @@ Acceptance Criteria:
 - [ ] Expect to see profile fields including, "Skills I know",  "Skills I want to Learn", "Reviews(not editable by user),
 - [ ] Expect to see field "describe your expertise" beneath each already entered skill
 - [ ] Expect to see one skill
+
+<h5>Add Skills</h5>
+As someone who knows(or wants to learn) a skill not in the database
+I want to add a new skill to the website
+So that I can add it to my profile
+
+Acceptance Criteria:
+- [ ] The user must specify a name and category for a success message
+- [ ] The user can optional add a skill description, wikipedia url and avatar
+- [ ] If the user dose not specify the required information they will get an error
+
+<h5>Edit Skills</h5>
+As a user that wants to improve the definition of a skill
+I want to edit the skills attributtes
+So that the skill page will be more accurate
+
+Acceptance Criteria:
+- [ ] The user can navigate from the skills show page to the skill edit page
+- [ ] The user must be signed in to edit the skills page
+- [ ] The user can update the description, wikipedia url and avatar
+- [ ] The user can update the description, wikipedia url and avatar
+- [ ] If the user tries to update a name they will encounter an error
+for future ref:only admins will be able to edit the skills name or delete the skill page
+for future ref:only specific avatar urls will end up on the homepage shuffle
+
+<h5>View a Skill</h5>
+
+
+<h5>View All Skills</h5>
 
 
 <h5>Add a review to a users page</h5>

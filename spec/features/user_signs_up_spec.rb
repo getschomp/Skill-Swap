@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'user registers', %Q{
-  As a visitor
-  I want to register
-  So that I can create an account
+  As someone who wants to trade skills
+  I want to sign up for the skill trade app
+  so that I can use all of its awesome features.
 } do
 
   # Acceptance Criteria:
