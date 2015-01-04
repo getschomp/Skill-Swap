@@ -3,7 +3,7 @@
 A website that will allow people to barter for skills based on a one-to-one trade.
 
 <h3>ER Diagram</h3>
-<img src="app/assets/images/*" alt="ER Diagram">
+![alttag](https://raw.github.com/getschomp/Skill-Swap/app/images/1.png)
 
 <h3>User Stories</h3>
 
