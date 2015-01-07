@@ -16,23 +16,22 @@ feature "Any user can edit the skill desciptors", %q{
     for future ref:only specific avatar urls will end up on the homepage shuffle
   } do
 
-    #happy path!
-    scenario "user can navigate from the skills show page to the skill edit page" do
-      visit skill_path
-      click_link "Edit Skill"
-      expect(page).to have_content "Name"
-      expect(page).to have_content "Description"
-      expect(page).to have_content "Description"
+  #happy path!
+  scenario "user can navigate from the skills show page to the skill edit page" do
+    visit skill_path
+    click_link "Edit Skill"
+    expect(page).to have_content "Name"
+    expect(page).to have_content "Description"
+    expect(page).to have_content "Description"
+  end
+  #happy path!
+  scenario "User fills out description, url and avatar" do
+  #create object
+  end
+  #sad path
+  scenario "User tries to change name and gets and error" do
+    fill_in "Name"
+    #expect page to have content
 
-    #happy path!
-    scenario "User fills out description, url and avatar" do
-    #create object
-
-    #sad path
-    scenario "User tries to change name and gets and error" do
-      fill_in "Name"
-      #expect page to have content
-
-    end
-
+  end
 end

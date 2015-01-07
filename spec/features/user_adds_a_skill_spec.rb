@@ -18,14 +18,15 @@ feature "User adds a skill", %q{
   } do
 
   before(:each) do
-   @user = FactoryGirl.create(:user)
-   sign_in_as(@user)
+   @user = FactoryGirl.build(:user)
+   sign_in(@user)
   end
+
   scenario "User submits a skill with all feilds filled in" do
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
-    fill_in "Category", with: skill1.category
+    select "fitness", :from => "category"
     fill_in "Description", with: skill1.description
     # test for avatar(optional)
     click_button "Create Skill"
@@ -38,7 +39,8 @@ feature "User adds a skill", %q{
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
-    fill_in "Category", with: skill1.category
+    save_and_open_page
+    select "fitness", :from => "Category"
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
     expect(page).to have_content skill1.name
@@ -60,5 +62,18 @@ feature "User adds a skill", %q{
     click_button "Create Skill"
     expect(page).to have_content "Add a Skill"
     expect(page).to have_content "error" || "errors"
+  end
+  scenario "User isn't signed in and can't add a skill" do
+    skill1 = FactoryGirl.build(:skill)
+    visit new_skill_path
+    fill_in "Name", with: skill1.name
+    fill_in "Category", with: skill1.category
+    fill_in "Description", with: skill1.description
+    # test for avatar(optional)
+    click_button "Create Skill"
+    expect(page).to have_content "sucessfully"
+    expect(page).to have_content skill1.name
+    expect(page).to have_content current_user.name
+    expect(page).to_not have_content "error" || "errors"
   end
 end

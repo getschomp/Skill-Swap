@@ -95,9 +95,14 @@ for future ref:only admins will be able to edit the skills name or delete the sk
 for future ref:only specific avatar urls will end up on the homepage shuffle
 
 <h5>View a Skill</h5>
-
+Scrape wikipedia?
+Integreate youtube api for top 2 videos related to the skill.
 
 <h5>View All Skills</h5>
 
+<h5>Add new UserSkill to Profile</h5>
+
 
 <h5>Add a review to a users page</h5>
+
+<h5>User requests a new skill category from an admin</h5>

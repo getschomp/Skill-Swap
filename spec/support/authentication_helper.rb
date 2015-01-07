@@ -1,10 +1,17 @@
-require 'spec_helper'
-
 module AuthenticationHelper
-  def sign_in_as(user)
+  def sign_in(user)
     visit new_user_session_path
-    fill_in('user_email', with: user.email)
-    fill_in('user_password', :with => user.password)
-    click_on "Log in"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Log in"
+  end
+
+  def sign_up(user)
+    visit new_user_registration_path
+    fill_in "User Name", with: user.username
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    fill_in "Password confirmation", with: user.password
+    click_button "Sign up"
   end
 end

@@ -2,6 +2,7 @@ require 'factory_girl'
 
 FactoryGirl.define do
   factory :user do
+    sequence(:username) {|n| "l33tskills#{n}" }
     sequence(:email) {|n| "user#{n}@example.com" }
     password 'password'
     sign_in_count 0

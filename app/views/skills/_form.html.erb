@@ -1,0 +1,11 @@
+  <%= simple_form_for(@skill) do |f| %>
+    <div class="row">
+      <div class="large-6 columns"></div>
+      <%= f.input :name %>
+      <%= f.input :category, collection: @skill.get_categories %>
+      <%= f.input :description, as: :text %>
+      <%= f.input :url %>
+      <%= f.button :submit, "Create Skill" %>
+    </div>
+  </div>
+    <% end %>
