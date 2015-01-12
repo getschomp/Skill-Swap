@@ -13,12 +13,25 @@ FactoryGirl.define do
 
   factory :skill do
     sequence(:name) {|n| "Bike Racing#{n}" }
-    sequence(:category) {|n| "biking#{n}" }
+    sequence(:category) {"biking" }
     description "Bike racing is a competitive sport in which people try to go faster than one another while on bikes"
     #avatar
-    
+
     wanted_skill
     had_skill
+  end
+
+  factory wanted_skill do
+
+
+  end
+
+
+
+  factory :had_skill do
+
+  factory :location do
+
   end
 
 

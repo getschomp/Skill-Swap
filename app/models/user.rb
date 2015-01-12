@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
 
     has_many :had_skills
     has_many :wanted_skills
-    has_many :locations
-    accepts_nested_attributes_for :locations
+    has_one :location, through: :user_location
+    accepts_nested_attributes_for :location
 end

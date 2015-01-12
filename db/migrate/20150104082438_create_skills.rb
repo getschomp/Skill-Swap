@@ -8,5 +8,7 @@ class CreateSkills < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :skills, :name, unique: true
+
   end
 end
