@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
- *= require jquery-ui
 
  */
+body{
+  background-color: #000000
+}
+
+$body-font-family: sans-;

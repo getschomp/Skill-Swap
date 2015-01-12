@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/autocomplete_skill_name'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :skills, only: [:create, :new, :update, :destroy]do
+  resources :skills, only: [:create, :new, :update, :destroy, :show]do
     get :autocomplete_skill_name, :on => :collection
  end
 

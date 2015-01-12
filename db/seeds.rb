@@ -7,12 +7,12 @@
 # Begin:Two users that would create a match
     skill1 = Skill.create(name: "Japanese", category: "Language" , description: "A language spoken in Japan" , url: "http://en.wikipedia.org/wiki/Japanese_language")
     skill2 = Skill.create(name: "Ruby", category: "Programming Languages" , description: "A elegant and syntatically clear programming language." , url: "http://en.wikipedia.org/wiki/Japanese_language")
-    us1 = HaveSkill.create(skill_id: 1, user_id: 1, expertise_level: "Novice")
-    us2 = WantSkill.create(skill_id: 2, user_id: 1)
+    us1 = HadSkill.create(skill_id: 1, user_id: 1, expertise_level: "Novice")
+    us2 = WantedSkill.create(skill_id: 2, user_id: 1)
     u1 = User.create(username: "fakeuser1" , email: "fakeusersemail1@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
 
-    us3 = HaveSkill.create(skill_id: 1, user_id: 2, expertise_level: "Novice")
-    us4 = WantSkill.create(skill_id: 2, user_id: 2)
+    us3 = HadSkill.create(skill_id: 1, user_id: 2, expertise_level: "Novice")
+    us4 = WantedSkill.create(skill_id: 2, user_id: 2)
     u2 = User.create(username: "fakeuser2" , email: "fakeusersemail2@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
 # End:Two users that would create a match
 

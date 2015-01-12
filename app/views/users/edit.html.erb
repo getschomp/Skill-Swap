@@ -19,8 +19,20 @@
 
 <div class="field">
   <%= f.label :gender %><br>
-  <%= f.text_area :gender %>
+  <%= f.select :gender, ['Male', 'Female', 'Other'] %>
 </div>
+
+<h4>Location<h4>
+<div class="field">
+<%= f.fields_for :locations, Location.new do |b| %>
+  <fieldset>
+  <%= b.label :city %><br>
+  <%= b.text_area :city %>
+  <%= b.label :state %><br>
+  <%= b.text_area :state %>
+  </fieldset>
+</div>
+<% end %>
 
 <div class="actions">
   <%= f.submit "Edit Basic Info" %>

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150112025308) do
 
   add_index "conversations", ["user_id_1", "user_id_2"], name: "index_conversations_on_user_id_1_and_user_id_2", unique: true, using: :btree
 
-  create_table "have_skills", force: :cascade do |t|
+  create_table "had_skills", force: :cascade do |t|
     t.integer  "skill_id",        null: false
     t.integer  "user_id",         null: false
     t.string   "expertise_level"
@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20150112025308) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "state", null: false
-    t.string "city",  null: false
+    t.string "user_id", null: false
+    t.string "state",   null: false
+    t.string "city",    null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -76,11 +77,10 @@ ActiveRecord::Schema.define(version: 20150112025308) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  create_table "want_skills", force: :cascade do |t|
+  create_table "wanted_skills", force: :cascade do |t|
     t.integer  "skill_id",        null: false
     t.integer  "user_id",         null: false
     t.string   "current_level"
-    t.string   "desired_level"
     t.string   "why_description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

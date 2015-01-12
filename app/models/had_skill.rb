@@ -1,4 +1,4 @@
-class HaveSkill < ActiveRecord::Base
+class HadSkill < ActiveRecord::Base
   validates :skill_id,
     null: false
   validates :user_id,

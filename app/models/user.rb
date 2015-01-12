@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
     presence: true,
     uniqueness: true
 
-    has_many :user_skills
-    has_many :skills, through: :user_skills
+    has_many :had_skills
+    has_many :wanted_skills
+    has_many :locations
+    accepts_nested_attributes_for :locations
 end
