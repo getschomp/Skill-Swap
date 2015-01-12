@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104082448) do
+ActiveRecord::Schema.define(version: 20150111193226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "have_skills", force: :cascade do |t|
+    t.integer  "skill_id",        null: false
+    t.integer  "user_id",         null: false
+    t.string   "expertise_level"
+    t.string   "experience"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "category",    null: false
     t.string   "description"
     t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_skills", force: :cascade do |t|
-    t.integer  "skill_id",        null: false
-    t.integer  "user_id",         null: false
-    t.string   "have_or_want",    null: false
-    t.string   "expertise_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,5 +55,15 @@ ActiveRecord::Schema.define(version: 20150104082448) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "want_skills", force: :cascade do |t|
+    t.integer  "skill_id",        null: false
+    t.integer  "user_id",         null: false
+    t.string   "current_level"
+    t.string   "desired_level"
+    t.string   "why_description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

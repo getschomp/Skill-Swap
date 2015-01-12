@@ -1,4 +1,7 @@
 class SkillsController < ApplicationController
+
+    autocomplete :skill, :name
+
   def new
     @skill = Skill.new
   end
@@ -12,7 +15,12 @@ class SkillsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
   def update
+    @skill.update(skill_params)
   end
 
   def destroy

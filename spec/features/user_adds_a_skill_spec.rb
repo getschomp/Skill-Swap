@@ -26,7 +26,7 @@ feature "User adds a skill", %q{
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
-    select "fitness", :from => "category"
+    select "fitness", :from => "Category"
     fill_in "Description", with: skill1.description
     # test for avatar(optional)
     click_button "Create Skill"
