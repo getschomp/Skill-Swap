@@ -11,16 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111193226) do
+ActiveRecord::Schema.define(version: 20150112025308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user_id_1", null: false
+    t.integer "user_id_2", null: false
+  end
+
+  add_index "conversations", ["user_id_1", "user_id_2"], name: "index_conversations_on_user_id_1_and_user_id_2", unique: true, using: :btree
 
   create_table "have_skills", force: :cascade do |t|
     t.integer  "skill_id",        null: false
     t.integer  "user_id",         null: false
     t.string   "expertise_level"
     t.string   "experience"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "state", null: false
+    t.string "city",  null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content",         null: false
+    t.integer  "user_id",         null: false
+    t.integer  "conversation_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
