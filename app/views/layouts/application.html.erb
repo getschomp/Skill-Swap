@@ -9,7 +9,6 @@
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
 </head>
-</head>
 <body>
 
   <nav class="top-bar">
@@ -38,15 +37,16 @@
     </div>
   <%- end -%>
 
-  <div class="container"
+  <div class="container">
+
     <%= yield %>
 
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_tag do %>
-    $(function(){
-      $(document).foundation();
-    });
-  <% end %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_tag do %>
+      $(function(){
+        $(document).foundation();
+      });
+    <% end %>
   </div>
   <%= yield :extra_footer %>
 </body>

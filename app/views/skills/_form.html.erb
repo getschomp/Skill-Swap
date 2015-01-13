@@ -4,8 +4,8 @@
       <%= f.input :name %>
       <%= f.input :category, collection: @skill.get_categories %>
       <%= f.input :description, as: :text %>
-      <%= f.input :url %>
-      <%= f.button :submit, "Create Skill" %>
+      <%= f.input :url, :label => "Wikipedia URL" %>
+      <%= f.button :submit,  "Create Skill" %>
     </div>
   </div>
-    <% end %>
+  <% end %>

@@ -13,12 +13,12 @@ feature "User adds a skill", %q{
         information they will get an error
   - [ ] The skill name must be under 40 characters
   - [ ] The category must be under two words
-  - [ ] The user will be redirected to the edit profile page when they
-      sumbit a skill so that they can add the skills
+  - [ ] The user will be redirected to the skill show page when they
+      sumbit a skill
   } do
 
   before(:each) do
-   @user = FactoryGirl.build(:user)
+   @user = FactoryGirl.create(:user)
    sign_in(@user)
   end
 
@@ -32,19 +32,16 @@ feature "User adds a skill", %q{
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
     expect(page).to have_content skill1.name
-    expect(page).to have_content current_user.name
     expect(page).to_not have_content "error" || "errors"
   end
   scenario "User submits a skill with name and category filled in" do
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
-    save_and_open_page
     select "fitness", :from => "Category"
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
     expect(page).to have_content skill1.name
-    expect(page).to have_content current_user.name
     expect(page).to_not have_content "error" || "errors"
   end
   scenario "User submits a skill without a category" do
@@ -52,28 +49,18 @@ feature "User adds a skill", %q{
     visit new_skill_path
     fill_in "Name", with: skill1.name
     click_button "Create Skill"
-    expect(page).to have_content "sucessfully"
-    expect(page).to have_content skill1.name
-    expect(page).to have_content current_user.name
-    expect(page).to_not have_content "error" || "errors"
+    expect(page).to have_content "can't be blank"
   end
   scenario "User submits without filling in the form" do
     visit new_skill_path
     click_button "Create Skill"
-    expect(page).to have_content "Add a Skill"
-    expect(page).to have_content "error" || "errors"
+    expect(page).to have_content "can't be blank"
   end
   scenario "User isn't signed in and can't add a skill" do
-    skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
-    fill_in "Name", with: skill1.name
-    fill_in "Category", with: skill1.category
-    fill_in "Description", with: skill1.description
-    # test for avatar(optional)
-    click_button "Create Skill"
-    expect(page).to have_content "sucessfully"
-    expect(page).to have_content skill1.name
-    expect(page).to have_content current_user.name
-    expect(page).to_not have_content "error" || "errors"
+    save_and_open_page
+    click_on "Sign Out"
+    visit new_skill_path
+    expect(page).to have_content "You need to sign in to add a skill!"
   end
 end

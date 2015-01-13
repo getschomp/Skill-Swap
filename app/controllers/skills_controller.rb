@@ -8,10 +8,12 @@ class SkillsController < ApplicationController
 
   def create
     @skill = Skill.new(skill_params)
-    if @skill.save
-     redirect_to user_path(current_user)
-    else
-      render "new"
+    if current_user
+      if @skill.save
+       redirect_to skill_path(@skill), notice: "Skill sucessfully created!"
+      else
+        render "new"
+      end
     end
   end
 
