@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  root 'homes#index'
-  devise_for :users
+  get "welcome/show"
+  root :to => "welcome#show"
+  get 'welcome/autocomplete_skill_name'
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :skills, only: [:create, :new, :update, :destroy, :show]do
+    get :autocomplete_skill_name, :on => :collection
+ end
+
+  resources :users do
+    resources :have_skill
+    resources :want_skill
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,4 +66,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

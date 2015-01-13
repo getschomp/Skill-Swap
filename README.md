@@ -1,6 +1,10 @@
 <h1>Skill Trade</h1>
 
+<p>
 A website that will allow people to barter for skills based on a one-to-one trade.
+</p>
+
+[![Build Status](https://travis-ci.org/getschomp/Skill-Swap.svg?branch=master)](https://travis-ci.org/getschomp/Skill-Swap) [![Code Climate](https://codeclimate.com/github/getschomp/Skill-Swap.png)](https://codeclimate.com/github/getschomp/Skill-Swap) [![Coverage Status](https://coveralls.io/repos/getschomp/Skill-Swap/badge.png)](https://coveralls.io/r/getschomp/Skill-Swap)
 
 <h3>ER Diagram</h3>
 ![Alt text](/app/assets/images/1.png?raw=true "Optional Title")
@@ -52,7 +56,7 @@ Acceptance Criteria:
 
 
 
-<h5>Fill Out Profile</h5>
+<h5>Edit Profile</h5>
 ```
 As someone who wants to trade skills
 I want to fill out a profile
@@ -60,11 +64,9 @@ so that other users can see what I know my level of expertise and what I want to
 ```
 Note: I want this to look more like you are editing an existing profile rather than just filling out a form.
 Acceptance Criteria:
-- [ ] Once you are signed in there is a link to fill out and view your profile on the homepage
-- [ ] When you click on the link expect to see the current users user name
-- [ ] Expect to see profile fields including, "Skills I know",  "Skills I want to Learn", "Reviews(not editable by user),
+- [ ] If signed you can navigate from the homepage to your profile
+- [ ] The user can see profile fields including, "Skills I know",  "Skills I want to Learn", "Reviews(not editable by user),
 - [ ] Expect to see field "describe your expertise" beneath each already entered skill
-- [ ] Expect to see one skill
 
 <h5>Add Skills</h5>
 As someone who knows(or wants to learn) a skill not in the database
@@ -75,6 +77,8 @@ Acceptance Criteria:
 - [ ] The user must specify a name and category for a success message
 - [ ] The user can optional add a skill description, wikipedia url and avatar
 - [ ] If the user dose not specify the required information they will get an error
+- [ ] The user will be redirected to the edit profile page when they
+sumbit a skill so that they can add the skills
 
 <h5>Edit Skills</h5>
 As a user that wants to improve the definition of a skill
@@ -91,9 +95,14 @@ for future ref:only admins will be able to edit the skills name or delete the sk
 for future ref:only specific avatar urls will end up on the homepage shuffle
 
 <h5>View a Skill</h5>
-
+Scrape wikipedia?
+Integreate youtube api for top 2 videos related to the skill.
 
 <h5>View All Skills</h5>
 
+<h5>Add new UserSkill to Profile</h5>
+
 
 <h5>Add a review to a users page</h5>
+
+<h5>User requests a new skill category from an admin</h5>
