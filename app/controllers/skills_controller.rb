@@ -1,7 +1,6 @@
 class SkillsController < ApplicationController
   before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edit, :update]
   autocomplete :skill, :name
-
   before_action :get_skill, only: [:edit, :update, :destoy]
 
   def get_skill
@@ -32,8 +31,8 @@ class SkillsController < ApplicationController
   end
 
   def destroy
-  #only accesible by admin
-  #if current user is admin statement
+  # only accesible by admin
+  # if current user is admin statement
   end
 
   def show
@@ -42,6 +41,7 @@ class SkillsController < ApplicationController
   end
 
   private
+
   def skill_params
     params.require(:skill).permit(:name, :category, :description, :url)
   end
