@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
-
-    autocomplete :skill, :name
+  before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edit, :update]
+  autocomplete :skill, :name
 
   def new
     @skill = Skill.new

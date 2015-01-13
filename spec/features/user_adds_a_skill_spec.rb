@@ -61,6 +61,6 @@ feature "User adds a skill", %q{
     save_and_open_page
     click_on "Sign Out"
     visit new_skill_path
-    expect(page).to have_content "You need to sign in to add a skill!"
+    expect(page).to have_content "You need to sign in or sign up before continuing"
   end
 end
