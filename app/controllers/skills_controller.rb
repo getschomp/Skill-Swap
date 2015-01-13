@@ -2,6 +2,12 @@ class SkillsController < ApplicationController
   before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edit, :update]
   autocomplete :skill, :name
 
+  before_action :get_skill, only: [:edit, :update, :destoy]
+
+  def get_skill
+    @skill = Skill.find(params[:id])
+  end
+
   def new
     @skill = Skill.new
   end

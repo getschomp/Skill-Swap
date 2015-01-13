@@ -19,18 +19,18 @@ feature "User adds wanted skills to profile", %q{
       sign_in(@user)
     end
 
-    scenario "User sucessfully adds a skill that they want to learn" do
-      skill1 = FactoryGirl.build(:skill)
-      visit edit_user_path
-      select "Bike Racing1", :from => "Wanted Skill"
-      select "biking", :from => "Category"
-      fill_in "Your current skill Level", with: "Beginner"
-      fill_in "Why do you want to learn this skill", with: "because I signed up for a bike race in January"
-      click_button "Add Skill"
-      expect(page).to have_content "sucessfully"
-      expect(page).to have_content skill1.name
-      expect(page).to_not have_content "error" || "errors"
-     end
+    # scenario "User sucessfully adds a skill that they want to learn" do
+    #   skill1 = FactoryGirl.build(:skill)
+    #   visit edit_user_path
+    #   select "Bike Racing1", :from => "Wanted Skill"
+    #   select "biking", :from => "Category"
+    #   fill_in "Your current skill Level", with: "Beginner"
+    #   fill_in "Why do you want to learn this skill", with: "because I signed up for a bike race in January"
+    #   click_button "Add Skill"
+    #   expect(page).to have_content "sucessfully"
+    #   expect(page).to have_content skill1.name
+    #   expect(page).to_not have_content "error" || "errors"
+    #  end
     # scenario "User submits a skill with name and category filled in" do
     #   skill1 = FactoryGirl.build(:skill)
     #   visit new_skill_path
