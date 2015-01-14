@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
     has_many :had_skills, dependent: :destroy
     has_many :wanted_skills, dependent: :destroy
+    has_many :skills, through: :wanted_skills
+    has_many :skills, through: :had_skills
     has_one :location
     accepts_nested_attributes_for :location
     accepts_nested_attributes_for :wanted_skills
