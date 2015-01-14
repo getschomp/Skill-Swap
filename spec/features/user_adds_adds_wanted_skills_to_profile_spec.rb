@@ -21,10 +21,10 @@ feature "User adds wanted skills to profile", %q{
 
     scenario "User sucessfully adds a skill that they want to learn" do
       skill1 = FactoryGirl.create(:skill)
-      wanted_skill1 = FactoryGirl.build(skill_id: skill1, user_id, current_level, why_description)
+      wanted_skill1 = WantedSkill.build(skill_id: skill1.id, user_id: @user.id, current_level: "novice", why_description: "just because")
       visit edit_user_path
-      select "Biking", :from => "Category"
-      select "Bike Racing1", :from => "Wanted Skill"
+      select "Biking", :from => "Category" #to be autocomplete
+      select "Bike Racing1", :from => "Wanted Skill" #to be autocomplete
       fill_in "Your current skill Level", with: "Beginner"
       fill_in "Why do you want to learn this skill", with: "because I signed up for a bike race in January"
       click_button "Add Skill"
