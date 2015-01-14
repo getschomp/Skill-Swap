@@ -11,6 +11,7 @@ class Skill < ActiveRecord::Base
   has_many :had_skills
   has_many :users, through: :wanted_skills
   has_many :users, through: :had_skills
+  has_many :categories
 
 
   def get_categories

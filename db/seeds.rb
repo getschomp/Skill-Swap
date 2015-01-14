@@ -14,3 +14,9 @@
     us3 = HadSkill.create(skill_id: skill2.id, user_id: u2.id, expertise_level: "Novice")
     us4 = WantedSkill.create(skill_id: skill2.id, user_id: u2.id)
 # End:Two users that would create a match
+
+  Category.create(name: "Technology")
+  Category.create(name: "Fitness")
+  Category.create(name: "Art")
+  Category.create(name: "Language")
+  Category.create(name: "Programming languages")
