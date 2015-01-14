@@ -1,4 +1,4 @@
-<h1>Editing Profile for <%= @user.username.capitalize %></h1>
+<h2>Editing Profile for <%= @user.username.capitalize %></h2>
 
 <%= form_for(@user) do |f| %>
 <% if @user.errors.any? %>
@@ -26,7 +26,10 @@
 <div class="actions">
   <%= f.submit "Edit Basic Info" %>
 </div>
-
-<% link_to "Add a skill you want to know", new_user_want_skill_path(@user) %>
-<% link_to "Add a skill you know",  new_user_have_skill_path(@user)%>
+<div class="wanted_skill">
+  Add a skill you want to know
+</div>
+<div class="had_skill">
+Add a skill you know
+</div>
 <% end %>

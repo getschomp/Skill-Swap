@@ -21,10 +21,7 @@ feature "User adds wanted skills to profile", %q{
 
     scenario "User sucessfully adds a skill that they want to learn with optional feilds" do
       skill1 = FactoryGirl.create(:skill)
-      # skill2 = FactoryGirl.create(:skill)
-      # wanted_skill1 = WantedSkill.build(skill_id: skill1.id, user_id: @user.id, current_level: "novice", why_description: "just because")
-      # had_skill1 = HadSkill.build(skill_id: skill2.id, user_id: @user.id, current_level:"expert")
-      visit edit_user_path
+      visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         select skill1.category, :from => "Category" #to be autocomplete
         select skill1.name, :from => "Wanted Skill" #to be autocomplete
@@ -38,7 +35,7 @@ feature "User adds wanted skills to profile", %q{
     end
     scenario "User adds a wanted skill without optional feilds" do
       skill1 = FactoryGirl.create(:skill)
-      visit edit_user_path
+      visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         select skill1.category, :from => "Category" #to be autocomplete
         select skill1.name, :from => "Wanted Skill" #to be autocomplete
@@ -50,7 +47,7 @@ feature "User adds wanted skills to profile", %q{
     end
     scenario "User submits a form leaving every peice blank" do
       skill1 = FactoryGirl.create(:skill)
-      visit edit_user_path
+      visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         click_button "Add Skill"
       end
