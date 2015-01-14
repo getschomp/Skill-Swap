@@ -24,8 +24,6 @@ FactoryGirl.define do
     user
   end
 
-
-
   factory :had_skill do
       expertise_level "Expert"
       experience "5 years Racing Bikes in college"
@@ -33,6 +31,4 @@ FactoryGirl.define do
       skill
       user
     end
-
-
 end
