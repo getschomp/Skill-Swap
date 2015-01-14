@@ -7,7 +7,7 @@ FactoryGirl.define do
     password 'password'
     sign_in_count 0
 
-    # wanted_skill
+    wanted_skill
     # had_skill
   end
 
@@ -16,19 +16,17 @@ FactoryGirl.define do
     sequence(:category) {"biking" }
     description "Bike racing is a competitive sport in which people try to go faster than one another while on bikes"
 
-    # wanted_skill
+    wanted_skill
     # had_skill
   end
 
+  factory :wanted_skill do
+    current_level "Beginner"
+    why_description "I want to take my biking to the next level"
 
-
-  # factory :wanted_skill do
-  #   current_level "Beginner"
-  #   why_description "I want to take my biking to the next level"
-  #
-  #   skill
-  #   user
-  # end
+    skill
+    user
+  end
   #
   #
   #

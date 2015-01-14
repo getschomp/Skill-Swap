@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
     presence: true,
     uniqueness: true
 
-    has_many :had_skills
-    has_many :wanted_skills
+    has_many :had_skills, dependent: :destroy
+    has_many :wanted_skills, dependent: :destroy
     has_one :location
     accepts_nested_attributes_for :location
     accepts_nested_attributes_for :wanted_skills
