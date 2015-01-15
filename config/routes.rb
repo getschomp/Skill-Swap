@@ -9,8 +9,8 @@ Rails.application.routes.draw do
  end
 
   resources :users do
-    resources :had_skill
-    resources :wanted_skill
+    resources :had_skills
+    resources :wanted_skills
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
