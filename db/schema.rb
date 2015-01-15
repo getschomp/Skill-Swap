@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150114182405) do
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",        null: false
-    t.string   "category",    null: false
+    t.string   "category"
     t.string   "description"
     t.string   "url"
     t.datetime "created_at"

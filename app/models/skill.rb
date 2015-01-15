@@ -4,8 +4,6 @@ class Skill < ActiveRecord::Base
     uniqueness: true
     # max length
 
-  validates :category,
-    presence: true
     # max length
   has_many :wanted_skills
   has_many :had_skills
@@ -13,10 +11,6 @@ class Skill < ActiveRecord::Base
   has_many :users, through: :had_skills
   has_many :categories
 
-
-  def get_categories
-    ["technology", "art", "fitness", "hiking"]
-  end
 
   def get_users_wanted
     users = []

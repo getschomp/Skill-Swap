@@ -56,3 +56,4 @@ gem 'rails4-autocomplete', '~> 1.1.1'
 gem 'nifty-generators'
 gem 'jquery-ui-rails', '~> 5.0.3'
 gem 'geocoder'
+gem 'dotenv-rails', :groups => [:development, :test]
