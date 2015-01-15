@@ -42,7 +42,7 @@ feature "User adds a wanted skills on profile", %q{
       expect(page).to_not have_content "error" || "errors"
     end
     scenario "User sucessfully adds a skill that they want to learn with all feilds" do
-      skill1 = FactoryGirl.create(:skill)=
+      skill1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         click_on "Add Skill"

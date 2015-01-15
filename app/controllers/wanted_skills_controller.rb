@@ -31,7 +31,7 @@ class WantedSkillsController < ApplicationController
         if @wanted_skill.save
           redirect_to user_path(current_user), notice: "Good!  You've sucessfully added the skill: #{@wanted_skill.skill.name} to the list of skills you want to learn."
         else
-          render :new
+          redirect_to new_user_wanted_skill_path(@user), notice:"Error: Skill name can't be blank"
         end
       else
         redirect_to root_path, notice: "You are not authorized to edit this page."
