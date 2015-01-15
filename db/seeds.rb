@@ -10,9 +10,9 @@
     skill1 = Skill.create(name: "Japanese", category: "Language" , description: "A language spoken in Japan" , url: "http://en.wikipedia.org/wiki/Japanese_language")
     skill2 = Skill.create(name: "Ruby", category: "Programming Languages" , description: "A elegant and syntatically clear programming language." , url: "http://en.wikipedia.org/wiki/Japanese_language")
     us1 = HadSkill.create(skill_id: skill1.id, user_id: u1.id, expertise_level: "Novice")
-    us2 = WantedSkill.create(skill_id: skill1.id, user_id: u1.id)
+    us2 = HadSkill.create(skill_id: skill1.id, user_id: u1.id)
     us3 = HadSkill.create(skill_id: skill2.id, user_id: u2.id, expertise_level: "Novice")
-    us4 = WantedSkill.create(skill_id: skill2.id, user_id: u2.id)
+    us4 = HadSkill.create(skill_id: skill2.id, user_id: u2.id)
 # End:Two users that would create a match
 
   Category.create(name: "Technology")

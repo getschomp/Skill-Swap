@@ -6,8 +6,8 @@ feature "User adds a skill", %q{
   So that I can add it to my profile
 
   Acceptance Criteria:
-  - [ ] The user must specify a name and category for a success message
-  - [ ] The user can optionally add a skill description,
+  - [ ] The user must specify a name for a success message
+  - [ ] The user can optionally add a category, skill description,
         wikipedia url and avatar
   - [ ] If the user dosn't specify the required
         information they will get an error
@@ -49,7 +49,7 @@ feature "User adds a skill", %q{
     visit new_skill_path
     fill_in "Name", with: skill1.name
     click_button "Create Skill"
-    expect(page).to have_content "can't be blank"
+    expect(page).to have_content "sucessfully"
   end
   scenario "User submits without filling in the form" do
     visit new_skill_path

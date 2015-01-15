@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User adds wanted skills to profile", %q{
+feature "User edits a wanted skills on profile", %q{
   As someone who knows a skill in the database
   I want to add the skill to my profile
   So that others know I want to learn the skill
@@ -23,7 +23,6 @@ feature "User adds wanted skills to profile", %q{
       skill1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
-        save_and_open_page
         select skill1.name, :from => "Wanted Skill" #to be autocomplete
         select "Beginner", :from => "How well do you know this skill?"
         fill_in "Describe why wou want to learn this skill?", with: "because I signed up for a bike race in January"

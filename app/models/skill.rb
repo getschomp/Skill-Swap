@@ -4,13 +4,11 @@ class Skill < ActiveRecord::Base
     uniqueness: true
     # max length
 
-    # max length
   has_many :wanted_skills
   has_many :had_skills
   has_many :users, through: :wanted_skills
   has_many :users, through: :had_skills
   has_many :categories
-
 
   def get_users_wanted
     users = []
@@ -27,7 +25,5 @@ class Skill < ActiveRecord::Base
     end
     users
   end
-
-
 
 end

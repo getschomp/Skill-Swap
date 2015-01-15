@@ -1,4 +1,4 @@
-class CreateWantedSkills < ActiveRecord::Migration
+class CreateHadSkills < ActiveRecord::Migration
   def change
     create_table :wanted_skills do |t|
       t.integer :skill_id, null: false

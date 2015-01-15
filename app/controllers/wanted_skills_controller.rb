@@ -22,12 +22,12 @@ class WantedSkillsController < ApplicationController
   def create
     #check for current user
     @user = User.find(params[:user_id])
-    @wanted_skill.skill_id = Skill.find_or_create_by(name: params[:skill_name])
+    @skill = Skill.find_or_create_by(name: params[:wanted_skill][:skill_attributes][:name])
     @wanted_skill = WantedSkill.new(wanted_skill_params)
+    @wanted_skill.skill_id = @skill.id
+    @wanted_skill.user_id = @user.id
     if current_user
       if @user = current_user
-        @wanted_skill = WantedSkill.new(wanted_skill_params)
-        @wanted_skill.user_id = current_user.id
         if @wanted_skill.save
           redirect_to user_path(current_user), notice: "Good!  You've sucessfully added the skill: #{@wanted_skill.skill.name} to the list of skills you want to learn."
         else
@@ -62,9 +62,7 @@ class WantedSkillsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def wanted_skill_params
-    params.require(:wanted_skill).permit(:skill_id, :user_id, :current_level, :teachers_skill, :why_description)
-  end
-  def skill_params
-    params.require(:skill).permit(:skill_name)
+    params.require(:wanted_skill).permit(:skill_id, :user_id, :current_level, :teachers_skill, :why_description,
+    skill_attributes: [:name])
   end
 end

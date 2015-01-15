@@ -50,6 +50,7 @@ gem 'launchy', group: [:development, :test]
 gem 'factory_girl', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
+gem 'pry-rails', :group => :development
 gem 'devise'
 gem 'foundation-rails'
 gem 'rails4-autocomplete', '~> 1.1.1'
