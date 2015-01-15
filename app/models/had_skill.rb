@@ -4,11 +4,10 @@ class HadSkill < ActiveRecord::Base
   validates :user_id,
     null: false
   validates :expertise_level,
-    inclusion: { in: %w(None Novice Intermediate Expert)}
+    inclusion: { in: ["", "Beginner", "Intermediate", "Advanced"]}
 
   belongs_to :user
   belongs_to :skill
 
   accepts_nested_attributes_for :skill
-  #research collect
 end

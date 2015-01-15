@@ -15,7 +15,7 @@ feature "User adds a wanted skills on profile", %q{
   - [ ] The user can optionally add a current skill level, requested teacher skill level
         and a descirption of why they want to learn the skill
   - [ ] If the user dosn't specify the required
-        information they will get an error
+        information they will get an error and stay on the same page
   } do
 
   #add autocomplete for skills column as time allows

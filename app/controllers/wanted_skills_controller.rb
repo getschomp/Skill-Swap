@@ -3,6 +3,12 @@ class WantedSkillsController < ApplicationController
   before_action :get_wanted_skill, only: [:show, :edit, :update]
   before_action :get_user, only: [:new, :create]
 
+  # move to model?
+  def titleize(string)
+    lowercase_words = %w{a an the and but or for nor of}
+    string.split.each_with_index.map{|x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
+  end
+
   def get_wanted_skill
     @wanted_skill = WantedSkill.find(params[:id])
   end
@@ -20,9 +26,9 @@ class WantedSkillsController < ApplicationController
   end
 
   def create
-    #check for current user
+    skill_name = titleize(params[:wanted_skill][:skill_attributes][:name])
     @user = User.find(params[:user_id])
-    @skill = Skill.find_or_create_by(name: params[:wanted_skill][:skill_attributes][:name])
+    @skill = Skill.find_or_create_by(name: skill_name)
     @wanted_skill = WantedSkill.new(wanted_skill_params)
     @wanted_skill.skill_id = @skill.id
     @wanted_skill.user_id = @user.id
