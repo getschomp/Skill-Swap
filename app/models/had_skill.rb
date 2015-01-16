@@ -4,7 +4,7 @@ class HadSkill < ActiveRecord::Base
   validates :user_id,
     null: false
   validates :expertise_level,
-    inclusion: { in: ["", "Beginner", "Intermediate", "Advanced"]}
+    inclusion: { in: ["", "Beginner", "Intermediate", "Advanced", nil]}
 
   belongs_to :user
   belongs_to :skill

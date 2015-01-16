@@ -1,6 +1,6 @@
 class HadSkillsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
-  before_action :had_skill, only: [:show, :edit, :update]
+  before_action :get_had_skill, only: [:show, :edit, :update, :destroy]
   before_action :get_user, only: [:new, :create]
 
   def get_had_skill
@@ -22,7 +22,6 @@ class HadSkillsController < ApplicationController
   def create
     #check for current user
     skill_name = titleize(params[:had_skill][:skill_attributes][:name])
-    @user = User.find(params[:user_id])
     @skill = Skill.find_or_create_by(name: skill_name)
     @had_skill = HadSkill.new(had_skill_params)
     @had_skill.skill_id = @skill.id
@@ -62,6 +61,12 @@ class HadSkillsController < ApplicationController
   #   #   render :edit
   #   # end
   # end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @had_skill.destroy
+    redirect_to user_path(@user), notice: "Skill successfully deleted from profile."
+  end
 
   private
 

@@ -40,8 +40,9 @@ class WantedSkillsController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:user_id])
     @wanted_skill.destroy
-    redirect_to admin_index_path, notice: "User successfully deleted."
+    redirect_to user_path(@user), notice: "Skill successfully deleted from profile."
   end
   # def edit
   #   @wanted_skill = WantedSkill.create(wanted_skill_params)

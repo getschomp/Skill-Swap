@@ -60,3 +60,4 @@ gem 'geocoder'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'faker'
 gem 'kaminari'
+gem 'rails_12factor', group: :production
