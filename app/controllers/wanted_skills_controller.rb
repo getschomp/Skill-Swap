@@ -1,6 +1,6 @@
 class WantedSkillsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
-  before_action :get_wanted_skill, only: [:show, :edit, :update]
+  before_action :get_wanted_skill, only: [:show, :edit, :update, :destroy]
   before_action :get_user, only: [:new, :create]
 
   def get_wanted_skill
@@ -39,6 +39,10 @@ class WantedSkillsController < ApplicationController
     end
   end
 
+  def destroy
+    @wanted_skill.destroy
+    redirect_to admin_index_path, notice: "User successfully deleted."
+  end
   # def edit
   #   @wanted_skill = WantedSkill.create(wanted_skill_params)
   #   if current_user

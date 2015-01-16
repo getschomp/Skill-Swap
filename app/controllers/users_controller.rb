@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.limit(10).page(params[:page])
   end
 
   def show
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def user_params
-    params.require(:user).permit(:id, :username, :email, :password, :gender, :about_me, :location_id,
+    params.require(:user).permit(:id, :username, :email, :password, :gender, :about_me, :location_id, :page,
     wanted_skill_attributes: [:skill_id, :user_id, :current_level, :teachers_skill, :why_description],
     had_skill_attributes: [:skill_id, :user_id, :expertise_level, :experience])
   end

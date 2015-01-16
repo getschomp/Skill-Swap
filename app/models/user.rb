@@ -16,4 +16,21 @@ class User < ActiveRecord::Base
     accepts_nested_attributes_for :location
     accepts_nested_attributes_for :wanted_skills, :update_only => true
     accepts_nested_attributes_for :had_skills, :update_only => true
+
+
+    def sort_by_intersection
+
+    end
+
+    def sort_alphabetically
+
+    end
+
+    def sort_by_intersection_nearest
+
+    end
+
+    def sort_by_nearest
+
+    end
 end

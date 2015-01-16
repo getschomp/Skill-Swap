@@ -20,7 +20,10 @@
     <ul>
       <h5></h5>
       <p><% @user.wanted_skills.each do |s| %></p>
-      <%= s.skill.name %>
+      <%= s.skill.name %><div>
+        <% if current_user = @user %>
+          <%= link_to 'Delete', user_wanted_skill_path(s), method: :delete %></div>
+        <% end %>
       <% end %>
     </ul>
   </div>

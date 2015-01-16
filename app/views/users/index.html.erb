@@ -1,8 +1,14 @@
 <h1> Find Users</h1>
 <h4> Sort and Search</h4>
+2 select bos that gets only current users haves and wants
+
+
+<%= paginate @users %>
+
 
 <div class="user_quick_info">
   <% @users.each do |user| %>
     <h4><%= link_to user.username, user_path(user) %><h4>
   <% end %>
 </div>
+ 
