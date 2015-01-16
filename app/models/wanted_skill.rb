@@ -8,6 +8,4 @@ class WantedSkill < ActiveRecord::Base
   belongs_to :skill
 
   accepts_nested_attributes_for :skill
-
-
 end

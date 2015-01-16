@@ -1,0 +1,18 @@
+<div class="row">
+  <div>
+    <h1>Editing Skill:<%= @skill.name %></h1>
+    <p class="small">fields with * are required</p>
+  </div>
+</div>
+<%= simple_form_for(@skill) do |f| %>
+<div class="row">
+  <div class="large-6 columns"></div>
+  <%= f.input :category, collection: get_categories %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :url, :label => "Wikipedia URL" %>
+  <%= f.button :submit,  "Update Skill" %>
+</div>
+</div>
+<% end %>
+
+<%= render "shared/footer" %>

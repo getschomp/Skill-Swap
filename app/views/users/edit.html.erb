@@ -64,6 +64,7 @@
       <%= link_to "Add Skill", new_user_had_skill_path(@user) %>
       <%= f.fields_for :had_skill, HadSkill.new do |b| %>
       <fieldset>
+        <%= b.label :skill_id, "Known Skill" %><br/>
         <%= b.select :skill_id, Skill.all.collect { |skill| [skill.name, skill.id ] } %><br/>
         <%= b.label :expertise_level, "How well do you know this skill?" %><br/>
         <%= b.select :expertise_level, get_skill_levels %><br/>

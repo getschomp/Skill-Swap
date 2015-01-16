@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def index
+    @users = User.all
+  end
+
   def show
   end
 
@@ -16,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    3.times { @user.wanted_skills.build}
     if current_user
       if current_user.id != @user.id
         redirect_to @user, notice: "You're not authorized to edit this profile!"
@@ -27,6 +30,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    # @wanted_skill = WantedSkill.find(params[:users][:wanted_skill_sttributes][:skill_id])
+    # @wanted_skill.update(user_params)
+    # if(@wanted_skill.save
+    #   redirect_to @wanted_skill, notice:"User Profile Updated")
+    # else
+    #   render :edit
+    # end
     @user.update(user_params)
     if(@user.save
       redirect_to @user, notice:"User Profile Updated")
@@ -39,6 +49,7 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:id, :username, :email, :password, :gender, :about_me, :location_id,
-    wanted_skill_attributes: [:skill_id, :user_id, :current_level, :teachers_skill, :why_description] )
+    wanted_skill_attributes: [:skill_id, :user_id, :current_level, :teachers_skill, :why_description],
+    had_skill_attributes: [:skill_id, :user_id, :expertise_level, :experience])
   end
 end

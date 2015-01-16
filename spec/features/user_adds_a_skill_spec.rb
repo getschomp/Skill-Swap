@@ -28,7 +28,6 @@ feature "User adds a skill", %q{
     fill_in "Name", with: skill1.name
     select "Fitness", :from => "Category"
     fill_in "Description", with: skill1.description
-    # test for avatar(optional)
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
     expect(page).to have_content skill1.name

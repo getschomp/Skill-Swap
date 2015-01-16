@@ -3,6 +3,7 @@ class HadSkillsController < ApplicationController
   before_action :had_skill, only: [:show, :edit, :update]
   before_action :get_user, only: [:new, :create]
 
+  # move to model?
   def titleize(string)
     lowercase_words = %w{a an the and but or for nor of}
     string.split.each_with_index.map{|x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
@@ -45,25 +46,25 @@ class HadSkillsController < ApplicationController
     end
   end
 
-  def edit
-    # @had_skill = HadSkill.create(had_skill_params)
-    # if current_user
-    #   if current_user.id != @user.id
-    #     redirect_to @user, notice: "You're not authorized to edit this profile!"
-    #   end
-    # else
-    #   redirect_to @user, notice: "You're not authorized to edit this profile!"
-    # end
-  end
-
-  def update
-    # @had_skill.update(had_skill_params)
-    # if @had_skill.save
-    #   redirect_to @had_skill, notice:"User Profile Updated")
-    # else
-    #   render :edit
-    # end
-  end
+  # def edit
+  #   # @had_skill = HadSkill.create(had_skill_params)
+  #   # if current_user
+  #   #   if current_user.id != @user.id
+  #   #     redirect_to @user, notice: "You're not authorized to edit this profile!"
+  #   #   end
+  #   # else
+  #   #   redirect_to @user, notice: "You're not authorized to edit this profile!"
+  #   # end
+  # end
+  #
+  # def update
+  #   # @had_skill.update(had_skill_params)
+  #   # if @had_skill.save
+  #   #   redirect_to @had_skill, notice:"User Profile Updated")
+  #   # else
+  #   #   render :edit
+  #   # end
+  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
