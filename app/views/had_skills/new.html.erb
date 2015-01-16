@@ -1,0 +1,17 @@
+<row>
+  <h4>Add a Skill that you Already Know</h4>
+</row>
+<%= simple_form_for([@user, @had_skill]) do |f| %>
+<row>
+  <div class="large-6 columns"></div>
+  <%= f.simple_fields_for :skill, Skill.new do |p| %>
+  <%= p.input :name, label: "Skill Name" %>
+  <% end %>
+  <%= f.input :expertise_level, collection: get_skill_levels,
+  label: "How well do you know this skill?" %>
+  <%= f.input :experience, as: :text, collection: get_skill_levels,
+  label: "Describe your experience with this skill."%>
+  <%= f.button :submit,  "Add Skill to Profile" %>
+</div>
+</row>
+<% end %>

@@ -16,22 +16,36 @@ feature "Any user can edit the skill desciptors", %q{
     for future ref:only specific avatar urls will end up on the homepage shuffle
   } do
   #
-  # #happy path!
-  # scenario "user can navigate from the skills show page to the skill edit page" do
-  #   visit skill_path
-  #   click_link "Edit Skill"
-  #   expect(page).to have_content "Name"
-  #   expect(page).to have_content "Description"
-  #   expect(page).to have_content "Description"
-  # end
-  # #happy path!
-  # scenario "User fills out description, url and avatar" do
-  # #create object
-  # end
-  # #sad path
-  # scenario "User tries to change name and gets and error" do
-  #   fill_in "Name"
-  #   #expect page to have content
-  #
-  # end
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in(@user)
+  end
+
+  scenario "user edits a skill page" do
+    skill1 = FactoryGirl.create(:skill)
+    skill_edits = FactoryGirl.build(:skill)
+    visit skill_path(skill1)
+    click_on "Edit Skill"
+    select "Fitness", :from => "Category"
+    fill_in "Description", with: skill1.description
+    click_button "Update Skill"
+    expect(page).to have_content "sucessfully"
+    expect(page).to have_content skill1.name
+    expect(page).to_not have_content "error" || "errors"
+  end
+  scenario "User submits a blank form" do
+    skill1 = FactoryGirl.create(:skill)
+    visit skill_path(skill1)
+    click_on "Edit Skill"
+    click_button "Update Skill"
+    expect(page).to have_content "sucessfully"
+  end
+  scenario "User isn't signed in and can't add a skill" do
+    skill1 = FactoryGirl.create(:skill)
+    visit root_path
+    click_on "Sign Out"
+    visit skill_path(skill1)
+    click_on "Edit Skill"
+    expect(page).to have_content "You need to sign in or sign up before continuing"
+  end
 end

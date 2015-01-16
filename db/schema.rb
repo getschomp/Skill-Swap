@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113174037) do
+ActiveRecord::Schema.define(version: 20150114182405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer "user_id_1", null: false
@@ -48,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150113174037) do
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",        null: false
-    t.string   "category",    null: false
+    t.string   "category"
     t.string   "description"
     t.string   "url"
     t.datetime "created_at"
@@ -84,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150113174037) do
     t.integer  "skill_id",        null: false
     t.integer  "user_id",         null: false
     t.string   "current_level"
+    t.string   "teachers_skill"
     t.string   "why_description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

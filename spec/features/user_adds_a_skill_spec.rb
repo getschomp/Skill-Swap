@@ -6,8 +6,8 @@ feature "User adds a skill", %q{
   So that I can add it to my profile
 
   Acceptance Criteria:
-  - [ ] The user must specify a name and category for a success message
-  - [ ] The user can optionally add a skill description,
+  - [ ] The user must specify a name for a success message
+  - [ ] The user can optionally add a category, skill description,
         wikipedia url and avatar
   - [ ] If the user dosn't specify the required
         information they will get an error
@@ -26,9 +26,8 @@ feature "User adds a skill", %q{
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
-    select "fitness", :from => "Category"
+    select "Fitness", :from => "Category"
     fill_in "Description", with: skill1.description
-    # test for avatar(optional)
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
     expect(page).to have_content skill1.name
@@ -38,7 +37,7 @@ feature "User adds a skill", %q{
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
-    select "fitness", :from => "Category"
+    select "Fitness", :from => "Category"
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
     expect(page).to have_content skill1.name
@@ -49,7 +48,7 @@ feature "User adds a skill", %q{
     visit new_skill_path
     fill_in "Name", with: skill1.name
     click_button "Create Skill"
-    expect(page).to have_content "can't be blank"
+    expect(page).to have_content "sucessfully"
   end
   scenario "User submits without filling in the form" do
     visit new_skill_path
@@ -58,7 +57,6 @@ feature "User adds a skill", %q{
   end
   scenario "User isn't signed in and can't add a skill" do
     visit new_skill_path
-    save_and_open_page
     click_on "Sign Out"
     visit new_skill_path
     expect(page).to have_content "You need to sign in or sign up before continuing"

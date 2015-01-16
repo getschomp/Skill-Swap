@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
   before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edit, :update]
   autocomplete :skill, :name
-  before_action :get_skill, only: [:edit, :update, :destoy]
+  before_action :get_skill, only: [:edit, :update, :destoy, :show]
 
   def get_skill
     @skill = Skill.find(params[:id])
@@ -23,11 +23,15 @@ class SkillsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
     @skill.update(skill_params)
+    if  @skill.save
+      redirect_to @skill, notice: 'Skill was sucessfully edited'
+    else
+      render :edit
+    end
   end
 
   def destroy
