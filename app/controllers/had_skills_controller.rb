@@ -3,10 +3,10 @@ class HadSkillsController < ApplicationController
   before_action :had_skill, only: [:show, :edit, :update]
   before_action :get_user, only: [:new, :create]
 
-  # move to model?
+  # move to model and refactor/ line too long?
   def titleize(string)
     lowercase_words = %w{a an the and but or for nor of}
-    string.split.each_with_index.map{|x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
+    string.split.each_with_index.map { |x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
   end
 
   def get_had_skill
@@ -36,12 +36,15 @@ class HadSkillsController < ApplicationController
     if current_user
       if @user = current_user
         if @had_skill.save
-          redirect_to user_path(current_user), notice: "Good!  You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
+          success = "Good! You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
+          redirect_to user_path(current_user), notice: success
         else
-          redirect_to new_user_had_skill_path(@user), notice:"Error: Skill name can't be blank"
+          error = "Error: Skill name can't be blank"
+          redirect_to new_user_had_skill_path(@user), notice: error
         end
       else
-        redirect_to root_path, notice: "You are not authorized to edit this page."
+        not_authorized = "You are not authorized to edit this page."
+        redirect_to root_path, notice: not_authorized
       end
     end
   end
@@ -66,10 +69,10 @@ class HadSkillsController < ApplicationController
   #   # end
   # end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   private
+
   def had_skill_params
-    params.require(:had_skill).permit(:skill_id, :user_id, :expertise_level, :experience,
-    skill_attributes: [:name])
+    params.require(:had_skill).permit(:skill_id, :user_id,
+    :expertise_level, :experience, skill_attributes: [:name])
   end
 end
