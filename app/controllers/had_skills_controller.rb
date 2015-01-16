@@ -3,12 +3,6 @@ class HadSkillsController < ApplicationController
   before_action :had_skill, only: [:show, :edit, :update]
   before_action :get_user, only: [:new, :create]
 
-  # move to model and refactor/ line too long?
-  def titleize(string)
-    lowercase_words = %w{a an the and but or for nor of}
-    string.split.each_with_index.map { |x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
-  end
-
   def get_had_skill
     @had_skill = HadSkill.find(params[:id])
   end

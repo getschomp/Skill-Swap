@@ -58,3 +58,5 @@ gem 'nifty-generators'
 gem 'jquery-ui-rails', '~> 5.0.3'
 gem 'geocoder'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'faker'
+gem 'kaminari'
