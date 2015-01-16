@@ -1,4 +1,8 @@
-<h1> Find Users to Swap With </h1>
+<h1> Find Users</h1>
+<h4> Sort and Search</h4>
+
+<div class="user_quick_info">
   <% @users.each do |user| %>
-    <h4><%= user.username %><h4>
+    <h4><%= link_to user.username, user_path(user) %><h4>
   <% end %>
+</div>

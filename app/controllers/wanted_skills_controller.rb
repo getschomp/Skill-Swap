@@ -3,12 +3,6 @@ class WantedSkillsController < ApplicationController
   before_action :get_wanted_skill, only: [:show, :edit, :update]
   before_action :get_user, only: [:new, :create]
 
-  # move to model?
-  def titleize(string)
-    lowercase_words = %w{a an the and but or for nor of}
-    string.split.each_with_index.map{|x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
-  end
-
   def get_wanted_skill
     @wanted_skill = WantedSkill.find(params[:id])
   end
