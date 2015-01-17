@@ -14,7 +14,4 @@
 
 #ignore coveralls report
 /coverage
-
-database.yml
-
 .env
