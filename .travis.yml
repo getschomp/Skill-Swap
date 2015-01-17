@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0
+  - 2.0.0-p451
 before_script:
   - psql -c 'create database skill-swap_test;' -U postgres
 addons:
