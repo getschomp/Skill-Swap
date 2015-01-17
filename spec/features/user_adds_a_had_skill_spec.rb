@@ -46,7 +46,7 @@ feature "User sucessfully adds a had skill to profile", %q{
     end
     scenario "User submits a form leaving every peice blank" do
       visit edit_user_path(@user)
-      within(:css, "div.wanted_skill") do
+      within(:css, "div.had_skill") do
         click_on "Add Skill"
       end
       click_button "Add Skill to Profile"
