@@ -4,4 +4,4 @@ rvm:
 before_script:
   - psql -c 'create database skill-swap_test;' -U postgres
 addons:
- postgresql: "9.3.5.2"
+ postgresql: "9.3"
