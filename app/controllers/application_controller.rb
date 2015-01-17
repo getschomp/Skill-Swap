@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  def titleize(string)
+    lowercase_words = %w{a an the and but or for nor of}
+    string.split.each_with_index.map { |x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
+  end
+
   protected
 
   def configure_devise_permitted_parameters

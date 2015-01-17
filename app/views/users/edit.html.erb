@@ -1,6 +1,6 @@
 
 <row>
-<h2>Editing Profile for <%= @user.username.capitalize %></h2>
+<h2>Editing Profile for <%= link_to @user.username.capitalize, user_path(@user) %></h2>
 </row>
 
 <%= form_for(@user) do |f| %>

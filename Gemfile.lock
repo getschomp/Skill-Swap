@@ -85,6 +85,8 @@ GEM
     execjs (2.2.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     foundation-rails (5.5.0.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0, < 3.4)
@@ -103,6 +105,9 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.1)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.1)
@@ -150,6 +155,11 @@ GEM
       loofah (~> 2.0)
     rails4-autocomplete (1.1.1)
       rails (>= 3.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.3)
+    rails_stdout_logging (0.0.3)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -243,17 +253,20 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl
+  faker
   foundation-rails
   geocoder
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.3)
   jquery-ui-rails (~> 5.0.3)
+  kaminari
   launchy
   nifty-generators
   pg
   pry-rails
   rails (= 4.2.0)
   rails4-autocomplete (~> 1.1.1)
+  rails_12factor
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

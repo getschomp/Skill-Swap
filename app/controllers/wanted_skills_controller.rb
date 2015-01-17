@@ -1,13 +1,7 @@
 class WantedSkillsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
-  before_action :get_wanted_skill, only: [:show, :edit, :update]
+  before_action :get_wanted_skill, only: [:show, :edit, :update, :destroy]
   before_action :get_user, only: [:new, :create]
-
-  # move to model?
-  def titleize(string)
-    lowercase_words = %w{a an the and but or for nor of}
-    string.split.each_with_index.map{|x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
-  end
 
   def get_wanted_skill
     @wanted_skill = WantedSkill.find(params[:id])
@@ -45,6 +39,11 @@ class WantedSkillsController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    @wanted_skill.destroy
+    redirect_to user_path(@user), notice: "Skill successfully deleted from profile."
+  end
   # def edit
   #   @wanted_skill = WantedSkill.create(wanted_skill_params)
   #   if current_user
