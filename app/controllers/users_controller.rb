@@ -34,12 +34,12 @@ class UsersController < ApplicationController
     # else
     #   render :edit
     # end
-    @user.update(user_params)
-    if(@user.save
-      redirect_to @user, notice:"User Profile Updated")
-    else
-      render :edit
-    end
+    # @user.update(user_params)
+    # if(@user.save
+    #   redirect_to @user, notice:"User Profile Updated")
+    # else
+    #   render :edit
+    # end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
