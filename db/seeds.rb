@@ -23,9 +23,9 @@
   Category.find_or_create_by(name: "Programming languages")
 
   350.times do |n|
-    email = "example-#{n+1}@gmail.com"
     password  = "password"
     username = Faker::Internet.user_name
+    email = "#{user_name}@gmail.com"
     about_me = Faker::Lorem.sentences(3)
     gender = ["female", "male"].sample
     User.find_or_create_by(
