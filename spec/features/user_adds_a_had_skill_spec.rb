@@ -50,7 +50,7 @@ feature "User sucessfully adds a had skill to profile", %q{
         click_on "Add Skill"
       end
       click_button "Add Skill to Profile"
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Error"
     end
     scenario "a user can not add a skill to another users profile" do
       # no link to add a skill when you are not the current user
@@ -66,5 +66,13 @@ feature "User sucessfully adds a had skill to profile", %q{
       expect(page).to_not have_content "Add Skill"
       visit new_user_had_skill_path(@user)
       expect(page).to have_content "You are not authorized."
+    end
+    scenario "a user can not add the same skill to wanted skills twice" do
+      skill1 = Skill.create(name: "Running")
+      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
+      visit new_user_had_skill_path(@user)
+      fill_in "Skill Name", with: skill1.name
+      click_button "Add Skill to Profile"
+      expect(page).to have_content "Error"
     end
   end

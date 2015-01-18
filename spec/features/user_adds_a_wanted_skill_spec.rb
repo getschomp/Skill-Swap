@@ -75,7 +75,7 @@ feature "User adds a wanted skills on profile", %q{
         click_on "Add Skill"
       end
       click_button "Add Skill to Profile"
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Error"
     end
     scenario "a user can not add a skill to another users profile" do
       skill1 = FactoryGirl.create(:skill)
@@ -93,10 +93,10 @@ feature "User adds a wanted skills on profile", %q{
     end
     scenario "a user can not add the same skill to wanted skills twice" do
       skill1 = Skill.create(name: "Running")
-      wanted_skill = WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
+      WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
       visit new_user_wanted_skill_path(@user)
       fill_in "Skill Name", with: skill1.name
       click_button "Add Skill to Profile"
-      expect(page).to have_content "error"
+      expect(page).to have_content "Error"
     end
   end
