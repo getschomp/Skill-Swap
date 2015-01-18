@@ -35,3 +35,19 @@
     gender: gender
     )
   end
+
+  20.times do |n|
+    skill_id = skill1.id
+    user_id = n
+    HadSkill.create(skill_id: skill_id,
+    user_id: user_id
+    )
+  end
+
+  20.times do |n|
+    skill_id = skill2.id
+    user_id = n + 20
+    WantedSkill.create(skill_id: skill_id,
+    user_id: user_id
+    )
+  end
