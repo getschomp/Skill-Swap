@@ -1,7 +1,7 @@
 class HadSkillsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :show, :update, :destroy]
   before_action :get_had_skill, only: [:show, :edit, :update, :destroy]
-  before_action :get_user, only: [:new, :create]
+  before_action :get_user, only: [:new, :create, :edit]
 
   def get_had_skill
     @had_skill = HadSkill.find(params[:id])
@@ -15,42 +15,40 @@ class HadSkillsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @had_skill = HadSkill.new
+    user_not_authorized
   end
 
   def create
-    #check for current user
     skill_name = titleize(params[:had_skill][:skill_attributes][:name])
     @skill = Skill.find_or_create_by(name: skill_name)
     @had_skill = HadSkill.new(had_skill_params)
     @had_skill.skill_id = @skill.id
     @had_skill.user_id = @user.id
-    if current_user
-      if @user = current_user
-        if @had_skill.save
-          success = "Good! You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
-          redirect_to user_path(current_user), notice: success
-        else
-          error = "Error: Skill name can't be blank"
-          redirect_to new_user_had_skill_path(@user), notice: error
-        end
+    if @user == current_user
+      if @had_skill.save
+        success = "Good! You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
+        redirect_to user_path(current_user), notice: success
       else
-        not_authorized = "You are not authorized to edit this page."
-        redirect_to root_path, notice: not_authorized
+        error = "Error: Skill name can't be blank"
+        redirect_to new_user_had_skill_path(@user), notice: error
       end
     end
+    user_not_authorized
   end
 
   # def edit
-  #   # @had_skill = HadSkill.create(had_skill_params)
-  #   # if current_user
-  #   #   if current_user.id != @user.id
-  #   #     redirect_to @user, notice: "You're not authorized to edit this profile!"
-  #   #   end
-  #   # else
-  #   #   redirect_to @user, notice: "You're not authorized to edit this profile!"
-  #   # end
+  #   if @user == current_user
+  #     if @had_skill.save
+  #       success = "Good! You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
+  #       redirect_to user_path(current_user), notice: success
+  #     else
+  #       error = "Error: Skill name can't be blank"
+  #       redirect_to new_user_had_skill_path(@user), notice: error
+  #     end
+  #   else
+  #     not_authorized
+  #   end
   # end
   #
   # def update

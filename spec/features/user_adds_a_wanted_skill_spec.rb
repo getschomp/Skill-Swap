@@ -91,6 +91,6 @@ feature "User adds a wanted skills on profile", %q{
       visit user_path(@user)
       expect(page).to_not have_content "Add Skill"
       visit new_user_wanted_skill_path(@user)
-      expect(page).to_not have_content "You are not authorized to edit this users skills."
+      expect(page).to have_content "You are not authorized."
     end
   end

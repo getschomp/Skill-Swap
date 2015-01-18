@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
     string.split.each_with_index.map { |x, index| lowercase_words.include?(x) && index > 0 ? x : x.capitalize }.join(" ")
   end
 
+  def user_not_authorized
+    if @user != current_user
+      message = "You are not authorized."
+      redirect_to root_path, notice: message
+    end
+  end
+
   protected
 
   def configure_devise_permitted_parameters
