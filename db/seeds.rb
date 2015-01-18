@@ -3,7 +3,7 @@
 #
 # Examples:
 #
-    e_pass = "$2a$10$cHyiV6SD/vdO674gzqZCP.mbSMjcct.gU..aS2Vi7nA.DZ8bILjZy"
+    e_pass = ENV["e_pass"]
     u1 = User.find_or_create_by(username: "fakeuser1",
                                 email: "fakeusersemail1@user.com",
                                 encrypted_password: e_pass,
