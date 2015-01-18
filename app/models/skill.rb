@@ -1,7 +1,7 @@
 class Skill < ActiveRecord::Base
   validates :name,
-    presence: true,
-    uniqueness: true
+            presence: true,
+            uniqueness: true
     # max length
 
   has_many :wanted_skills
