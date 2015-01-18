@@ -23,7 +23,6 @@ feature "User can delete skills from profile", %q{
       WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
       visit user_path(@user)
       within(:css, "div.wanted_skill") do
-        save_and_open_page
         click_on "Delete Skill"
       end
       expect(page).to have_content "Skill successfully deleted from profile."
@@ -34,8 +33,6 @@ feature "User can delete skills from profile", %q{
       HadSkill.create(skill_id: skill1.id, user_id: @user.id)
       visit user_path(@user)
       within(:css, "div.had_skill") do
-        save_and_open_page
-
         click_on "Delete Skill"
       end
       expect(page).to have_content "Skill successfully deleted from profile."

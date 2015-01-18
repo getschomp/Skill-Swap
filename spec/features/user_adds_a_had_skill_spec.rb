@@ -62,7 +62,6 @@ feature "User sucessfully adds a had skill to profile", %q{
       sign_in(user2)
       visit edit_user_path(@user)
       expect(page).to_not have_content "Add Skill"
-      save_and_open_page
       visit user_path(@user)
       expect(page).to_not have_content "Add Skill"
       visit new_user_had_skill_path(@user)
