@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :search_suggestions
+
   get "welcome/show"
   root :to => "welcome#show"
   get 'welcome/autocomplete_skill_name'

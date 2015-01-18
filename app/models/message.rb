@@ -1,8 +1,8 @@
 class Message < ActiveRecord::Base
   validates :content,
-    presence: true
+            presence: true
   validates :user_id,
-    presence: true
+            presence: true
 
 
 end

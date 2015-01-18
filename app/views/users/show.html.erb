@@ -17,14 +17,16 @@
   </div>
   <div class="small-12 medium-6 large-4 columns wanted_skill">
     <h3>Skills <%= @user.username %> wants to know</h3>
+    <% if current_user == @user %>
     <div class="button">
-      <%= link_to "Add Skill", new_user_wanted_skill_path(@user) %>
+        <%= link_to "Add Skill", new_user_wanted_skill_path(@user) %>
     </div>
+    <% end %>
     <ul>
       <h5></h5>
       <p><% @user.wanted_skills.each do |s| %></p>
         <%= s.skill.name %>
-        <% if current_user = @user %>
+        <% if current_user == @user %>
           <div class="tiny button">
             <%= link_to "Delete Skill", user_wanted_skill_path(@user, s), :method => :delete %>
           </div>
@@ -34,16 +36,20 @@
   </div>
   <div class="small-12 medium-6 large-4 columns had_skill">
     <h3>Skills <%= @user.username %> knows</h3>
-    <div class="button">
-      <%= link_to "Add Skill", new_user_had_skill_path(@user) %>
-    </div>
+    <% if current_user == @user %>
+      <div class="button">
+        <%= link_to "Add Skill", new_user_had_skill_path(@user) %>
+      </div>
+    <% end %>
     <ul>
       <h5></h5>
       <p><% @user.had_skills.each do |s| %></p>
         <%= s.skill.name %>
+        <% if current_user == @user %>
           <div class="tiny button">
             <%= link_to "Delete Skill", user_had_skill_path(@user, s), :method => :delete %>
           </div>
+        <% end %>
       <% end %>
     </ul>
   </div>

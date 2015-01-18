@@ -15,8 +15,8 @@ class WantedSkillsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @wanted_skill = WantedSkill.new
+    user_not_authorized
   end
 
   def create
@@ -26,17 +26,18 @@ class WantedSkillsController < ApplicationController
     @wanted_skill = WantedSkill.new(wanted_skill_params)
     @wanted_skill.skill_id = @skill.id
     @wanted_skill.user_id = @user.id
-    if current_user
-      if @user = current_user
-        if @wanted_skill.save
-          redirect_to user_path(current_user), notice: "Good!  You've sucessfully added the skill: #{@wanted_skill.skill.name} to the list of skills you want to learn."
-        else
-          redirect_to new_user_wanted_skill_path(@user), notice:"Error: Skill name can't be blank"
-        end
+    if @user == current_user
+      if @wanted_skill.save
+        name = @wanted_skill.skill.name
+        success = "Good! You've sucessfully added the skill: #{name}" + "
+        to the list of skills you want to learn."
+        redirect_to user_path(current_user), notice: success
       else
-        redirect_to root_path, notice: "You are not authorized to edit this page."
+        error = "Error: Skill name can't be blank"
+        redirect_to new_user_wanted_skill_path(@user), notice: error
       end
     end
+    user_not_authorized
   end
 
   def destroy
