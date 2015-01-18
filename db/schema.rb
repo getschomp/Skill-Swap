@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20150118012741) do
     t.datetime "updated_at"
   end
 
+  add_index "had_skills", ["skill_id", "user_id"], name: "index_had_skills_on_skill_id_and_user_id", unique: true, using: :btree
+
   create_table "locations", force: :cascade do |t|
     t.string "zipcode",   null: false
     t.float  "latitude"
@@ -100,5 +102,7 @@ ActiveRecord::Schema.define(version: 20150118012741) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "wanted_skills", ["skill_id", "user_id"], name: "index_wanted_skills_on_skill_id_and_user_id", unique: true, using: :btree
 
 end

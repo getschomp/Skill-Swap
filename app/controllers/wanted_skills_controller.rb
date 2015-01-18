@@ -33,7 +33,8 @@ class WantedSkillsController < ApplicationController
         to the list of skills you want to learn."
         redirect_to user_path(current_user), notice: success
       else
-        error = "Error: Skill name can't be blank"
+        error = "Error: The skill name was blank," +
+                " or you already added that skill"
         redirect_to new_user_wanted_skill_path(@user), notice: error
       end
     end

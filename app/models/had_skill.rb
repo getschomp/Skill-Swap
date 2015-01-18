@@ -2,7 +2,9 @@ class HadSkill < ActiveRecord::Base
   validates :skill_id,
             null: false
   validates :user_id,
-            null: false
+            null: false,
+            uniqueness: { scope: :skill_id,
+            message: "You can't add the same skill twice" }
   # validates :expertise_level,
   #           inclusion: { in: ["", "Beginner", "Intermediate", "Advanced", nil]}
 

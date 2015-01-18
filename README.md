@@ -1,4 +1,4 @@
-<h1>Skill Trade</h1>
+<h1>Skill Swap</h1>
 
 <p>
 A website that will allow people to barter for skills based on a one-to-one trade.
