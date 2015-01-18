@@ -78,10 +78,9 @@ feature "User adds a wanted skills on profile", %q{
       expect(page).to have_content "can't be blank"
     end
     scenario "a user can not add a skill to another users profile" do
-      # no link to add a skill when you are not the current user
-      # if you try to manually visit the path to add a skill you are not allowed
       skill1 = FactoryGirl.create(:skill)
-      wanted_skill = WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
+      WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
+      visit root_path
       click_on "Sign Out"
       user2 = FactoryGirl.create(:user)
       sign_in(user2)
@@ -91,5 +90,13 @@ feature "User adds a wanted skills on profile", %q{
       expect(page).to_not have_content "Add Skill"
       visit new_user_wanted_skill_path(@user)
       expect(page).to have_content "You are not authorized."
+    end
+    scenario "a user can not add the same skill to wanted skills twice" do
+      skill1 = Skill.create(name: "Running")
+      wanted_skill = WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
+      visit new_user_wanted_skill_path(@user)
+      fill_in "Skill Name", with: skill1.name
+      click_button "Add Skill to Profile"
+      expect(page).to have_content "error"
     end
   end
