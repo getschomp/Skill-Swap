@@ -1,5 +1,6 @@
 class HadSkillsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :show, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create,
+                                            :edit, :update, :destroy]
   before_action :get_had_skill, only: [:show, :edit, :update, :destroy]
   before_action :get_user, only: [:new, :create, :edit]
 
@@ -27,7 +28,9 @@ class HadSkillsController < ApplicationController
     @had_skill.user_id = @user.id
     if @user == current_user
       if @had_skill.save
-        success = "Good! You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
+        success = "Good! You've sucessfully added the skill:" + 
+                  "#{@had_skill.skill.name} to the list of skills" +
+                  "you want to learn."
         redirect_to user_path(current_user), notice: success
       else
         error = "Error: Skill name can't be blank"
