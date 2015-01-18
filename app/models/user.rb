@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
   #
   # end
   #
+
+  def had_skills_match(wanted_skills)
+    HadSkills.where(skill_id: wanted_skill.id)
+  end
+
   # def sort_by_intersection(had_skill_id, wanted_skill_id)
   #   match = []
   #   users = User.all
@@ -40,17 +45,13 @@ class User < ActiveRecord::Base
   #       end
   #     end
   #   end
+  #   match
+  # end
 
-  def sort_by_intersection(had_skill_id, wanted_skill_id)
-    match = []
 
-    # find all users where had_skill_id matches and wanted_skill_id
-    # and wanted_skill_id mathes had skill id
-      HadSkill.where(skill_id: had_skill.id)
-  end
 
   def sort_alphabetically
-
+    User.order(:name)
   end
 
   def sort_by_intersection_nearest
