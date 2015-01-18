@@ -3,17 +3,37 @@
 #
 # Examples:
 #
-
-# Begin:Two users that would create a match
-
-    u1 = User.find_or_create_by(username: "fakeuser1" , email: "fakeusersemail1@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
-    u2 = User.find_or_create_by(username: "fakeuser2" , email: "fakeusersemail2@user.com", password: "fakepass", gender: "male", about_me: "I may be fake but I still wish i could learn skills for free!")
-    skill1 = Skill.find_or_create_by(name: "Japanese", category: "Language" , description: "A language spoken in Japan" , url: "http://en.wikipedia.org/wiki/Japanese_language")
-    skill2 = Skill.find_or_create_by(name: "Ruby", category: "Programming Languages" , description: "A elegant and syntatically clear programming language." , url: "http://en.wikipedia.org/wiki/Japanese_language")
-    us1 = HadSkill.find_or_create_by(skill_id: skill1.id, user_id: u1.id, expertise_level: "Novice")
-    us2 = HadSkill.finfind_or_create_by(skill_id: skill1.id, user_id: u1.id)
-    us3 = HadSkill.find_or_create_by(skill_id: skill2.id, user_id: u2.id, expertise_level: "Novice")
-    us4 = HadSkill.find_or_create_by(skill_id: skill2.id, user_id: u2.id)
+    e_pass = "$2a$10$cHyiV6SD/vdO674gzqZCP.mbSMjcct.gU..aS2Vi7nA.DZ8bILjZy"
+    u1 = User.find_or_create_by(username: "fakeuser1",
+                                email: "fakeusersemail1@user.com",
+                                encrypted_password: e_pass,
+                                gender: "male",
+                                about_me: "I may be fake but I still wish" +
+                                          "i could learn skills for free!")
+    u2 = User.find_or_create_by(username: "fakeuser2",
+                                email: "fakeusersemail2@user.com",
+                                encrypted_password: e_pass,
+                                gender: "male",
+                                about_me: "I may be fake but I still wish i could" +
+                                          "learn skills for free!")
+    skill1 = Skill.find_or_create_by(name: "Japanese",
+                                    category: "Language",
+                                    description: "A language spoken in Japan",
+                                    url: "http://en.wikipedia.org/wiki/Japanese_language")
+    skill2 = Skill.find_or_create_by(name: "Ruby",
+                                    category: "Programming Languages" ,
+                                    description: "A elegant and syntatically clear programming language.",
+                                    url: "http://en.wikipedia.org/wiki/Japanese_language")
+    # us1 = HadSkill.find_or_create_by(skill_id: skill1.id,
+    #                                 user_id: u1.id,
+    #                                 expertise_level: "Novice")
+    # us2 = HadSkill.find_or_create_by(skill_id: skill1.id,
+    #                                 user_id: u1.id)
+    # us3 = HadSkill.find_or_create_by(skill_id: skill2.id,
+    #                                 user_id: u2.id,
+    #                                 expertise_level: "Novice")
+    # us4 = HadSkill.find_or_create_by(skill_id: skill2.id,
+    #                                 user_id: u2.id)
 # End:Two users that would create a match
 
   Category.find_or_create_by(name: "Technology")
@@ -22,35 +42,42 @@
   Category.find_or_create_by(name: "Language")
   Category.find_or_create_by(name: "Programming languages")
 
+  # create 350 users
   350.times do |n|
-    password  = "password"
     username = Faker::Internet.user_name
-    email = "#{user_name}@gmail.com"
+    email = "#{username}-#{n+1}@gmail.com"
+    e_pass = "$2a$10$cHyiV6SD/vdO674gzqZCP.mbSMjcct.gU..aS2Vi7nA.DZ8bILjZy"
     about_me = Faker::Lorem.sentences(3)
     gender = ["female", "male"].sample
-    User.find_or_create_by(
-    email: email,
-    password: password,
+    User.find_or_create_by(email: email,
+    encrypted_password: e_pass,
     username: username,
     about_me: about_me,
     gender: gender
     )
   end
 
-  20.times do |n|
-    skill_id = skill1.id
-    user_id = n
+  # create 20 matches
+  1.upto(20) do |n|
     HadSkill.find_or_create_by(
-    skill_id: skill_id,
-    user_id: user_id
+    skill_id: skill1.id,
+    user_id: n
     )
+    WantedSkill.find_or_create_by(
+    skill_id: skill2.id,
+    user_id: n
+    )
+    n += 1
   end
 
-  20.times do |n|
-    skill_id = skill2.id
-    user_id = n + 20
-    WantedSkill.find_or_create_by(
-    skill_id: skill_id,
-    user_id: user_id
+  21.upto(40) do |n|
+    HadSkill.find_or_create_by(
+    skill_id: skill2.id,
+    user_id: n
     )
+    WantedSkill.find_or_create_by(
+    skill_id: skill1.id,
+    user_id: n
+    )
+    n += 1
   end
