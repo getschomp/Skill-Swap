@@ -25,6 +25,19 @@ feature "User starts a conversation", %q{
                   gender:"other",
                   about_me:"fake user" )
       visit user_path(user_2)
+      click_on "message #{user2.name}"
+      expect(page).to have_content "Send Message"
+      expect(page).to have_content "A conversation with #{user_2.name}"
+      expect(page).to have_content "Conversation sucessfully created!"
+    end
+
+    scenario "2 users can acess the conversation" do
+      user_2 =
+      User.create(username: "fake",
+      email:"fake@gmail.com",
+      gender:"other",
+      about_me:"fake user" )
+      visit user_path(user_2)
       expect(page).to have_content "Send Message"
       expect(page).to have_content "A conversation with #{user_2.name}"
       expect(page).to have_content "Conversation sucessfully created!"
@@ -33,7 +46,7 @@ feature "User starts a conversation", %q{
     scenario "User not in the conversation attempts to access the conversation" do
 
     end
-    scenario "User views conversations sorted by time on index" do
+    scenario "User can acess conversations sorted by time on index" do
 
     end
   end

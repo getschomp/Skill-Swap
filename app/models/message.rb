@@ -3,6 +3,8 @@ class Message < ActiveRecord::Base
             presence: true
   validates :user_id,
             presence: true
+  validates :conversation_id,
+            precence: true
 
 
 end
