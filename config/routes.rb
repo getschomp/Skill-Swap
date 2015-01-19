@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
-  resources :search_suggestions
-
-  get "welcome/show"
-  root :to => "welcome#show"
-  get 'welcome/autocomplete_skill_name'
-
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :skills, only: [:create, :new, :edit, :update, :destroy, :show]do
-    get :autocomplete_skill_name, :on => :collection
+  resources :skills, only: [:create, :new, :edit, :update, :destroy, :show]
+
+ authenticated :user do
+   root 'users#index'
+ end
+
+ unauthenticated :user do
+   devise_scope :user do
+     get "/" => "devise/sessions#new"
+   end
  end
 
   resources :users do
     resources :had_skills
     resources :wanted_skills
+  end
+
+  resources :conversations do
+    resources :messages
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

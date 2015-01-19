@@ -3,7 +3,7 @@
 #
 # Examples:
 #
-    e_pass = ENV["e_pass"]
+    e_pass = ENV["E_PASS"]
     u1 = User.find_or_create_by(username: "fakeuser1",
                                 email: "fakeusersemail1@user.com",
                                 encrypted_password: e_pass,

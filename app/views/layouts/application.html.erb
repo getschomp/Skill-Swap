@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
 
 </head>
 <body>
@@ -49,5 +51,7 @@
     <% end %>
   </div>
   <%= yield :extra_footer %>
+<!--   <audio id="chatAudio"><source src="/sounds/notification.mp3" type="audio/mpeg"></audio>
+ -->
 </body>
 </html>

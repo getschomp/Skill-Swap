@@ -21,11 +21,14 @@ ActiveRecord::Schema.define(version: 20150118012741) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.integer "user_id_1", null: false
-    t.integer "user_id_2", null: false
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "conversations", ["user_id_1", "user_id_2"], name: "index_conversations_on_user_id_1_and_user_id_2", unique: true, using: :btree
+  add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
+  add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
 
   create_table "had_skills", force: :cascade do |t|
     t.integer  "skill_id",        null: false
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150118012741) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text     "content",         null: false
+    t.text     "body",            null: false
     t.integer  "user_id",         null: false
     t.integer  "conversation_id", null: false
     t.datetime "created_at"
