@@ -13,7 +13,9 @@ class Skill < ActiveRecord::Base
   def get_users_wanted
     users = []
     self.wanted_skills.each do |wanted_skill|
-      users << wanted_skill.user.username
+      unless wanted_skill.user.nil?
+        users << wanted_skill.user
+      end
     end
     users
   end
@@ -21,7 +23,9 @@ class Skill < ActiveRecord::Base
   def get_users_had
     users = []
     self.had_skills.each do |had_skill|
-      users << had_skill.user.username
+      unless had_skill.user.nil?
+        users << had_skill.user
+      end
     end
     users
   end
