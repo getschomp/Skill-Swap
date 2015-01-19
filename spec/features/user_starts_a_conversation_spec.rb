@@ -13,8 +13,8 @@ feature "User starts a conversation", %q{
 
   } do
 
-# as off now these features are untested because of the use of javascript.
-# i will implement testing on them later
+# as of now these features are untested because of the use of javascript.
+# i will implement testing on them later if i can
 
 
     # before(:each) do
