@@ -6,5 +6,5 @@ test:
   secret_token: "secret"
 production:
   server: "http://fayeserverskillswap.herokuapp.com/faye"
-  secret_token: ENV['FAYE_TOKEN']
+  secret_token: "secret"
   signature_expiration: 86400 # one day
