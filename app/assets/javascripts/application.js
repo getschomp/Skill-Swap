@@ -15,4 +15,7 @@
 //= require foundation
 //= require_tree .
 //= require jquery-ui
+//= require chat
+//= require private_pub
+
 $(function(){ $(document).foundation(); });

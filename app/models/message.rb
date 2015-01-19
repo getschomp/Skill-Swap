@@ -1,10 +1,6 @@
 class Message < ActiveRecord::Base
-  validates :content,
-            presence: true
-  validates :user_id,
-            presence: true
-  validates :conversation_id,
-            precence: true
+  belongs_to :conversation
+  belongs_to :user
 
-
+  validates_presence_of :body, :conversation_id, :user_id
 end
