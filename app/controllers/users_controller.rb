@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, only: [:edit]
+  before_action :authenticate_user!, only: [:edit, :update]
   before_action :get_user, only: [:show, :edit, :update]
 
   def get_user
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user.id != @user.id
+    if current_user != @user
       redirect_to @user, notice: "You're not authorized to edit this profile!"
     end
   end
@@ -34,18 +34,19 @@ class UsersController < ApplicationController
     # else
     #   render :edit
     # end
-    # @user.update(user_params)
-    # if(@user.save
-    #   redirect_to @user, notice:"User Profile Updated")
-    # else
-    #   render :edit
-    # end
+    @user.update(user_params)
+    if @user.save
+      redirect_to @user, notice: "User Profile Updated"
+    else
+      render :edit
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def user_params
-    params.require(:user).permit(:id, :username, :email, :password, :gender, :about_me, :location_id, :page,
+    params.require(:user).permit(:id, :username, :email, :password,
+    :gender, :about_me, :address, :page,
     wanted_skill_attributes: [:skill_id, :user_id, :current_level, :teachers_skill, :why_description],
     had_skill_attributes: [:skill_id, :user_id, :expertise_level, :experience])
   end

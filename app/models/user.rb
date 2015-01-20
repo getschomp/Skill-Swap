@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
 
   has_many :conversations, :foreign_key => :sender_id
 
-  has_one :location
-
-  accepts_nested_attributes_for :location
   accepts_nested_attributes_for :wanted_skills
   accepts_nested_attributes_for :had_skills
+
+  geocoded_by :address
+  after_validation :geocode
 end

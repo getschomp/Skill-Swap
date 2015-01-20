@@ -1,5 +1,6 @@
 <row>
-  <h4>Add a Skill that you Already Know</h4>
+  <h4>What do you already know <%= @user.username %>?</h4>
+  "Tell others what you are good at."
 </row>
 <%= simple_form_for([@user, @had_skill]) do |f| %>
 <row>

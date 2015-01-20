@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118012741) do
+ActiveRecord::Schema.define(version: 20150119190616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,6 @@ ActiveRecord::Schema.define(version: 20150118012741) do
   end
 
   add_index "had_skills", ["skill_id", "user_id"], name: "index_had_skills_on_skill_id_and_user_id", unique: true, using: :btree
-
-  create_table "locations", force: :cascade do |t|
-    t.string "zipcode",   null: false
-    t.float  "latitude"
-    t.float  "longitude"
-  end
 
   create_table "messages", force: :cascade do |t|
     t.text     "body",            null: false
@@ -90,6 +84,9 @@ ActiveRecord::Schema.define(version: 20150118012741) do
     t.string   "gender"
     t.text     "about_me"
     t.integer  "location_id"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
