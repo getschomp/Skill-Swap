@@ -21,7 +21,24 @@ body{
 
 $body-font-family: sans-;
 
-.container{
+#container{
+  padding-top: 40px;
+  width: 900px;
   margin: 0 auto;
-  max-width: 800;
+}
+
+
+.flash{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  height: 80px;
+  text-align: center;
+}
+
+.flash p{
+  padding:20px;
+  color: #795454;
+  font-size: 30px;
+
 }
