@@ -19,6 +19,12 @@ body{
   background-color: #373737;
 }
 
+.white{
+  background-color: white;
+  height: 50px;
+}
+
+
 $body-font-family: sans-;
 
 #container{
@@ -41,4 +47,23 @@ $body-font-family: sans-;
   color: #795454;
   font-size: 30px;
 
+}
+
+row{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column {
+  flex: 1;
+  padding-left: 20px;
+  margin-left: 20px;
+  margin: 0 auto;
+}
+
+.eqWrap {
+  display: flex;
+  padding:20px;
+  margin: 0 auto;
+  width: 100%
 }

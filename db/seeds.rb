@@ -43,21 +43,21 @@
   Category.find_or_create_by(name: "Programming languages")
 
   # create 350 users
-  350.times do |n|
+  46.times do |n|
     username = Faker::Internet.user_name
-    email = "#{username}@gmail.com"
-    e_pass = "$2a$10$cHyiV6SD/vdO674gzqZCP.mbSMjcct.gU..aS2Vi7nA.DZ8bILjZy"
+    email = "#{n+1}@gmail.com"
+    pass = "fakeusers"
     about_me = Faker::Lorem.sentences(3)
     gender = ["female", "male"].sample
     address = ["Boston,MA", "NYC, NY", "Kansas City, Kansas", "Moscow, Russia", "Rochester, NY"].sample
     User.create(email: email,
-    encrypted_password: e_pass,
+    password: pass,
     username: username,
     about_me: about_me,
     gender: gender,
     address: address
     )
-    sleep(1.5)
+    sleep(1)
   end
 
   # create 20 matches

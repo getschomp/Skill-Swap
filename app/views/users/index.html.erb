@@ -1,18 +1,28 @@
-<row>
+<row class="title">
   <h1> Find Users</h1>
   <h4> Sort and Search</h4>
+</row>
+<p>
   2 select boxes that gets only current users haves and wants
+</p>
+<row class="title">
+  <%= paginate @users %>
 </row>
 
-<%= paginate @users %>
 
 
-<div class="user_quick_info">
-  <% @users.each do |user| %>
-    <% if current_user %>
-    <h4><%= link_to user.username, user_path(user) %><h4>
-      <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
-      "data-sid" => current_user.id, "data-rip" => user.id %>
+<% groups_num = (@users.size.to_f/3).ceil %>
+
+  <div class="eqWrap">
+    <% @users.in_groups_of(groups_num, false) do |group| %>
+      <% if current_user %>
+        <div class="columns">
+          <% group.each do |user| %>
+          <h4><%= link_to user.username, user_path(user) %><h4>
+            <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
+            "data-sid" => current_user.id, "data-rip" => user.id %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
