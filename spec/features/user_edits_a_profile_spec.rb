@@ -35,7 +35,6 @@ me to add skills I want to know.
     select "Male", from: "user_gender"
     fill_in "About Me", with: @user.about_me
     click_on "Save Profile"
-
     expect(page).to have_content @user.gender
     expect(page).to have_content @user.about_me
   end
