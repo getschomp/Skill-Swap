@@ -45,11 +45,13 @@
   # create 350 users
   46.times do |n|
     username = Faker::Internet.user_name
-    email = "#{n+1}@gmail.com"
+    email = "#{username}@gmail.com"
     pass = "fakeusers"
     about_me = Faker::Lorem.sentences(3)
     gender = ["female", "male"].sample
-    address = ["Boston,MA", "NYC, NY", "Kansas City, Kansas", "Moscow, Russia", "Rochester, NY"].sample
+    address = ["Boston,MA", "NYC, NY",
+              "Kansas City, Kansas", "Moscow,
+              Russia", "Rochester, NY"].sample
     User.create(email: email,
     password: pass,
     username: username,
