@@ -2,6 +2,12 @@
   <h1> Find Users</h1>
   <h4> Sort and Search</h4>
 </row>
+<%= form_tag products_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 <p>
   2 select boxes that gets only current users haves and wants
 </p>

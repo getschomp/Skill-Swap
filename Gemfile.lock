@@ -149,6 +149,7 @@ GEM
     nifty-generators (0.4.6)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    orderly (0.0.2)
     orm_adapter (0.5.0)
     pg (0.18.0)
     private_pub (1.0.3)
@@ -298,6 +299,7 @@ DEPENDENCIES
   kaminari
   launchy
   nifty-generators
+  orderly
   pg
   private_pub
   pry-rails

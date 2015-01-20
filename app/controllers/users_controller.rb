@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.limit(6).page(params[:page])
+    @users = User.search(params[:search]).limit(6).page(params[:page])
   end
 
   def show
@@ -58,13 +58,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @wanted_skill = WantedSkill.find(params[:users][:wanted_skill_sttributes][:skill_id])
-    # @wanted_skill.update(user_params)
-    # if(@wanted_skill.save
-    #   redirect_to @wanted_skill, notice:"User Profile Updated")
-    # else
-    #   render :edit
-    # end
     @user.update(user_params)
     if @user.save
       redirect_to @user, notice: "User Profile Updated"
@@ -75,6 +68,10 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
+  def search_params
+
+  end
+
   def user_params
     params.require(:user).permit(:id, :username, :email, :password,
     :gender, :about_me, :address, :page,
