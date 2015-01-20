@@ -64,3 +64,4 @@ gem 'rails_12factor', group: :production
 gem 'private_pub'
 gem 'thin'
 gem 'foreman'
+gem 'orderly'
