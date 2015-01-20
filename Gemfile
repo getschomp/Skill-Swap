@@ -44,7 +44,7 @@ group :test do
   gem 'coveralls', require: false
 end
 
-gem 'rspec-rails', group: [:development, :test]
+gem 'rspec-rails', group: [:development, :test, :production]
 gem 'capybara', group: [:development, :test]
 gem 'launchy', group: [:development, :test]
 gem 'factory_girl', group: [:development, :test]
