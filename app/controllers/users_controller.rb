@@ -35,8 +35,8 @@ class UsersController < ApplicationController
     #   render :edit
     # end
     @user.update(user_params)
-    if(@user.save
-      redirect_to @user, notice:"User Profile Updated")
+    if @user.save
+      redirect_to @user, notice: "User Profile Updated"
     else
       render :edit
     end
@@ -45,7 +45,8 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def user_params
-    params.require(:user).permit(:id, :username, :email, :password, :gender, :about_me, :address, :page,
+    params.require(:user).permit(:id, :username, :email, :password,
+    :gender, :about_me, :address, :page,
     wanted_skill_attributes: [:skill_id, :user_id, :current_level, :teachers_skill, :why_description],
     had_skill_attributes: [:skill_id, :user_id, :expertise_level, :experience])
   end

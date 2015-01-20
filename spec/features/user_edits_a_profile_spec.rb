@@ -4,12 +4,15 @@ feature "User edits a profile", %q(
 As someone who wants to swap skill,
 I would like to have a profile,
 So that others can find me by my skills
-- [ ] The user can visit the edit profile page from any page(test homepage)
--[ ] User can optionally provide their age, gender,
+- [ ] I can visit the edit profile page from
+  any page(test homepage)
+-[ ] I can optionally provide my location, gender,
 and an 'about me' section
--[ ] A user can navigate to a page that allows them to add skills that they have to their page.
--[ ] A user can navigate to a page that allows them to add skills that they want to their profile page.
-* Changes will be shown on their public profile
+-[ ] I can navigate to a page that allows
+me to add skills that I know.
+-[ ] I can navigate to a page that allows
+me to add skills I want to know.
+-[ ] I can see the changes that I make on my public profile
 ) do
 
   before(:each) do
@@ -29,7 +32,7 @@ and an 'about me' section
   scenario "User fills in all fields" do
     visit edit_user_path(User.first)
     @user.about_me = "this is about me"
-    select "Male", :from => "user_gender"
+    select "Male", from: "user_gender"
     fill_in "About Me", with: @user.about_me
     click_on "Save Profile"
 
