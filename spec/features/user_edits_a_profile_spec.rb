@@ -19,7 +19,6 @@ and an 'about me' section
 
   scenario "User visits their profile from the homepage" do
     visit root_path
-
     click_on "Edit User Profile"
     expect(page).to have_content "City"
     expect(page).to have_content "Gender"
@@ -29,25 +28,26 @@ and an 'about me' section
 
   scenario "User fills in all fields" do
     visit edit_user_path(User.first)
-    fill_in "Gender", with: @user.gender
+    @user.about_me = "this is about me"
+    select "Male", :from => "user_gender"
     fill_in "About Me", with: @user.about_me
-    click_on "Edit Profile"
+    click_on "Save Profile"
 
     expect(page).to have_content @user.gender
-    expect(page).to have_content @user.about
+    expect(page).to have_content @user.about_me
   end
 
   scenario "User fills in no fields" do
     visit edit_user_path(User.first)
-    click_on "Edit Profile"
-    expect(page).not_to have_content "You did not fill in anything"
+    click_on "Save Profile"
+    expect(page).not_to have_content "error" # because all feilds are optional
   end
 
   scenario "User can't edit another users profile" do
     @user1 = User.first
-    @user2 = FactoryGirl.create(:user)
+    @user2 = FactoryGirl.build(:user)
     click_on "Sign Out"
-    sign_in(@user2)
+    sign_up(@user2)
     visit edit_user_path(@user1)
     expect(page).to have_content "You're not authorized to edit this profile!"
   end
@@ -56,20 +56,27 @@ and an 'about me' section
     @user1 = User.first
     click_on "Sign Out"
     visit edit_user_path(@user1)
-    expect(page).to have_content "You're not authorized to edit this profile!"
+    expect(page).to have_content "You need to sign in or sign up before continuing."
   end
 
   scenario "user sucessfully navigates to a page to add wanted skills" do
     @user = User.first
-    click_on "Add a skill you want to know"
-    expect(page).to have_content "What do you want to know #{@user.name}?"
-    expect(page).to have_content "Tell others about your skills."
+    visit edit_user_path(@user)
+    within(:css, "div.wanted_skill") do
+      click_on "Add Skill"
+    end
+    expect(page).to have_content "What do you want to know #{@user.username}?"
+    expect(page).to have_content "Tell others what skills you are seeking."
   end
 
   scenario "user sucessfully navigates to a page to add skills they have" do
     @user = User.first
-    click_on "Add a skill you know"
-    expect(page).to have_content "What would you like to learn #{@user.name}?"
-    expect(page).to have_content "Tell others what skills you are seeking."
+    visit edit_user_path(@user)
+    within(:css, "div.had_skill") do
+      click_on "Add Skill"
+    end
+    save_and_open_page
+    expect(page).to have_content "What do you already know #{@user.username}?"
+    expect(page).to have_content "Tell others what you are good at."
   end
 end

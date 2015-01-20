@@ -1,10 +1,10 @@
 <row>
     <h1>Profile for: <%= @user.username %>
-      <%= link_to "Send Message", "#", class: "tiny button start-conversation",
+      <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
       "data-sid" => current_user.id, "data-rip" => @user.id %> </h1>
 </row>
 <row>
-  <div class="small-12 medium-6 large-4 columns">
+  <div class="small-12 medium-2 large-2 columns">
     <h5>Basic Info</h5>
     <ul>
       <h5>City:</h5>
@@ -21,33 +21,35 @@
 
     </ul>
   </div>
-  <div class="small-12 medium-6 large-4 columns wanted_skill">
-    <h3>Skills <%= @user.username %> wants to know</h3>
+  <div class="small-12 medium-4 large-4 columns wanted_skill">
+    <h3>Skills <%= @user.username %> wants to know
     <% if current_user == @user %>
-        <%= link_to "Add Skill", new_user_wanted_skill_path(@user), class: "tiny button" %>
+        <%= link_to "Add Skill", new_user_wanted_skill_path(@user), class: "button expand" %>
     <% end %>
+    </h3>
     <ul>
-      <h5></h5>
-      <p><% @user.wanted_skills.each do |s| %></p>
-        <%= s.skill.name %>
-        <% if current_user == @user %>
-          <%= link_to "Delete Skill", user_wanted_skill_path(@user, s), class: "tiny button", :method => :delete %>
-        <% end %>
+      <% @user.wanted_skills.each do |s| %>
+        <h4>
+          <%= link_to s.skill.name, skill_path(s.skill) %>
+          <% if current_user == @user %>
+            <%= link_to "Delete Skill", user_wanted_skill_path(@user, s), class: "tiny button", :method => :delete %>
+          <% end %>
+        </h4>
       <% end %>
     </ul>
   </div>
-  <div class="small-12 medium-6 large-4 columns had_skill">
+  <div class="small-12 medium-4 large-4 columns had_skill">
     <h3>Skills <%= @user.username %> knows</h3>
     <% if current_user == @user %>
-        <%= link_to "Add Skill", new_user_had_skill_path(@user), class: "tiny button" %>
+        <%= link_to "Add Skill", new_user_had_skill_path(@user), class: "button expand" %>
     <% end %>
     <ul>
-      <h5></h5>
       <p><% @user.had_skills.each do |s| %></p>
-        <%= link_to s.skill.name, skill_path(s.skill) %>
+        <h4><%= link_to s.skill.name, skill_path(s.skill) %>
         <% if current_user == @user %>
             <%= link_to "Delete Skill", user_had_skill_path(@user, s), class: "tiny button", :method => :delete %>
         <% end %>
+        </h4>
       <% end %>
     </ul>
   </div>
