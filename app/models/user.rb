@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode
+
+  def self.search(query)
+   where("username ILIKE ?", "%" + query + "%")
+  end
+
 end

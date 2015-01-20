@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 feature "User edits a profile", %q(
-As someone who wants to swap skill,
-I would like to have a profile,
-So that others can find me by my skills
-- [ ] I can visit the edit profile page from
-  any page(test homepage)
--[ ] I can optionally provide my location, gender,
-and an 'about me' section
--[ ] I can navigate to a page that allows
-me to add skills that I know.
--[ ] I can navigate to a page that allows
-me to add skills I want to know.
--[ ] I can see the changes that I make on my public profile
+  As someone who wants to swap skill,
+  I would like to have a profile,
+  So that others can find me by my skills
+  - [ ] I can visit the edit profile page from
+    any page(test homepage)
+  -[ ] I can optionally provide my location, gender,
+  and an 'about me' section
+  -[ ] I can navigate to a page that allows
+  me to add skills that I know.
+  -[ ] I can navigate to a page that allows
+  me to add skills I want to know.
+  -[ ] I can see the changes that I make on my public profile
 ) do
 
   before(:each) do
@@ -77,7 +77,6 @@ me to add skills I want to know.
     within(:css, "div.had_skill") do
       click_on "Add Skill"
     end
-    save_and_open_page
     expect(page).to have_content "What do you already know #{@user.username}?"
     expect(page).to have_content "Tell others what you are good at."
   end

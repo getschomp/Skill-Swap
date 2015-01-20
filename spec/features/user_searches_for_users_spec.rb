@@ -23,16 +23,21 @@ feature "User searches for another user", %q{
       user1 = FactoryGirl.create(:user)
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
-      fill_in search with user1.name
-      expect(page).to have_content(user1.name)
+      user = User.create(username:"nicole", email:"someemail@gmail.com", password:"555678")
+
+      fill_in search with user.name
+
+      expect(page).to have_content(user.name)
       expect(page).to_not have_content(user1.name)
     end
 
     scenario "User leaves search form blank and sees all users arranged by time created " do
       visit users_path
+
       user1 = FactoryGirl.create(:user)
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
+
       user3.username.should appear_before(user2.username)
       user2.username.should appear_before(user1.username)
       user1.username.should_not appear_before(user2.username)
