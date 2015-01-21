@@ -46,11 +46,6 @@ class UsersController < ApplicationController
     end
     if params[:query]
       @users = User.search(params[:query])
-      # respond_to do |format|
-      #   format.html # index.html.erb
-      #   format.json { render json: @articles }
-      #   format.js
-      # end
     elsif @had_skill_skill_id != nil && @wanted_skill_skill_id != nil
       @users = find_matching_had_wanted(@had_skill_skill_id, @wanted_skill_skill_id)
       respond_to do |format|
@@ -58,20 +53,6 @@ class UsersController < ApplicationController
         format.json { render json: @articles }
         format.js
       end
-    # elsif params[:wanted_skill_id]
-    #   @users = find_matching_had(params[:wanted_skill_id])
-    #   respond_to do |format|
-    #     format.html # index.html.erb
-    #     format.json { render json: @articles }
-    #     format.js
-    #   end
-    # elsif params[:had_skill_id]
-    #   @users = find_matching_wanted(params[:had_skill_id])
-    #   respond_to do |format|
-    #     format.html # index.html.erb
-    #     format.json { render json: @articles }
-    #     format.js
-    #   end
     elsif params[:miles] == 1
       @user = nearby_users
       respond_to do |format|

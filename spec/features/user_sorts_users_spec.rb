@@ -22,29 +22,26 @@ feature "User searches for another user", %q{
       #create the skills Ruby and Javascript
       skill1 = Skill.create(name: "Ruby")
       skill2 = Skill.create(name: "Javascript")
+
+      #create a bunch of users to be sorted
       user1 = FactoryGirl.create(:user)
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
       user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89")
-      #create a had skill and wanted skill that matches @user for user1
-      had_skill_user_1
-      had_skill_user_2
-      wanted_skill_user_1
-      wanted_skill_user_2
-      #create the current user with had and wanted skills
 
+      users_had_skill = HadSkill.create(skill_id: skill1.id, user_id: @user.id)
+      users_wanted_skill = WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
+      users_had_skill = HadSkill.create(skill_id: skill2.id, user_id: user1.id)
+      users_wanted_skill = WantedSkill.create(skill_id: skill1.id, user_id: user1.id)
 
       visit users_path
       #select those had and wanted skills by name
-      select skill1.name, :from => "I'll teach"
-      select skill2.name, :from => "They'll teach"
+      select skill1.name, :from => "sort[had_skill_skill_id]"
+      select skill2.name, :from => "sort[wanted_skill_skill_id]"
       #the select box will actually return the id
-
-      visit users_path
-      fill_in "Search", with: user4.username
-      click_on "Search Users"
-      expect(page).to have_content(user4.username)
-      expect(page).to_not have_content(user1.username)
+      click_on "Sort by Skill Types"
+      expect(page).to have_content(user1.username)
+      expect(page).to_not have_content(user4.username)
     end
 
     scenario "User leaves search form blank and sees all users arranged by time created " do
