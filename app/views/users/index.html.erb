@@ -36,8 +36,10 @@
           <% wanted_skills = current_user.wanted_skills %>
           <%= select :sort, :wanted_skill_skill_id,  wanted_skills.collect {|wanted_skill| [wanted_skill.skill.name, wanted_skill.skill.id] } %>
         <% end %>
+        Select miles from you:
+        <%= select :sort, :miles, [nil, 5, 10, 20, 60, 100] %>
+        <% end %>
         <%= submit_tag "Sort by Skill Types", class: "button expand" %>
-      <% end %>
 
     </div>
   </div>
@@ -52,7 +54,7 @@
     <div class="eqWrap">
       <% @users.in_groups_of(groups_num, false) do |group| %>
         <% if current_user %>
-          <div class="columns">
+          <div class="columns text-center">
             <% group.each do |user| %>
             <h4><%= link_to user.username, user_path(user) %><h4>
               <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",

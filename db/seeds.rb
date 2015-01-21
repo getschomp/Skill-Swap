@@ -43,7 +43,7 @@
   Category.find_or_create_by(name: "Programming languages")
 
   # create 350 users
-  46.times do |n|
+  400.times do |n|
     username = Faker::Internet.user_name
     email = "#{username}@gmail.com"
     pass = "fakeusers"

@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       end
     end
     users
-
   end
 
   def find_matching_had_wanted(had_skill_id, wanted_skill_id)
