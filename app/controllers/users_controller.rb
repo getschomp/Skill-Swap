@@ -11,7 +11,6 @@ class UsersController < ApplicationController
       end
     end
     users
-
   end
 
   def find_matching_wanted(had_skill_id)
@@ -85,8 +84,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:id, :username, :email, :password,
-    :gender, :about_me, :address, :page,
-    wanted_skill_attributes: [:skill_id, :user_id, :current_level, :teachers_skill, :why_description],
-    had_skill_attributes: [:skill_id, :user_id, :expertise_level, :experience])
+    :gender, :about_me, :address, :page)
   end
 end
