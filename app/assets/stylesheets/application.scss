@@ -29,9 +29,10 @@ $body-font-family: sans-;
 
 #container{
   padding-top: 40px;
-  width: 900px;
+  width: 1000px;
   margin: 0 auto;
 }
+
 
 
 .flash{
@@ -66,4 +67,9 @@ row{
   padding:20px;
   margin: 0 auto;
   width: 100%
+}
+
+.h4{
+  font-size: 1.4375rem;
+  padding-bottom: 34px;
 }
