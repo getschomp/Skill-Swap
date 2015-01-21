@@ -31,11 +31,10 @@ feature "User searches for another user", %q{
     end
 
     scenario "User leaves search form blank and sees all users arranged by time created " do
-      visit users_path
-
       user1 = FactoryGirl.create(:user)
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
+      visit users_path
 
       user3.username.should appear_before(user2.username)
       user2.username.should appear_before(user1.username)
