@@ -19,16 +19,15 @@ feature "User searches for another user", %q{
     end
 
     scenario "User sucessfullly finds who they are looking for" do
-      visit users_path
       user1 = FactoryGirl.create(:user)
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
-      user = User.create(username:"nicole", email:"someemail@gmail.com", password:"555678")
-
-      fill_in search with user.name
-
-      expect(page).to have_content(user.name)
-      expect(page).to_not have_content(user1.name)
+      user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89")
+      visit users_path
+      fill_in "Search", with: user4.username
+      click_on "Search Users"
+      expect(page).to have_content(user4.username)
+      expect(page).to_not have_content(user1.username)
     end
 
     scenario "User leaves search form blank and sees all users arranged by time created " do
