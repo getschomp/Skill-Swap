@@ -11,16 +11,18 @@ class UsersController < ApplicationController
       end
     end
     users
+
   end
 
   def find_matching_wanted(had_skill_id)
     users = []
-    HadSkill.all.each do |had_skill|
-      if had_skill.skill_id == had_skill_id
-        user << had_skill.user
+    WantedSkill.all.each do |wanted_skill|
+      if wanted_skill.skill_id == had_skill_id
+        users << wanted_skill.user
       end
     end
     users
+
   end
 
   def find_matching_had_wanted(had_skill_id, wanted_skill_id)
@@ -38,20 +40,50 @@ class UsersController < ApplicationController
   end
 
   def index
-    if params[:query]
-      @users = User.search(params[:query]).limit(6).page(params[:page])
-    else
-      @users = User.order('created_at DESC').limit(6).page(params[:page])
+    if params[:sort]
+      @had_skill_skill_id = params[:sort][:had_skill_skill_id].to_i
+      @wanted_skill_skill_id = params[:sort][:wanted_skill_skill_id].to_i
     end
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def create
+    if params[:query]
+      @users = User.search(params[:query])
+      # respond_to do |format|
+      #   format.html # index.html.erb
+      #   format.json { render json: @articles }
+      #   format.js
+      # end
+    elsif @had_skill_skill_id != nil && @wanted_skill_skill_id != nil
+      @users = find_matching_had_wanted(@had_skill_skill_id, @wanted_skill_skill_id)
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @articles }
+        format.js
+      end
+    # elsif params[:wanted_skill_id]
+    #   @users = find_matching_had(params[:wanted_skill_id])
+    #   respond_to do |format|
+    #     format.html # index.html.erb
+    #     format.json { render json: @articles }
+    #     format.js
+    #   end
+    # elsif params[:had_skill_id]
+    #   @users = find_matching_wanted(params[:had_skill_id])
+    #   respond_to do |format|
+    #     format.html # index.html.erb
+    #     format.json { render json: @articles }
+    #     format.js
+    #   end
+    elsif params[:miles] == 1
+      @user = nearby_users
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @articles }
+        format.js
+      end
+    elsif params[:miles] == 5
+    elsif params[:miles] == 25
+    else
+      @users = User.order('created_at DESC')
+    end
   end
 
   def edit
@@ -69,10 +101,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   private
-
-
   def user_params
     params.require(:user).permit(:id, :username, :email, :password,
     :gender, :about_me, :address, :page,
