@@ -38,7 +38,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.limit(6).page(params[:page])
+    if params[:query]
+      @users = User.search(params[:query]).limit(6).page(params[:page])
+    else
+      @users = User.order('created_at DESC').limit(6).page(params[:page])
+    end
   end
 
   def show
@@ -67,9 +71,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
-  def search_params
 
-  end
 
   def user_params
     params.require(:user).permit(:id, :username, :email, :password,
