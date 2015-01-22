@@ -25,4 +25,14 @@ class User < ActiveRecord::Base
    where("username ILIKE ?", "%" + query + "%")
   end
 
+  def find_matching_wanted(skill_id)
+    all_users = []
+    User.all.each do |user|
+      if user.wanted_skills.where(skill_id: skill_id).exists?
+        all_users << user
+      end
+    end
+    all_users
+  end
+
 end

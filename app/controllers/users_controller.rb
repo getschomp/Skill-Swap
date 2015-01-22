@@ -27,10 +27,25 @@ class UsersController < ApplicationController
     (find_matching_wanted(had_skill_id) & find_matching_had(wanted_skill_id))
   end
 
+  def find_by_distance(found_users, miles)
+    users = []
+    found_users.each do |user|
+      distance = user.distance_to(current_user)
+      if distance == miles
+        users << user
+      end
+    end
+    users
+  end
+
   # Make method return by miles.  Pass a default argument of 5 miles.
   def nearby_users
     city = @user.address
     User.near(city)
+  end
+
+  def get_nearby_users(miles)
+
   end
 
   def get_user
@@ -38,36 +53,40 @@ class UsersController < ApplicationController
   end
 
   def index
-    if params[:sort]
-      @had_skill_skill_id = params[:sort][:had_skill_skill_id].to_i
-      @wanted_skill_skill_id = params[:sort][:wanted_skill_skill_id].to_i
-    end
+
     if params[:query]
       @users = User.search(params[:query])
-    elsif @had_skill_skill_id && @wanted_skill_skill_id
-      @users = find_matching_had_wanted(@had_skill_skill_id, @wanted_skill_skill_id)
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @articles }
-        format.js
-      end
-    elsif params[:miles] == 1
-      @user = nearby_users
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @articles }
-        format.js
-      end
-    elsif params[:miles] == 5
-    elsif params[:miles] == 25
-    else
-      @users = User.order("created_at DESC")
-    end
 
-    if @user.class == Array
+    elsif params[:sort]
+      @had_skill_id = params[:sort][:had_skill_skill_id].to_i
+      current_user.find_matching_wanted(@had_skill_skill_id)
+      @wanted_skill_id = params[:sort][:wanted_skill_skill_id].to_i
+      @miles = params[:sort][:miles]
+
+      @users = find_matching_had_wanted(@had_skill_id, @wanted_skill_id)
       @users = Kaminari.paginate_array(@users).page(params[:page])
+      @description = "Users who know #{Skill.find(@had_skill_id).name}" +
+                     " and want to know #{Skill.find(@wanted_skill_id).name}:"
+
+      if @miles != ""
+        if params[:miles] == 5
+
+        end
+        if params[:miles] == 10
+
+        end
+        if params[:miles] == 20
+
+        end
+        if params[:miles] == 60
+
+        end
+        if params[:miles] == 100
+
+        end
+      end
     else
-      @users = @users.page(params[:page])
+      @users = User.order('created_at DESC').page params[:page]
     end
   end
 
