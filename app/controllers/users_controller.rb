@@ -74,7 +74,7 @@ class UsersController < ApplicationController
 
         end
         if params[:miles] == 20
-
+          
         end
         if params[:miles] == 60
 
@@ -106,6 +106,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:id, :username, :email, :password,
-    :gender, :about_me, :address, :page)
+                                  :gender, :about_me, :address, :page)
   end
 end

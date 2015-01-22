@@ -1,14 +1,15 @@
 <row>
-  <div class="small-12 medium-6 large-6 center">
-    <h2 style="padding-bottom: 6px; ">Find a skill by name<h2>
-      <p>Find a skill by name so that you can edit its information throughout this website.</p>
-      <%= form_tag skills_path, method: :get do %>
-      <%= label_tag :query, "Search by skill name:"%>
-      <%= text_field_tag :query %>
-      <%= submit_tag "Search Skills", class: "button expand" %>
-      <% end %>
-    </div>
-  </div
+
+    <div class="skill-form">
+      <h2 style="padding-bottom: 6px; ">Find a skill by name<h2>
+        <p>Find a skill by name so that you can edit its information throughout this website.</p>
+        <%= form_tag skills_path, method: :get do %>
+        <%= label_tag :query, "Search by skill name:"%>
+        <%= text_field_tag :query %>
+        <%= submit_tag "Search Skills", class: "button expand" %>
+        <% end %>
+      </div>
+    </div
 </row>
 
 <row class= "pagination">

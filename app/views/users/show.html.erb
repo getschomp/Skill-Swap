@@ -36,6 +36,7 @@
           <%= link_to s.skill.name, skill_path(s.skill) %>
           <% if current_user == @user %>
             <%= link_to "Delete Skill", user_wanted_skill_path(@user, s), class: "tiny button", :method => :delete %>
+            <%= link_to "Edit details", user_wanted_skill_path(@user, s), class: "tiny button", :method => :edit %>
           <% end %>
         </h4>
       <% end %>
