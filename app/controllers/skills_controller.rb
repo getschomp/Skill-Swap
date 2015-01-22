@@ -34,6 +34,14 @@ class SkillsController < ApplicationController
     end
   end
 
+  def index
+    if params[:query]
+      @skills = Skill.search(params[:query]).order('name ASC')
+    else
+      @skills = Skill.all.order('name ASC')
+    end
+  end
+
   def destroy
   # only accesible by admin
   # if current user is admin statement

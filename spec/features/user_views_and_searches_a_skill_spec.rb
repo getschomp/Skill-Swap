@@ -34,10 +34,10 @@ feature "User views all skills and searches for one", %q{
       skill1 = FactoryGirl.create(:skill)
       skill2 = FactoryGirl.create(:skill)
       skill3 = FactoryGirl.create(:skill)
-      visit users_path
+      visit skills_path
 
-      expect(page).to have_content(user1.username)
-      expect(page).to have_content(user1.username)
-      expect(page).to have_content(user3.username)
+      expect(page).to have_content(skill1.name)
+      expect(page).to have_content(skill2.name)
+      expect(page).to have_content(skill3.name)
     end
   end
