@@ -8,7 +8,7 @@
     <div class="small-12 medium-6 large-6 columns padded">
       <h4 style="padding-bottom: 6px; ">Find a user by username<h4>
       <%= form_tag users_path, method: :get do %>
-        <%= label_tag :query, "Search by user"%>
+      <%= label_tag :query, "Search by user", class:"h4-label"%>
         <%= text_field_tag :query %>
         <%= submit_tag "Search Users", class: "button expand" %>
       <% end %>
@@ -44,6 +44,13 @@
     </div>
   </div>
 </row>
+
+<row class= "pagination">
+  <div class="columns text-center">
+    <%= paginate @users %>
+  <div>
+</row>
+
   <% if @users %>
     <% if @users.size > 1  %>
       <% groups_num = (@users.size.to_f/3).ceil %>

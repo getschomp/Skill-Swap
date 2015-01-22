@@ -1,21 +1,28 @@
 <row>
   <div class="small-12 medium-6 large-6">
-    <h4 style="padding-bottom: 6px; ">Find a skill by name<h4>
+    <h2 style="padding-bottom: 6px; ">Find a skill by name<h2>
+      <p>Find a skill by name so that you can edit its information throughout this website.</p>
       <%= form_tag skills_path, method: :get do %>
-      <%= label_tag :query, "Search by user"%>
+      <%= label_tag :query, "Search by skill name:"%>
       <%= text_field_tag :query %>
       <%= submit_tag "Search Skills", class: "button expand" %>
       <% end %>
-      <%= button_to "All Users", users_path, class: "button expand" %>
     </div>
   </div
 </row>
+
+<row class= "pagination">
+  <div class="columns text-center">
+    <%= paginate @skills %>
+    <div>
+</row>
+
 
 <row>
   <div class="small-12 medium-12 large-12 ">
 
   <% @skills.each do |skill| %>
-    <%= link_to skill.name, skill_path(skill) %>
+    <h3><%= link_to skill.name, skill_path(skill) %><h3>
   <% end %>
   </div>
 </row>

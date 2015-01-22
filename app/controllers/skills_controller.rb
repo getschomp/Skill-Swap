@@ -40,6 +40,7 @@ class SkillsController < ApplicationController
     else
       @skills = Skill.all.order('name ASC')
     end
+    @skills = @skills.limit(10).page(params[:page])
   end
 
   def destroy

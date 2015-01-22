@@ -63,6 +63,12 @@ class UsersController < ApplicationController
     else
       @users = User.order("created_at DESC")
     end
+
+    if @user.class == Array
+      @users = Kaminari.paginate_array(@users).page(params[:page])
+    else
+      @users = @users.page(params[:page])
+    end
   end
 
   def edit
