@@ -7,7 +7,7 @@ var ready = function () {
   */
 
   $('.start-conversation').click(function (e) {
-    // e.preventDefault();
+     e.preventDefault();
 
     var sender_id = $(this).data('sid');
     var recipient_id = $(this).data('rip');
@@ -20,6 +20,7 @@ var ready = function () {
   /**
   * Used to minimize the chatbox
   */
+
 
   $(document).on('click', '.toggleChatBox', function (e) {
     e.preventDefault();
