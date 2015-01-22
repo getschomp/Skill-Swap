@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     end
     if params[:query]
       @users = User.search(params[:query])
-    elsif @had_skill_skill_id != nil && @wanted_skill_skill_id != nil
+    elsif @had_skill_skill_id && @wanted_skill_skill_id
       @users = find_matching_had_wanted(@had_skill_skill_id, @wanted_skill_skill_id)
       respond_to do |format|
         format.html # index.html.erb
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     elsif params[:miles] == 5
     elsif params[:miles] == 25
     else
-      @users = User.order('created_at DESC')
+      @users = User.order("created_at DESC")
     end
   end
 
