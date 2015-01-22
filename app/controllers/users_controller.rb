@@ -64,7 +64,8 @@ class UsersController < ApplicationController
       @users = find_matching_had_wanted(@had_skill_id, @wanted_skill_id)
       @users = Kaminari.paginate_array(@users).page(params[:page])
       @description = "Users who know #{Skill.find(@had_skill_id).name}" +
-                     " and want to know #{Skill.find(@wanted_skill_id).name}:"
+                     " and want to know #{Skill.find(@wanted_skill_id).name}:" +
+                    "#{@users.size} users match this combination of skills"
 
       if @miles != ""
         if params[:miles] == 5
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
 
         end
         if params[:miles] == 20
-          
+
         end
         if params[:miles] == 60
 
