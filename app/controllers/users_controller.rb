@@ -38,7 +38,6 @@ class UsersController < ApplicationController
     users
   end
 
-  # Make method return by miles.  Pass a default argument of 5 miles.
   def nearby_users
     city = @user.address
     User.near(city)
@@ -55,11 +54,10 @@ class UsersController < ApplicationController
   def index
 
     if params[:query]
-      @users = User.search(params[:query])
+      @users = User.search(params[:query]).page params[:page]
 
     elsif params[:sort]
       @had_skill_id = params[:sort][:had_skill_skill_id].to_i
-      current_user.find_matching_wanted(@had_skill_skill_id)
       @wanted_skill_id = params[:sort][:wanted_skill_skill_id].to_i
       @miles = params[:sort][:miles]
 
