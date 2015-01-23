@@ -1,5 +1,4 @@
 /**
-* Chat logic
 *
 * Most of the js functionality is inspired from anatgarg.com
 * jQuery tag Module from the tutorial
@@ -8,8 +7,8 @@
 */
 
 
-var chatboxFocus = new Array();
-var chatBoxes = new Array();
+var chatboxFocus = [];
+var chatBoxes = [];
 
 var ready = function () {
 
@@ -56,7 +55,7 @@ var ready = function () {
 
     restructure: function () {
       align = 0;
-      for (x in chatBoxes) {
+      for (var x in chatBoxes) {
         chatbox_id = chatBoxes[x];
 
         if ($("#chatbox_" + chatbox_id).css('display') != 'none') {
