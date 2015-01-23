@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User searches for another user", %q{
+feature "User searches for users", %q{
   As a student and teacher
   I want to find other users by name
   So that I can view there profiles
@@ -8,7 +8,7 @@ feature "User searches for another user", %q{
   Acceptance Criteria:
   - [ ] The user index page will first include all users
   - [ ] I can type in a users name and it will update the
-        user index page with
+        user index page with matching users
   } do
 
     #add autocomplete for skills column as time allows

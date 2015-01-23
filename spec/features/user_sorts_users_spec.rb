@@ -1,14 +1,13 @@
 require 'rails_helper'
 
-feature "User searches for another user", %q{
+feature "User sorts users by skills", %q{
   As a student and teacher
   I want to find other users by name
   So that I can view there profiles
 
   Acceptance Criteria:
-  - [ ] The user index page will first include all users
-  - [ ] I can type in a users name and it will update the
-  user index page with
+  - [ ] I can choose the skills that i want to sort by
+  and i will find users that match my selections
   } do
 
     #add autocomplete for skills column as time allows
@@ -36,8 +35,8 @@ feature "User searches for another user", %q{
 
       visit users_path
       #select those had and wanted skills by name
-      select skill1.name, :from => "sort[had_skill_skill_id]"
-      select skill2.name, :from => "sort[wanted_skill_skill_id]"
+      select skill1.name, :from => "sort[had_skill_id]"
+      select skill2.name, :from => "sort[wanted_skill_id]"
       #the select box will actually return the id
       click_on "Sort by Skill Types"
       expect(page).to have_content(user1.username)

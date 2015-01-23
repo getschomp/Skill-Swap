@@ -3,30 +3,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :get_user, only: [:show, :edit, :update]
 
-  def find_matching_had(wanted_skill_id)
-    users = []
-    HadSkill.all.each do |had_skill|
-      if had_skill.skill_id == wanted_skill_id
-        users << had_skill.user
-      end
-    end
-    users
-  end
-
-  def find_matching_wanted(had_skill_id)
-    users = []
-    WantedSkill.all.each do |wanted_skill|
-      if wanted_skill.skill_id == had_skill_id
-        users << wanted_skill.user
-      end
-    end
-    users
-  end
-
-  def find_matching_had_wanted(had_skill_id, wanted_skill_id)
-    (find_matching_wanted(had_skill_id) & find_matching_had(wanted_skill_id))
-  end
-
   def find_by_distance(found_users, miles)
     users = []
     found_users.each do |user|
@@ -36,15 +12,6 @@ class UsersController < ApplicationController
       end
     end
     users
-  end
-
-  def nearby_users
-    city = @user.address
-    User.near(city)
-  end
-
-  def get_nearby_users(miles)
-
   end
 
   def get_user
@@ -57,11 +24,14 @@ class UsersController < ApplicationController
       @users = User.search(params[:query]).page params[:page]
 
     elsif params[:sort]
-      @had_skill_id = params[:sort][:had_skill_skill_id].to_i
-      @wanted_skill_id = params[:sort][:wanted_skill_skill_id].to_i
+      @had_skill_id = params[:sort][:had_skill_id]
+      @wanted_skill_id = params[:sort][:wanted_skill_id]
       @miles = params[:sort][:miles]
 
-      @users = find_matching_had_wanted(@had_skill_id, @wanted_skill_id)
+      @had_skill = HadSkill.find_by(skill_id: @had_skill_id)
+      @wanted_skill = WantedSkill.find_by(skill_id: @wanted_skill_id)
+
+      @users = @had_skill.find_matching_users & @wanted_skill.find_matching_users
       @users = Kaminari.paginate_array(@users).page(params[:page])
       @description = "Users who know #{Skill.find(@had_skill_id).name}" +
                      " and want to know #{Skill.find(@wanted_skill_id).name}:" +
