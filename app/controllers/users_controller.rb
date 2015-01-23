@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @description1 = "Users who know #{Skill.find(@wanted_skill_id).name}" +
                      " and want to know #{Skill.find(@had_skill_id).name}:"
       @description2 = "#{@users.size} users match this combination of skills"
-      if @miles != ""
+      if @miles != "" && @users
         @miles = @miles.to_i.to_f
         @users = User.find_by_distance(@miles, @users, current_user)
         @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
