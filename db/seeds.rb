@@ -125,7 +125,8 @@ Skill.find_or_create_by(name: "Dog Mushing",
 
   28.times do
     user = User.all.sample
-    Skill.all.each do |skill|
+    skills = Skill.all
+    skills.each do |skill|
       HadSkill.find_or_create_by(
       skill_id: skill.id,
       user_id: user.id
@@ -137,27 +138,27 @@ Skill.find_or_create_by(name: "Dog Mushing",
     end
   end
 
-  # create 20 matches
-  1.upto(20) do |n|
-    HadSkill.find_or_create_by(
-    skill_id: skill1.id,
-    user_id: n
-    )
-    WantedSkill.find_or_create_by(
-    skill_id: skill2.id,
-    user_id: n
-    )
-    n += 1
-  end
-
-  21.upto(40) do |n|
-    HadSkill.find_or_create_by(
-    skill_id: skill2.id,
-    user_id: n
-    )
-    WantedSkill.find_or_create_by(
-    skill_id: skill1.id,
-    user_id: n
-    )
-    n += 1
-  end
+  # # create 20 matches
+  # 1.upto(20) do |n|
+  #   HadSkill.find_or_create_by(
+  #   skill_id: skill1.id,
+  #   user_id: n
+  #   )
+  #   WantedSkill.find_or_create_by(
+  #   skill_id: skill2.id,
+  #   user_id: n
+  #   )
+  #   n += 1
+  # end
+  #
+  # 21.upto(40) do |n|
+  #   HadSkill.find_or_create_by(
+  #   skill_id: skill2.id,
+  #   user_id: n
+  #   )
+  #   WantedSkill.find_or_create_by(
+  #   skill_id: skill1.id,
+  #   user_id: n
+  #   )
+  #   n += 1
+  # end
