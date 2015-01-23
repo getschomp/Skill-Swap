@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :get_user, only: [:show, :edit, :update]
 
-  def find_matching_had_wanted(had_skill_id, wanted_skill_id)
-    (find_matching_wanted(had_skill_id) & find_matching_had(wanted_skill_id))
-  end
-
   def find_by_distance(found_users, miles)
     users = []
     found_users.each do |user|
@@ -16,15 +12,6 @@ class UsersController < ApplicationController
       end
     end
     users
-  end
-
-  def nearby_users
-    city = @user.address
-    User.near(city)
-  end
-
-  def get_nearby_users(miles)
-
   end
 
   def get_user
