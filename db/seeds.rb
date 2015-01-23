@@ -58,6 +58,13 @@ Skill.find_or_create_by(name: "Haskell",
                         "semantics and strong static typing. It is named after" +
                         "logician Haskell Curry.",
                         url: "http://en.wikipedia.org/wiki/Haskell_(programming_language)")
+Skill.find_or_create_by(name: "C++", category: "Programming Languages" )
+Skill.find_or_create_by(name: "C", category: "Programming Languages")
+Skill.find_or_create_by(name: "Objective C", category: "Programming Languages")
+Skill.find_or_create_by(name: "Objective C", category: "Programming Languages")
+Skill.find_or_create_by(name: "PhP", category: "Programming Languages")
+Skill.find_or_create_by(name: ".N", category: "Programming Languages")
+
 
 # winter sports
 skill_winter1 =

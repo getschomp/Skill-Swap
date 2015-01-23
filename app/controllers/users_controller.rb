@@ -13,23 +13,24 @@ class UsersController < ApplicationController
     elsif params[:sort]
       @had_skill_id = params[:sort][:had_skill_id]
       @wanted_skill_id = params[:sort][:wanted_skill_id]
-      @miles = params[:sort][:miles].to_f
+      @miles = params[:sort][:miles]
 
       @had_skill = HadSkill.find_by(skill_id: @had_skill_id)
       @wanted_skill = WantedSkill.find_by(skill_id: @wanted_skill_id)
 
       @users = @had_skill.find_matching_users & @wanted_skill.find_matching_users
-      @users = Kaminari.paginate_array(@users).page(params[:page])
-      @description = "Users who know #{Skill.find(@had_skill_id).name}" +
-                     " and want to know #{Skill.find(@wanted_skill_id).name}:" +
-                    "#{@users.size} users match this combination of skills"
-
+      @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
+      @description1 = "Users who know #{Skill.find(@wanted_skill_id).name}" +
+                     " and want to know #{Skill.find(@had_skill_id).name}:"
+      @description2 = "#{@users.size} users match this combination of skills"
       if @miles != ""
+        @miles = @miles.to_i.to_f
         @users = User.find_by_distance(@miles, @users, current_user)
-        @users = Kaminari.paginate_array(@users).page(params[:page])
+        @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
+        @description2 = "#{@users.size} users match this combination of skills within #{@miles.to_i} miles of you."
       end
     else
-      @users = User.order('created_at DESC').page params[:page]
+      @users = User.order('created_at DESC').page(params[:page]).per(15)
     end
   end
 

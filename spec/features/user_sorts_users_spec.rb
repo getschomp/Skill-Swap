@@ -17,7 +17,7 @@ feature "User sorts users by skills", %q{
       sign_in(@user)
     end
 
-    scenario "User sucessfullly finds who they are looking for" do
+    scenario "User sucessfullly finds who they are looking for by skill type" do
       #create the skills Ruby and Javascript
       skill1 = Skill.create(name: "Ruby")
       skill2 = Skill.create(name: "Javascript")
@@ -50,9 +50,7 @@ feature "User sorts users by skills", %q{
 
       # create a bunch of users to be sorted
       user1 = FactoryGirl.create(:user)
-      user2 = FactoryGirl.create(:user)
-      user3 = FactoryGirl.create(:user)
-      user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89", address: "Moscow, Russia")
+      user2 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89", address: "Moscow, Russia")
 
       # create matching skills for user who is close by
       HadSkill.create(skill_id: skill1.id, user_id: @user.id)
@@ -63,8 +61,8 @@ feature "User sorts users by skills", %q{
       # create skills for matching user who is far away
       HadSkill.create(skill_id: skill1.id, user_id: @user.id)
       WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
-      HadSkill.create(skill_id: skill2.id, user_id: user4.id)
-      WantedSkill.create(skill_id: skill1.id, user_id: user4.id)
+      HadSkill.create(skill_id: skill2.id, user_id: user2.id)
+      WantedSkill.create(skill_id: skill1.id, user_id: user2.id)
 
       visit users_path
       #select those had and wanted skills by name
@@ -74,7 +72,7 @@ feature "User sorts users by skills", %q{
       #the select box will actually return the id
       click_on "Sort by Skill Types & Distance"
       expect(page).to have_content(user1.username)
-      expect(page).to_not have_content(user4.username)
+      expect(page).to_not have_content(user2.username)
     end
 
     scenario "User leaves sort boxes and sees all users arranged by time created " do
