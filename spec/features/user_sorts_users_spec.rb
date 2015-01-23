@@ -17,7 +17,7 @@ feature "User sorts users by skills", %q{
       sign_in(@user)
     end
 
-    scenario "User sucessfullly finds who they are looking for" do
+    scenario "User sucessfullly finds who they are looking for by skill type" do
       #create the skills Ruby and Javascript
       skill1 = Skill.create(name: "Ruby")
       skill2 = Skill.create(name: "Javascript")
@@ -43,7 +43,39 @@ feature "User sorts users by skills", %q{
       expect(page).to_not have_content(user4.username)
     end
 
-    scenario "User leaves search form blank and sees all users arranged by time created " do
+    scenario "User sorts other users by skills and distance" do
+      #create the skills Ruby and Javascript
+      skill1 = Skill.create(name: "Ruby")
+      skill2 = Skill.create(name: "Javascript")
+
+      # create a bunch of users to be sorted
+      user1 = FactoryGirl.create(:user)
+      user2 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89", address: "Moscow, Russia")
+
+      # create matching skills for user who is close by
+      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
+      WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
+      HadSkill.create(skill_id: skill2.id, user_id: user1.id)
+      WantedSkill.create(skill_id: skill1.id, user_id: user1.id)
+
+      # create skills for matching user who is far away
+      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
+      WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
+      HadSkill.create(skill_id: skill2.id, user_id: user2.id)
+      WantedSkill.create(skill_id: skill1.id, user_id: user2.id)
+
+      visit users_path
+      #select those had and wanted skills by name
+      select skill1.name, :from => "sort[had_skill_id]"
+      select skill2.name, :from => "sort[wanted_skill_id]"
+      select 5, :from => "sort[miles]"
+      #the select box will actually return the id
+      click_on "Sort by Skill Types & Distance"
+      expect(page).to have_content(user1.username)
+      expect(page).to_not have_content(user2.username)
+    end
+
+    scenario "User leaves sort boxes and sees all users arranged by time created " do
       user1 = FactoryGirl.create(:user)
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
@@ -54,4 +86,5 @@ feature "User sorts users by skills", %q{
       user1.username.should_not appear_before(user2.username)
       expect(page).to have_content(user1.username)
     end
+
   end

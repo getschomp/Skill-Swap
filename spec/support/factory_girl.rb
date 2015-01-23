@@ -1,10 +1,11 @@
-require 'factory_girl'
+require "factory_girl"
 
 FactoryGirl.define do
   factory :user do
     sequence(:username) {|n| "l33tskills#{n}" }
     sequence(:email) {|n| "user#{n}@example.com" }
-    password 'password'
+    password "password"
+    address "Boston, MA"
     sign_in_count 0
 
     end
