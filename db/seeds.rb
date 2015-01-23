@@ -125,7 +125,7 @@ Skill.find_or_create_by(name: "Dog Mushing",
 
   28.times do
     user = User.all.sample
-    Skill.each do |skill|
+    Skill.all.each do |skill|
       HadSkill.find_or_create_by(
       skill_id: skill.id,
       user_id: user.id
