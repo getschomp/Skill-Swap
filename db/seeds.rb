@@ -104,28 +104,28 @@ Skill.find_or_create_by(name: "Dog Mushing",
   Category.find_or_create_by(name: "Winter Sports")
 
   # create users
-  350.times do |n|
-    username = Faker::Internet.user_name
-    email = "#{username}@gmail.com"
-    pass = "fakeusers"
-    about_me = Faker::Lorem.sentences(3)
-    gender = ["female", "male"].sample
-    address = ["Boston,MA", "NYC, NY",
-              "Kansas City, Kansas", "Moscow,
-              Russia", "Rochester, NY", "Concord, MA"].sample
-    User.create(email: email,
-    password: pass,
-    username: username,
-    about_me: about_me,
-    gender: gender,
-    address: address
-    )
-    sleep(1)
-  end
+  # 350.times do |n|
+  #   username = Faker::Internet.user_name
+  #   email = "#{username}@gmail.com"
+  #   pass = "fakeusers"
+  #   about_me = Faker::Lorem.sentences(3)
+  #   gender = ["female", "male"].sample
+  #   address = ["Boston,MA", "NYC, NY",
+  #             "Kansas City, Kansas", "Moscow,
+  #             Russia", "Rochester, NY", "Concord, MA"].sample
+  #   User.create(email: email,
+  #   password: pass,
+  #   username: username,
+  #   about_me: about_me,
+  #   gender: gender,
+  #   address: address
+  #   )
+  #   sleep(1)
+  # end
 
   28.times do
     user = User.all.sample
-    Skills.each do |skill|
+    Skill.each do |skill|
       HadSkill.find_or_create_by(
       skill_id: skill.id,
       user_id: user.id
