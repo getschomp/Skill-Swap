@@ -25,4 +25,15 @@ class User < ActiveRecord::Base
    where("username ILIKE ?", "%" + query + "%")
   end
 
+  def self.find_by_distance(miles, users, current_user)
+    nearby_users = []
+    users.each do |user|
+      distance = user.distance_to(current_user.address)
+      if distance <= miles
+        nearby_users << user
+      end
+    end
+    nearby_users
+  end
+
 end

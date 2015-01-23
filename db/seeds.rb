@@ -105,7 +105,7 @@ Skill.find_or_create_by(name: "Dog Mushing",
     gender = ["female", "male"].sample
     address = ["Boston,MA", "NYC, NY",
               "Kansas City, Kansas", "Moscow,
-              Russia", "Rochester, NY"].sample
+              Russia", "Rochester, NY", "Concord, MA"].sample
     User.create(email: email,
     password: pass,
     username: username,

@@ -3,30 +3,17 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :get_user, only: [:show, :edit, :update]
 
-  def find_by_distance(found_users, miles)
-    users = []
-    found_users.each do |user|
-      distance = user.distance_to(current_user)
-      if distance == miles
-        users << user
-      end
-    end
-    users
-  end
-
   def get_user
     @user = User.find(params[:id])
   end
 
   def index
-
     if params[:query]
       @users = User.search(params[:query]).page params[:page]
-
     elsif params[:sort]
       @had_skill_id = params[:sort][:had_skill_id]
       @wanted_skill_id = params[:sort][:wanted_skill_id]
-      @miles = params[:sort][:miles]
+      @miles = params[:sort][:miles].to_f
 
       @had_skill = HadSkill.find_by(skill_id: @had_skill_id)
       @wanted_skill = WantedSkill.find_by(skill_id: @wanted_skill_id)
@@ -38,21 +25,8 @@ class UsersController < ApplicationController
                     "#{@users.size} users match this combination of skills"
 
       if @miles != ""
-        if params[:miles] == 5
-
-        end
-        if params[:miles] == 10
-
-        end
-        if params[:miles] == 20
-
-        end
-        if params[:miles] == 60
-
-        end
-        if params[:miles] == 100
-
-        end
+        @users = User.find_by_distance(@miles, @users, current_user)
+        @users = Kaminari.paginate_array(@users).page(params[:page])
       end
     else
       @users = User.order('created_at DESC').page params[:page]
