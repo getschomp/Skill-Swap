@@ -31,8 +31,6 @@ class Skill < ActiveRecord::Base
     users
   end
 
-  
-
   def self.search(query)
     where("name ILIKE ?", "%" + query + "%")
   end
