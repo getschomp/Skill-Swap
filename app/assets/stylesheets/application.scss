@@ -15,8 +15,15 @@
  *= require foundation_and_overrides
 
  */
+
+
 body{
-  background-color: #373737;
+  background-color: #000000;
+}
+
+.center{
+  margin: 0 auto;
+  max-width:800px;
 }
 
 .white{
@@ -26,12 +33,6 @@ body{
 
 
 $body-font-family: sans-;
-
-#container{
-  padding-top: 40px;
-  width: 1000px;
-  margin: 0 auto;
-}
 
 
 
@@ -48,6 +49,11 @@ $body-font-family: sans-;
   color: #795454;
   font-size: 30px;
 
+}
+
+.h4-label{
+  font-size:16px;
+  font-color: #cccccc;
 }
 
 row{
@@ -72,4 +78,15 @@ row{
 .h4{
   font-size: 1.4375rem;
   padding-bottom: 34px;
+}
+
+.restrict-width{
+  margin: 0 auto;
+  max-width:850px;
+}
+
+.light{
+  background-color: #313131;
+  padding-top:10px;
+  padding-bottom:10px;
 }

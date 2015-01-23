@@ -42,26 +42,20 @@ class HadSkillsController < ApplicationController
   end
 
   # def edit
-  #   if @user == current_user
-  #     if @had_skill.save
-  #       success = "Good! You've sucessfully added the skill: #{@had_skill.skill.name} to the list of skills you want to learn."
-  #       redirect_to user_path(current_user), notice: success
-  #     else
-  #       error = "Error: Skill name can't be blank"
-  #       redirect_to new_user_had_skill_path(@user), notice: error
-  #     end
-  #   else
-  #     not_authorized
+  #   @user = User.find(params[:user_id])
+  #   @had_skill = HadSkill.find(params[:id])
+  #   if @review.user != current_user
+  #     redirect_to user_path(@user), notice: "You are not authorized to edit this users info."
   #   end
   # end
   #
   # def update
-  #   # @had_skill.update(had_skill_params)
-  #   # if @had_skill.save
-  #   #   redirect_to @had_skill, notice:"User Profile Updated")
-  #   # else
-  #   #   render :edit
-  #   # end
+  #   @had_skill.update(had_skill_params)
+  #   if @had_skill.save
+  #     redirect_to @had_skill, notice:"User Profile Updated")
+  #   else
+  #     render :edit
+  #   end
   # end
 
   def destroy

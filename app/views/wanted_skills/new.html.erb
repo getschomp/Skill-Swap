@@ -1,19 +1,21 @@
-<h2>What do you want to know <%= @user.username %>?</h2>
-<h4>Tell others what skills you are seeking.</h4>
+<div class="center">
+  <h2>What do you want to know <%= @user.username %>?</h2>
+  <h4>Tell others what skills you are seeking.</h4>
 
-<%= simple_form_for([@user, @wanted_skill]) do |f| %>
-<row>
-    <div class="large-6 columns"></div>
-    <%= f.simple_fields_for :skill, Skill.new do |p| %>
-      <%= p.input :name, label: "Skill Name" %>
-    <% end %>
-    <%= f.input :current_level, collection: get_skill_levels,
-    label: "How well do you know this skill?" %>
-    <%= f.input :teachers_skill, collection: get_skill_levels,
-    label: "How skilled should your teacher be?"%>
-    <%= f.input :why_description, as: :text, label: "Why do you want to learn this skill?
-    Do you Have any experience with this skill?" %>
-    <%= f.button :submit,  "Add Skill to Profile" %>
-  </div>
-</row>
-<% end %>
+  <%= simple_form_for([@user, @wanted_skill]) do |f| %>
+  <row>
+      <div class="large-6 columns"></div>
+      <%= f.simple_fields_for :skill, Skill.new do |p| %>
+        <%= p.input :name, label: "Skill Name" %>
+      <% end %>
+      <%= f.input :current_level, collection: get_skill_levels,
+      label: "How well do you know this skill?" %>
+      <%= f.input :teachers_skill, collection: get_skill_levels,
+      label: "How skilled should your teacher be?"%>
+      <%= f.input :why_description, as: :text, label: "Why do you want to learn this skill?
+      Do you Have any experience with this skill?" %>
+      <%= f.button :submit,  "Add Skill to Profile" %>
+    </div>
+  </row>
+  <% end %>
+</div>

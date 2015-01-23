@@ -15,30 +15,29 @@
 
 </head>
 <body>
-  <nav class="top-bar white">
-    <ul>
-      <li><%= link_to 'All The Skills', skills_path %></li>
-    </ul>
-  </nav>
 
   <nav class="top-bar grey">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">SkillSwap</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Edit User Profile', edit_user_path(current_user.id) %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
+    <div class ="restrict-width">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">SkillSwap</a></h1>
+        </li>
       </ul>
-    </section>
+
+      <section class="top-bar-section">
+        <ul class="right">
+          <%- if current_user -%>
+            <li><%= link_to 'All Skills', skills_path %></li>
+            <li><%= link_to 'Your Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Edit User Profile', edit_user_path(current_user.id) %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%- else -%>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%- end -%>
+        </ul>
+      </section>
+    </div>
   </nav>
 
   <%- flash.each do |key, value| -%>

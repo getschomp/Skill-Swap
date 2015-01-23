@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :skills, only: [:create, :new, :edit, :update, :destroy, :show]
+  resources :skills, only: [:index, :create, :new, :edit, :update, :destroy, :show]
 
  authenticated :user do
    root 'users#index'

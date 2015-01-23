@@ -25,14 +25,14 @@ feature "User searches for another user", %q{
 
       #create a bunch of users to be sorted
       user1 = FactoryGirl.create(:user)
-      user2 = FactoryGirl.create(:user)
-      user3 = FactoryGirl.create(:user)
+      FactoryGirl.create(:user)
+      FactoryGirl.create(:user)
       user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89")
 
-      users_had_skill = HadSkill.create(skill_id: skill1.id, user_id: @user.id)
-      users_wanted_skill = WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
-      users_had_skill = HadSkill.create(skill_id: skill2.id, user_id: user1.id)
-      users_wanted_skill = WantedSkill.create(skill_id: skill1.id, user_id: user1.id)
+      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
+      WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
+      HadSkill.create(skill_id: skill2.id, user_id: user1.id)
+      WantedSkill.create(skill_id: skill1.id, user_id: user1.id)
 
       visit users_path
       #select those had and wanted skills by name
