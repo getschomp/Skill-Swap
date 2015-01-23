@@ -12,4 +12,13 @@ class HadSkill < ActiveRecord::Base
   belongs_to :skill
 
   accepts_nested_attributes_for :skill
+
+  def find_matching_users
+    users = []
+    WantedSkill.where(skill_id: skill_id).each do |wanted_skill|
+      users << wanted_skill.user
+    end
+    users
+  end
+
 end

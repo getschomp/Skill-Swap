@@ -31,13 +31,13 @@
             Select a skill that you want to teach:
             <% if current_user %>
               <% had_skills = current_user.had_skills %>
-              <%= select :sort, :had_skill_skill_id,  had_skills.collect {|had_skill| [had_skill.skill.name, had_skill.skill_id] } %>
+              <%= select :sort, :had_skill_id,  had_skills.collect {|had_skill| [had_skill.skill.name, had_skill.skill_id] } %>
             <% end %>
 
             Select a skill that you want to learn:
             <% if current_user %>
               <% wanted_skills = current_user.wanted_skills %>
-              <%= select :sort, :wanted_skill_skill_id,  wanted_skills.collect {|wanted_skill| [wanted_skill.skill.name, wanted_skill.skill.id] } %>
+              <%= select :sort, :wanted_skill_id,  wanted_skills.collect {|wanted_skill| [wanted_skill.skill.name, wanted_skill.skill.id] } %>
             <% end %>
             Select miles from you:
             <%= select :sort, :miles, [nil, 5, 10, 20, 60, 100] %>
