@@ -1,74 +1,78 @@
-<row class="title">
-  <h1> Find Users</h1>
-  <h4> Sort and Search</h4>
-</row>
+<div class="resrict-width">
+  <div class="light">
+    <row class="title">
+      <h1> Find Users</h1>
+      <h4> Sort and Search</h4>
+    </row>
 
-<row>
-  <div class="sort-search">
-    <div class="small-12 medium-6 large-6 columns padded">
-      <h4 style="padding-bottom: 6px; ">Find a user by username<h4>
-      <%= form_tag users_path, method: :get do %>
-      <%= label_tag :query, "Search by user", class:"h4-label"%>
-        <%= text_field_tag :query %>
-        <%= submit_tag "Search Users", class: "button expand" %>
-      <% end %>
-      <%= link_to "All Users", users_path, class: "button expand" %>
-    </div>
 
-    <div class="small-12 medium-6 large-6 columns padded">
-      <h4 class="search-column">
-        Find a user by Skill Type
-      </h4>
+    <div class="row">
+      <div class="sort-search">
+        <div class="small-12 medium-6 large-6 columns padded">
+          <h4 style="padding-bottom: 6px; ">Find a user by username<h4>
+          <%= form_tag users_path, method: :get do %>
+          <%= label_tag :query, "Search by user", class:"h4-label"%>
+            <%= text_field_tag :query %>
+            <%= submit_tag "Search Users", class: "button expand" %>
+          <% end %>
+          <%= link_to "All Users", users_path, class: "button expand" %>
+        </div>
 
-      <% if current_user.had_skills.empty? || current_user.wanted_skills.empty? %>
-        <p>Add some skills to your profile to use this feature.<p>
-      <% end %>
+        <div class="small-12 medium-6 large-6 columns padded">
+          <h4 class="search-column">
+            Find a user by Skill Type
+          </h4>
 
-      <%= form_tag(users_path, method: :get) do %>
-        Select a skill that you want to teach:
-        <% if current_user %>
-          <% had_skills = current_user.had_skills %>
-          <%= select :sort, :had_skill_skill_id,  had_skills.collect {|had_skill| [had_skill.skill.name, had_skill.skill_id] } %>
-        <% end %>
+          <% if current_user.had_skills.empty? || current_user.wanted_skills.empty? %>
+            <p>Add some skills to your profile to use this feature.<p>
+          <% end %>
 
-        Select a skill that you want to learn:
-        <% if current_user %>
-          <% wanted_skills = current_user.wanted_skills %>
-          <%= select :sort, :wanted_skill_skill_id,  wanted_skills.collect {|wanted_skill| [wanted_skill.skill.name, wanted_skill.skill.id] } %>
-        <% end %>
-        Select miles from you:
-        <%= select :sort, :miles, [nil, 5, 10, 20, 60, 100] %>
-        <%= submit_tag "Sort by Skill Types", class: "button expand" %>
-      <% end %>
+          <%= form_tag(users_path, method: :get) do %>
+            Select a skill that you want to teach:
+            <% if current_user %>
+              <% had_skills = current_user.had_skills %>
+              <%= select :sort, :had_skill_skill_id,  had_skills.collect {|had_skill| [had_skill.skill.name, had_skill.skill_id] } %>
+            <% end %>
 
+            Select a skill that you want to learn:
+            <% if current_user %>
+              <% wanted_skills = current_user.wanted_skills %>
+              <%= select :sort, :wanted_skill_skill_id,  wanted_skills.collect {|wanted_skill| [wanted_skill.skill.name, wanted_skill.skill.id] } %>
+            <% end %>
+            Select miles from you:
+            <%= select :sort, :miles, [nil, 5, 10, 20, 60, 100] %>
+            <%= submit_tag "Sort by Skill Types", class: "button expand" %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</row>
 
-<row class= "pagination">
-  <div class="columns text-center">
-    <%= paginate @users %>
-  <div>
-</row>
+  <row class= "pagination">
+    <div class="columns text-center">
+      <%= paginate @users %>
+    <div>
+  </row>
 
-  <% if @users %>
-    <% if @users.size > 1  %>
-      <% groups_num = (@users.size.to_f/3).ceil %>
-    <% else %>
-      <% groups_num = 1 %>
-    <% end %>
-
-    <div class="eqWrap">
-      <% @users.in_groups_of(groups_num, false) do |group| %>
-        <% if current_user %>
-          <div class="columns text-center">
-            <% group.each do |user| %>
-            <h4><%= link_to user.username, user_path(user) %><h4>
-              <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
-              "data-sid" => current_user.id, "data-rip" => user.id %>
-            <% end %>
-          </div>
-        <% end %>
+    <% if @users %>
+      <% if @users.size > 1  %>
+        <% groups_num = (@users.size.to_f/3).ceil %>
+      <% else %>
+        <% groups_num = 1 %>
       <% end %>
-    </div>
-  <% end %>
+
+      <div class="eqWrap restrict-width">
+        <% @users.in_groups_of(groups_num, false) do |group| %>
+          <% if current_user %>
+            <div class="columns text-center">
+              <% group.each do |user| %>
+              <h4><%= link_to user.username, user_path(user) %><h4>
+                <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
+                "data-sid" => current_user.id, "data-rip" => user.id %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+</div>

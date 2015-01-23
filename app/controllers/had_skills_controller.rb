@@ -41,23 +41,21 @@ class HadSkillsController < ApplicationController
     user_not_authorized
   end
 
-  def edit
-    @user = User.find(params[:user_id])
-    @had_skill = HadSkill.find(params[:id])
-    if @review.user != current_user
-      redirect_to user_path(@user), notice: "You are not authorized to edit this users info."
-    end
-  end
-
+  # def edit
+  #   @user = User.find(params[:user_id])
+  #   @had_skill = HadSkill.find(params[:id])
+  #   if @review.user != current_user
+  #     redirect_to user_path(@user), notice: "You are not authorized to edit this users info."
+  #   end
   # end
   #
   # def update
-  #   # @had_skill.update(had_skill_params)
-  #   # if @had_skill.save
-  #   #   redirect_to @had_skill, notice:"User Profile Updated")
-  #   # else
-  #   #   render :edit
-  #   # end
+  #   @had_skill.update(had_skill_params)
+  #   if @had_skill.save
+  #     redirect_to @had_skill, notice:"User Profile Updated")
+  #   else
+  #     render :edit
+  #   end
   # end
 
   def destroy

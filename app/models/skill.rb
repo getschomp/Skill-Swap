@@ -12,6 +12,7 @@ class Skill < ActiveRecord::Base
 
   def get_users_wanted
     users = []
+    # self calls the skill we are calling it on
     self.wanted_skills.each do |wanted_skill|
       unless wanted_skill.user.nil?
         users << wanted_skill.user
@@ -29,6 +30,8 @@ class Skill < ActiveRecord::Base
     end
     users
   end
+
+  
 
   def self.search(query)
     where("name ILIKE ?", "%" + query + "%")

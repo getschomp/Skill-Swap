@@ -1,57 +1,59 @@
+<div class="center">
 
-<row>
-<h2>Editing Profile for <%= link_to @user.username.capitalize, user_path(@user) %></h2>
-</row>
+  <row>
+  <h2>Editing Profile for <%= link_to @user.username.capitalize, user_path(@user) %></h2>
+  </row>
 
-<%= form_for(@user) do |f| %>
-<% if @user.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
+  <%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <row>
+    <div class="small-2 medium-6 large-6 columns">
+      <h4>Basic Info</h4>
+      <div class="field">
+        <%= f.label :address, "City" %><br>
+        <%= f.text_area :address %>
+      </div>
+      <div class="field">
+        <%= f.label :about_me, "About Me"%><br>
+        <%= f.text_area :about_me %>
+      </div>
+
+      <div class="field">
+        <%= f.label :gender %><br>
+        <%= f.select :gender, ['Male', 'Female', 'Other'] %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "Save Profile" %>
+      </div>
+
+    </div>
+  <% end %>
+  </row>
+
+  <row>
+    <div class="small-2 medium-6 large-6 columns">
+      <div class="wanted_skill">
+        <h4>Add a Skill You Want to Know</h4>
+        <%= link_to "Add Skill", new_user_wanted_skill_path(@user), class:"wanted_skill" %>
+      </div>
+
+      <div class="had_skill">
+        <h4>Add a skill you know</h4>
+        <%= link_to "Add Skill", new_user_had_skill_path(@user) %>
+      </div>
+    </div>
+
+  </row>
 </div>
-<% end %>
-
-<row>
-  <div class="small-2 medium-6 large-6 columns">
-    <h4>Basic Info</h4>
-    <div class="field">
-      <%= f.label :address, "City" %><br>
-      <%= f.text_area :address %>
-    </div>
-    <div class="field">
-      <%= f.label :about_me, "About Me"%><br>
-      <%= f.text_area :about_me %>
-    </div>
-
-    <div class="field">
-      <%= f.label :gender %><br>
-      <%= f.select :gender, ['Male', 'Female', 'Other'] %>
-    </div>
-
-
-    <div class="actions">
-      <%= f.submit "Save Profile" %>
-    </div>
-
-  </div>
-<% end %>
-</row>
-
-<row>
-  <div class="small-2 medium-6 large-6 columns">
-    <div class="wanted_skill">
-      <h4>Add a Skill You Want to Know</h4>
-      <%= link_to "Add Skill", new_user_wanted_skill_path(@user), class:"wanted_skill" %>
-    </div>
-
-    <div class="had_skill">
-      <h4>Add a skill you know</h4>
-      <%= link_to "Add Skill", new_user_had_skill_path(@user) %>
-    </div>
-  </div>
-
-</row>

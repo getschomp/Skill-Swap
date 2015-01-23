@@ -18,7 +18,12 @@
 
 
 body{
-  background-color: #373737;
+  background-color: #000000;
+}
+
+.center{
+  margin: 0 auto;
+  max-width:800px;
 }
 
 .white{
@@ -29,11 +34,7 @@ body{
 
 $body-font-family: sans-;
 
-#container{
-  padding-top: 40px;
-  width: 1000px;
-  margin: 0 auto;
-}
+
 
 .flash{
   margin-left: auto;
@@ -81,5 +82,11 @@ row{
 
 .restrict-width{
   margin: 0 auto;
-  max-width:1050px;
+  max-width:850px;
+}
+
+.light{
+  background-color: #313131;
+  padding-top:10px;
+  padding-bottom:10px;
 }
