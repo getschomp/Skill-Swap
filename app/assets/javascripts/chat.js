@@ -58,8 +58,8 @@ var ready = function () {
       for (var x in chatBoxes) {
         chatbox_id = chatBoxes[x];
 
-        if ($("#chatbox_" + chatbox_id).css('display') != 'none') {
-          if (align == 0) {
+        if ($("#chatbox_" + chatbox_id).css('display') !== 'none') {
+          if (align === 0) {
             $("#chatbox_" + chatbox_id).css('right', '20px');
           } else {
             width = (align) * (280 + 7) + 20;
@@ -85,7 +85,7 @@ var ready = function () {
 
     createChatBox: function (conversation_id, minimizeChatBox) {
       if ($("#chatbox_" + conversation_id).length > 0) {
-        if ($("#chatbox_" + conversation_id).css('display') == 'none') {
+        if ($("#chatbox_" + conversation_id).css('display') === 'none') {
           $("#chatbox_" + conversation_id).css('display', 'block');
           chatBox.restructure();
         }
@@ -93,7 +93,7 @@ var ready = function () {
         return;
       }
 
-      $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>')
+      $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>');
 
       $.get("conversations/" + conversation_id, function (data) {
         $('#chatbox_' + conversation_id).html(data);
@@ -104,13 +104,13 @@ var ready = function () {
 
       chatBoxeslength = 0;
 
-      for (x in chatBoxes) {
-        if ($("#chatbox_" + chatBoxes[x]).css('display') != 'none') {
+      for (var x in chatBoxes) {
+        if ($("#chatbox_" + chatBoxes[x]).css('display') !== 'none') {
           chatBoxeslength++;
         }
       }
 
-      if (chatBoxeslength == 0) {
+      if (chatBoxeslength === 0) {
         $("#chatbox_" + conversation_id).css('right', '20px');
       } else {
         width = (chatBoxeslength) * (280 + 7) + 20;
@@ -120,19 +120,19 @@ var ready = function () {
       chatBoxes.push(conversation_id);
 
       if (minimizeChatBox == 1) {
-        minimizedChatBoxes = new Array();
+        minimizedChatBoxes = [];
 
         if ($.cookie('chatbox_minimized')) {
           minimizedChatBoxes = $.cookie('chatbox_minimized').split(/\|/);
         }
         minimize = 0;
         for (j = 0; j < minimizedChatBoxes.length; j++) {
-          if (minimizedChatBoxes[j] == conversation_id) {
+          if (minimizedChatBoxes[j] === conversation_id) {
             minimize = 1;
           }
         }
 
-        if (minimize == 1) {
+        if (minimize === 1) {
           $('#chatbox_' + conversation_id + ' .chatboxcontent').css('display', 'none');
           $('#chatbox_' + conversation_id + ' .chatboxinput').css('display', 'none');
         }
@@ -150,7 +150,7 @@ var ready = function () {
       });
 
       $("#chatbox_" + conversation_id).click(function () {
-        if ($('#chatbox_' + conversation_id + ' .chatboxcontent').css('display') != 'none') {
+        if ($('#chatbox_' + conversation_id + ' .chatboxcontent').css('display') !== 'none') {
           $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
         }
       });
@@ -169,13 +169,13 @@ var ready = function () {
     */
 
     checkInputKey: function (event, chatboxtextarea, conversation_id) {
-      if (event.keyCode == 13 && event.shiftKey == 0) {
+      if (event.keyCode === 13 && event.shiftKey == 0) {
         event.preventDefault();
 
         message = chatboxtextarea.val();
         message = message.replace(/^\s+|\s+$/g, "");
 
-        if (message != '') {
+        if (message !== '') {
           $('#conversation_form_' + conversation_id).submit();
           $(chatboxtextarea).val('');
           $(chatboxtextarea).focus();
@@ -205,9 +205,9 @@ var ready = function () {
         */
 
         toggleChatBoxGrowth: function (conversation_id) {
-          if ($('#chatbox_' + conversation_id + ' .chatboxcontent').css('display') == 'none') {
+          if ($('#chatbox_' + conversation_id + ' .chatboxcontent').css('display') === 'none') {
 
-            var minimizedChatBoxes = new Array();
+            var minimizedChatBoxes = [];
 
             if ($.cookie('chatbox_minimized')) {
               minimizedChatBoxes = $.cookie('chatbox_minimized').split(/\|/);
@@ -216,12 +216,12 @@ var ready = function () {
             var newCookie = '';
 
             for (i = 0; i < minimizedChatBoxes.length; i++) {
-              if (minimizedChatBoxes[i] != conversation_id) {
+              if (minimizedChatBoxes[i] !== conversation_id) {
                 newCookie += conversation_id + '|';
               }
             }
 
-            newCookie = newCookie.slice(0, -1)
+            newCookie = newCookie.slice(0, -1);
 
 
             $.cookie('chatbox_minimized', newCookie);
@@ -246,7 +246,7 @@ var ready = function () {
 
 
 
-      }
+      };
 
 
       /**
@@ -260,16 +260,16 @@ var ready = function () {
       */
 
       jQuery.cookie = function (name, value, options) {
-        if (typeof value != 'undefined') { // name and value given, set cookie
+        if (typeof value !== 'undefined') { // name and value given, set cookie
           options = options || {};
           if (value === null) {
             value = '';
             options.expires = -1;
           }
           var expires = '';
-          if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
+          if (options.expires && (typeof options.expires === 'number' || options.expires.toUTCString)) {
             var date;
-            if (typeof options.expires == 'number') {
+            if (typeof options.expires === 'number') {
               date = new Date();
               date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
             } else {
@@ -286,12 +286,12 @@ var ready = function () {
           document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
         } else { // only name given, get cookie
           var cookieValue = null;
-          if (document.cookie && document.cookie != '') {
+          if (document.cookie && document.cookie !== '') {
             var cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
               var cookie = jQuery.trim(cookies[i]);
               // Does this cookie string begin with the name we want?
-              if (cookie.substring(0, name.length + 1) == (name + '=')) {
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
               }
@@ -302,7 +302,7 @@ var ready = function () {
       };
 
 
-    }
+    };
 
     $(document).ready(ready);
     $(document).on("page:load", ready);
