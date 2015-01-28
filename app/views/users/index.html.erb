@@ -74,7 +74,11 @@
             <div class="columns text-center">
               <% group.each do |user| %>
               <h4><%= link_to user.username, user_path(user) %></h4>
-                <p><%= user.address %></p>
+                <% if user.address == nil || user.address == "" %>
+                  <p><%= "Undefined Location" %></p>
+                <% else %>
+                  <p><%= user.address %></p>
+                <% end %>
                 <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
                 "data-sid" => current_user.id, "data-rip" => user.id %>
               <% end %>

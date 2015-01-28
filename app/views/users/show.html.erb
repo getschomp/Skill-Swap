@@ -5,8 +5,7 @@
       <div class="title">
         <h3>Profile for:</h3>
         <h1><%= @user.username %>
-          <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation tiny button",
-          "data-sid" => current_user.id, "data-rip" => @user.id %> </h1>
+
       </div>
     </row>
     <row>
@@ -40,7 +39,6 @@
                 <%= link_to s.skill.name, skill_path(s.skill) %>
                 <% if current_user == @user %>
                   <%= link_to "Delete Skill", user_wanted_skill_path(@user, s), class: "tiny button", :method => :delete %>
-                  <%= link_to "Edit details", user_wanted_skill_path(@user, s), class: "tiny button", :method => :edit %>
                 <% end %>
               </h4>
             <% end %>

@@ -46,27 +46,7 @@ class WantedSkillsController < ApplicationController
     @wanted_skill.destroy
     redirect_to user_path(@user), notice: "Skill successfully deleted from profile."
   end
-  # def edit
-  #   @wanted_skill = WantedSkill.create(wanted_skill_params)
-  #   if current_user
-  #     if current_user.id != @user.id
-  #       redirect_to @user, notice: "You're not authorized to edit this profile!"
-  #     end
-  #   else
-  #     redirect_to @user, notice: "You're not authorized to edit this profile!"
-  #   end
-  # end
-  #
-  # def update
-  #   @wanted_skill.update(wanted_skill_params)
-  #   if(@wanted.save
-  #     redirect_to @wanted_skill, notice:"User Profile Updated")
-  #   else
-  #     render :edit
-  #   end
-  # end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   private
   def wanted_skill_params
     params.require(:wanted_skill).permit(:skill_id, :user_id, :current_level, :teachers_skill, :why_description,
