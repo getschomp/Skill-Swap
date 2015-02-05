@@ -20,6 +20,8 @@ feature "User searches for users", %q{
 
     scenario "User sucessfullly finds who they are looking for" do
       user1 = FactoryGirl.create(:user)
+      #TODO: each user you create increases the run time of your test
+      # do you need all of these users?
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
       user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89")

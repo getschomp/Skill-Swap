@@ -20,6 +20,9 @@ class HadSkillsController < ApplicationController
     user_not_authorized
   end
 
+  #TODO: you don't have to nest this under the user.
+  # You can utilize the current_user and this hardens your app against
+  # impersonation attacks
   def create
     skill_name = titleize(params[:had_skill][:skill_attributes][:name])
     @skill = Skill.find_or_create_by(name: skill_name)
@@ -59,6 +62,7 @@ class HadSkillsController < ApplicationController
   # end
 
   def destroy
+    #TODO: this is prone to impersonation attacks. You need ot confirm the current user is the owner of the had skill
     @user = User.find(params[:user_id])
     @had_skill.destroy
     redirect_to user_path(@user), notice: "Skill successfully deleted from profile."

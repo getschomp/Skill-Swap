@@ -23,9 +23,12 @@ feature "User adds a skill", %q{
   end
 
   scenario "User submits a skill with all feilds filled in" do
+    # TODO: convention would make this variable skill_1
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
+    # TODO: you're using the built skill to fill in the form, why deviate
+    # from that here?
     select "Fitness", :from => "Category"
     fill_in "Description", with: skill1.description
     click_button "Create Skill"
@@ -33,6 +36,8 @@ feature "User adds a skill", %q{
     expect(page).to have_content skill1.name
     expect(page).to_not have_content "error" || "errors"
   end
+
+  # TODO: have a new line between your scenarios
   scenario "User submits a skill with name and category filled in" do
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path

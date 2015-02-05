@@ -13,6 +13,8 @@ class Skill < ActiveRecord::Base
   def get_users_wanted
     users = []
     # self calls the skill we are calling it on
+    #TODO: this is a scalability problem.
+    # Identify a join query that will give you what you want here.
     self.wanted_skills.each do |wanted_skill|
       unless wanted_skill.user.nil?
         users << wanted_skill.user
@@ -23,6 +25,8 @@ class Skill < ActiveRecord::Base
 
   def get_users_had
     users = []
+    #TODO: this is a scalability problem.
+    # Identify a join query that will give you what you want here.
     self.had_skills.each do |had_skill|
       unless had_skill.user.nil?
         users << had_skill.user

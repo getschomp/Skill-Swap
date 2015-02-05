@@ -15,6 +15,8 @@ class HadSkill < ActiveRecord::Base
 
   def find_matching_users
     users = []
+    # TODO: at scale, this is a big problem. Do some reading on joins and
+    #  identify how you can retrieve all users that have a wanted skill in common with me.
     WantedSkill.where(skill_id: skill_id).each do |wanted_skill|
       users << wanted_skill.user
     end

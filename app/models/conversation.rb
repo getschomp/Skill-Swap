@@ -1,4 +1,5 @@
 class Conversation < ActiveRecord::Base
+  #TODO: use a consistent hash syntax - hashrockets vs. colons
   belongs_to :sender, :foreign_key => :sender_id, class_name: 'User'
   belongs_to :recipient, :foreign_key => :recipient_id, class_name: 'User'
 
@@ -6,6 +7,7 @@ class Conversation < ActiveRecord::Base
 
   validates_uniqueness_of :sender_id, :scope => :recipient_id
 
+  #TODO: this is just an opinion, but we favor class methods instead of scopes
   scope :involving, -> (user) do
     where("conversations.sender_id =? OR conversations.recipient_id =?",user.id,user.id)
   end

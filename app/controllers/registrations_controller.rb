@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   private
 
+  #TODO: line width too long, have a hard return somewhere in here
   def sign_up_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :gender, :about_me)
   end

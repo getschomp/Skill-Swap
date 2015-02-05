@@ -42,6 +42,7 @@ feature "User can delete skills from profile", %q{
       # no link to add a skill when you are not the current user
       # if you try to manually visit the path to add a skill you are not allowed
       skill1 = FactoryGirl.create(:skill)
+      #TODO: this variable is unused
       wanted_skill = WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
       click_on "Sign Out"
       user2 = FactoryGirl.create(:user)

@@ -13,6 +13,8 @@ class SkillsController < ApplicationController
 
   def create
     @skill = Skill.new(skill_params)
+    #TODO: what happens if there is no current_user? There should be behavior
+    # for that use case
     if current_user
       if @skill.save
        redirect_to skill_path(@skill), notice: "Skill sucessfully created!"
