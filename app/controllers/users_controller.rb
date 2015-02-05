@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     if params[:query]
       @users = User.search(params[:query]).page params[:page]
     elsif params[:sort]
+      #TODO: extract this to a ruby object that is well tested at the unit level
       @had_skill_id = params[:sort][:had_skill_id]
       @wanted_skill_id = params[:sort][:wanted_skill_id]
       @miles = params[:sort][:miles]

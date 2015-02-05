@@ -22,6 +22,7 @@ feature "User views all skills and searches for one", %q{
       skill1 = FactoryGirl.create(:skill)
       skill2 = FactoryGirl.create(:skill)
       skill3 = FactoryGirl.create(:skill)
+      # TODO: use factory girl for this
       skill4 = Skill.create(name:"Photography")
       visit skills_path
       fill_in "Search", with: skill4.name

@@ -25,7 +25,7 @@ feature "User adds a wanted skills on profile", %q{
       sign_in(@user)
     end
 
-    scenario "User sucessfully adds a skill that they want to learn with optional feilds" do
+    scenario "User sucessfully adds a skill that they want to learn with optional fields" do
       skill1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
@@ -41,7 +41,7 @@ feature "User adds a wanted skills on profile", %q{
       expect(page).to have_content skill1.name
       expect(page).to_not have_content "error" || "errors"
     end
-    scenario "User sucessfully adds a skill that they want to learn with all feilds" do
+    scenario "User sucessfully adds a skill that they want to learn with all fields" do
       skill1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
@@ -79,6 +79,8 @@ feature "User adds a wanted skills on profile", %q{
     end
     scenario "a user can not add a skill to another users profile" do
       skill1 = FactoryGirl.create(:skill)
+      #TODO: to maintain convention with the rest of your AR creations,
+      # leverage factory girl here
       WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
       visit root_path
       click_on "Sign Out"
@@ -93,6 +95,8 @@ feature "User adds a wanted skills on profile", %q{
     end
     scenario "a user can not add the same skill to wanted skills twice" do
       skill1 = Skill.create(name: "Running")
+      #TODO: to maintain convention with the rest of your AR creations,
+      # leverage factory girl here
       WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
       visit new_user_wanted_skill_path(@user)
       fill_in "Skill Name", with: skill1.name

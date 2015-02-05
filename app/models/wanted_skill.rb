@@ -19,6 +19,8 @@ class WantedSkill < ActiveRecord::Base
 
   def find_matching_users
     users = []
+    #TODO: this is a scalability problem.
+    # Identify a join query that will give you what you want here.
     HadSkill.where(skill_id: skill_id).each do |had_skill|
       users << had_skill.user
     end

@@ -28,6 +28,7 @@ feature "User sorts users by skills", %q{
       FactoryGirl.create(:user)
       user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89")
 
+      #TODO: use factory girl for this
       HadSkill.create(skill_id: skill1.id, user_id: @user.id)
       WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
       HadSkill.create(skill_id: skill2.id, user_id: user1.id)
@@ -44,6 +45,7 @@ feature "User sorts users by skills", %q{
     end
 
     scenario "User sorts other users by skills and distance" do
+      #TODO: use factory girl for all of this
       #create the skills Ruby and Javascript
       skill1 = Skill.create(name: "Ruby")
       skill2 = Skill.create(name: "Javascript")

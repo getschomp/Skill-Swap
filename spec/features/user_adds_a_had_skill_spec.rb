@@ -56,6 +56,10 @@ feature "User sucessfully adds a had skill to profile", %q{
       # no link to add a skill when you are not the current user
       # if you try to manually visit the path to add a skill you are not allowed
       skill1 = FactoryGirl.create(:skill)
+      #TODO: to maintain convention with the rest of your AR creations,
+      # leverage factory girl here
+      #TODO: HadSkill is an awkward class name.
+      # Maybe UserSkill or SkillCompetency would be better
       HadSkill.create(skill_id: skill1.id, user_id: @user.id)
       click_on "Sign Out"
       user2 = FactoryGirl.create(:user)
@@ -68,6 +72,7 @@ feature "User sucessfully adds a had skill to profile", %q{
       expect(page).to have_content "You are not authorized."
     end
     scenario "a user can not add the same skill to wanted skills twice" do
+      #TODO: user factory girl
       skill1 = Skill.create(name: "Running")
       HadSkill.create(skill_id: skill1.id, user_id: @user.id)
       visit new_user_had_skill_path(@user)
