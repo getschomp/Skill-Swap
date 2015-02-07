@@ -1,10 +1,11 @@
-class WantedSkill < ActiveRecord::Base
+class UserSkill < ActiveRecord::Base
   validates :skill_id,
             null: false
   validates :user_id,
             null: false,
             uniqueness: { scope: :skill_id,
             message: "You can't add the same skill twice" }
+
 
   # validates :current_level,
   # inclusion: { in: ["", "Beginner", "Intermediate", "Advanced", nil]}
@@ -18,10 +19,6 @@ class WantedSkill < ActiveRecord::Base
   accepts_nested_attributes_for :skill
 
   def find_matching_users
-    users = []
-    HadSkill.where(skill_id: skill_id).each do |had_skill|
-      users << had_skill.user
-    end
-    users
+
   end
 end

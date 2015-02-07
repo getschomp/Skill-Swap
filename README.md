@@ -1,7 +1,7 @@
 <h1>Skill Swap</h1>
 
 <p>
-A website that allows people to barter for skills based on a one-to-one trade.  A user can edit their profile with information about what they want to know and information about what that they already know and then search for other users that would be a good match. This app features site wide global definitions of skills, as well as definitions of users relationships with those skills.  The app uses the geocoder gem to find users at specific distances as well as public pub, faye, asynchronous javascript and thin for realtime chatting.
+A website that allows people to barter for skills based on a one-to-one trade.  A user can edit their profile with information about what they want to know and information about what that they already know and then search for other users that would be a good match. This app features site wide global definitions of skills, as well as definitions of users relationships with those skills.  The app uses the geocoder gem to find users at specific distances as well as private pub, faye, asynchronous javascript and thin for realtime chatting.
 </p>
 
 <p>
