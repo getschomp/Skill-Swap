@@ -5,33 +5,13 @@ class Skill < ActiveRecord::Base
             length: { maximum: 100 }
 
   has_many :user_skills
-
   has_many :users, through: :user_skills
 
-  def get_users_wanted
-    users = []
-    # self calls the skill we are calling it on
-    self.wanted_skills.each do |wanted_skill|
-      unless wanted_skill.user.nil?
-        users << wanted_skill.user
-      end
-    end
-    users
-  end
+  has_many :known_skills, -> { where(known?: true) }, class_name: 'UserSkill'
+  has_many :users_that_know, through: :known_skills, source: :user
 
-  def get_users_had
-    users = []
-    self.had_skills.each do |had_skill|
-      unless had_skill.user.nil?
-        users << had_skill.user
-      end
-    end
-    users
-  end
-
-  def known
-
-  end
+  has_many :wanted_skills, -> { where(known?: false) }, class_name: 'UserSkill'
+  has_many :users_that_want, through: :wanted_skills, source: :user
 
   def self.search(query)
     where("name ILIKE ?", "%" + query + "%")

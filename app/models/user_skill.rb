@@ -10,7 +10,7 @@ class UserSkill < ActiveRecord::Base
             null: false,
             inclusion: { in: [true, false]}
 
-  validates :current_level,
+  validates :level,
             inclusion: { in: ["", "Beginner", "Intermediate", "Advanced"] }
 
   validates :description,
