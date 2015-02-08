@@ -23,21 +23,21 @@
             Find a user by Skill Type
           </h4>
 
-          <% if current_user.had_skills.empty? || current_user.wanted_skills.empty? %>
+          <% if current_user.user_skills.empty? %>
             <p>Add some skills to your profile to use this feature.<p>
           <% end %>
 
           <%= form_tag(users_path, method: :get) do %>
             Select a skill that you want to teach:
             <% if current_user %>
-              <% had_skills = current_user.had_skills %>
-              <%= select :sort, :had_skill_id,  had_skills.collect {|had_skill| [had_skill.skill.name, had_skill.skill_id] } %>
+              <% user_skills = current_user.user_skills %>
+              <%= select :sort, :user_skill_id,  user_skills.where(known?:true).collect {|user_skill| [user_skill.skill.name, user_skill.skill_id] } %>
             <% end %>
 
             Select a skill that you want to learn:
             <% if current_user %>
-              <% wanted_skills = current_user.wanted_skills %>
-              <%= select :sort, :wanted_skill_id,  wanted_skills.collect {|wanted_skill| [wanted_skill.skill.name, wanted_skill.skill.id] } %>
+              <% user_skills = current_user.user_skills %>
+              <%= select :sort, :user_skill_id,  user_skills.where(known?:true).collect {|user_skill| [user_skill.skill.name, user_skill.skill.id] } %>
             <% end %>
             Select miles from you:
             <%= select :sort, :miles, [nil, 5, 10, 20, 60, 100] %>

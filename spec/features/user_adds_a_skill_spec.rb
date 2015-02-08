@@ -22,7 +22,7 @@ feature "User adds a skill", %q{
    sign_in(@user)
   end
 
-  scenario "User submits a skill with all feilds filled in" do
+  scenario "User submits a skill with all feilds" do
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
     fill_in "Name", with: skill1.name
@@ -33,6 +33,7 @@ feature "User adds a skill", %q{
     expect(page).to have_content skill1.name
     expect(page).to_not have_content "error" || "errors"
   end
+
   scenario "User submits a skill with name and category filled in" do
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
@@ -43,6 +44,7 @@ feature "User adds a skill", %q{
     expect(page).to have_content skill1.name
     expect(page).to_not have_content "error" || "errors"
   end
+
   scenario "User submits a skill without a category" do
     skill1 = FactoryGirl.build(:skill)
     visit new_skill_path
@@ -50,11 +52,13 @@ feature "User adds a skill", %q{
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
   end
+
   scenario "User submits without filling in the form" do
     visit new_skill_path
     click_button "Create Skill"
     expect(page).to have_content "can't be blank"
   end
+
   scenario "User isn't signed in and can't add a skill" do
     visit new_skill_path
     click_on "Sign Out"
