@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
 
   has_many :conversations, :foreign_key => :sender_id
 
-  accepts_nested_attributes_for :user_skills
-
   geocoded_by :address
   after_validation :geocode
 

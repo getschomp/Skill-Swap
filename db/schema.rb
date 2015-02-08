@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20150208195014) do
     t.integer "skill_id",    null: false
     t.integer "user_id",     null: false
     t.boolean "known?",      null: false
-    t.string  "skill_level"
     t.string  "description"
+    t.string  "skill_level"
   end
 
   add_index "user_skills", ["skill_id"], name: "index_user_skills_on_skill_id", using: :btree

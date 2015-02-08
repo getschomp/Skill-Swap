@@ -1,14 +1,12 @@
 class Skill < ActiveRecord::Base
   validates :name,
             presence: true,
-            uniqueness: true
-    # max length
+            uniqueness: true,
+            length: { maximum: 100 }
 
-  has_many :wanted_skills
-  has_many :had_skills
-  has_many :users, through: :wanted_skills
-  has_many :users, through: :had_skills
-  has_many :categories
+  has_many :user_skills
+
+  has_many :users, through: :user_skills
 
   def get_users_wanted
     users = []
@@ -29,6 +27,10 @@ class Skill < ActiveRecord::Base
       end
     end
     users
+  end
+
+  def known
+
   end
 
   def self.search(query)
