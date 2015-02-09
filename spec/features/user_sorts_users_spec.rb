@@ -18,58 +18,61 @@ feature "User sorts users by skills", %q{
     end
 
     scenario "User sucessfullly finds who they are looking for by skill type" do
-      #create the skills Ruby and Javascript
+      # create the skills Ruby and Javascript
       skill1 = Skill.create(name: "Ruby")
       skill2 = Skill.create(name: "Javascript")
 
-      #create a bunch of users to be sorted
+      # create users to be sorted
       user1 = FactoryGirl.create(:user)
       FactoryGirl.create(:user)
       FactoryGirl.create(:user)
-      user4 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89")
+      user_4 = FactoryGirl.create(:user)
 
-      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
-      WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
-      HadSkill.create(skill_id: skill2.id, user_id: user1.id)
-      WantedSkill.create(skill_id: skill1.id, user_id: user1.id)
+      # create matching skills
+      UserSkill.create(skill_id: skill1.id, user_id: @user.id, known?: true)
+      UserSkill.create(skill_id: skill2.id, user_id: @user.id, known?: false)
+      UserSkill.create(skill_id: skill2.id, user_id: user1.id, known?: true)
+      UserSkill.create(skill_id: skill1.id, user_id: user1.id, known?: false)
 
       visit users_path
-      #select those had and wanted skills by name
-      select skill1.name, :from => "sort[had_skill_id]"
+
+      # select skills by name
+      select skill1.name, :from => "sort[known_skill_id]"
       select skill2.name, :from => "sort[wanted_skill_id]"
-      #the select box will actually return the id
+
+      # the select box will actually return the id
       click_on "Sort by Skill Types"
       expect(page).to have_content(user1.username)
       expect(page).to_not have_content(user4.username)
     end
 
     scenario "User sorts other users by skills and distance" do
-      #create the skills Ruby and Javascript
+      # create the skills Ruby and Javascript
       skill1 = Skill.create(name: "Ruby")
       skill2 = Skill.create(name: "Javascript")
 
-      # create a bunch of users to be sorted
+      # create users to be sorted
       user1 = FactoryGirl.create(:user)
-      user2 = User.create(username: "nicole", email: "someemail@gmail.com", password:"password89", address: "Moscow, Russia")
+      user2 = FactoryGirl.create(:user)
 
       # create matching skills for user who is close by
-      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
-      WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
-      HadSkill.create(skill_id: skill2.id, user_id: user1.id)
-      WantedSkill.create(skill_id: skill1.id, user_id: user1.id)
+      UserSkill.create(skill_id: skill1.id, user_id: @user.id, known?: true)
+      UserSkill.create(skill_id: skill2.id, user_id: @user.id, known?: false)
+      UserSkill.create(skill_id: skill2.id, user_id: user1.id, known?: true)
+      UserSkill.create(skill_id: skill1.id, user_id: user1.id, known?: false)
 
       # create skills for matching user who is far away
-      HadSkill.create(skill_id: skill1.id, user_id: @user.id)
-      WantedSkill.create(skill_id: skill2.id, user_id: @user.id)
-      HadSkill.create(skill_id: skill2.id, user_id: user2.id)
-      WantedSkill.create(skill_id: skill1.id, user_id: user2.id)
+      UserSkill.create(skill_id: skill1.id, user_id: @user.id, known?: true)
+      UserSkill.create(skill_id: skill2.id, user_id: @user.id, known?: false)
+      UserSkill.create(skill_id: skill2.id, user_id: user2.id, known?: true)
+      UserSkill.create(skill_id: skill1.id, user_id: user2.id, known?: false)
 
       visit users_path
-      #select those had and wanted skills by name
-      select skill1.name, :from => "sort[had_skill_id]"
+      # select those had and wanted skills by name
+      select skill1.name, :from => "sort[known_skill_id]"
       select skill2.name, :from => "sort[wanted_skill_id]"
       select 5, :from => "sort[miles]"
-      #the select box will actually return the id
+      # the select box will actually return the id
       click_on "Sort by Skill Types & Distance"
       expect(page).to have_content(user1.username)
       expect(page).to_not have_content(user2.username)
