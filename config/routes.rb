@@ -11,12 +11,12 @@ Rails.application.routes.draw do
  end
 
   resources :users do
-    resources :user_skills, as: :skill_relationships do
+    resources :user_skills, as: :skill_relationships, path: "skill_relationships" do
       collection do
         get :new_wanted
         post :create_wanted
-        edit :new_wanted
-        update :create_wanted
+        get :edit_wanted
+        post :update_wanted
       end
     end
   end
