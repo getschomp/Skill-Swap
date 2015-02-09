@@ -19,25 +19,25 @@ feature "User views all skills and searches for one", %q{
     end
 
     scenario "User sucessfullly finds the page for the skill they are looking for" do
-      skill1 = FactoryGirl.create(:skill)
-      skill2 = FactoryGirl.create(:skill)
-      skill3 = FactoryGirl.create(:skill)
-      skill4 = Skill.create(name:"Photography")
+      skill_1 = FactoryGirl.create(:skill)
+      skill_2 = FactoryGirl.create(:skill)
+      skill_3 = FactoryGirl.create(:skill)
+      skill_4 = Skill.create(name:"Photography")
       visit skills_path
-      fill_in "Search", with: skill4.name
+      fill_in "Search", with: skill_4.name
       click_on "Search Skills"
-      expect(page).to have_content(skill4.name)
-      expect(page).to_not have_content(skill1.name)
+      expect(page).to have_content(skill_4.name)
+      expect(page).to_not have_content(skill_1.name)
     end
 
     scenario "User leaves search form blank and sees all skills" do
-      skill1 = FactoryGirl.create(:skill)
-      skill2 = FactoryGirl.create(:skill)
-      skill3 = FactoryGirl.create(:skill)
+      skill_1 = FactoryGirl.create(:skill)
+      skill_2 = FactoryGirl.create(:skill)
+      skill_3 = FactoryGirl.create(:skill)
       visit skills_path
 
-      expect(page).to have_content(skill1.name)
-      expect(page).to have_content(skill2.name)
-      expect(page).to have_content(skill3.name)
+      expect(page).to have_content(skill_1.name)
+      expect(page).to have_content(skill_2.name)
+      expect(page).to have_content(skill_3.name)
     end
   end

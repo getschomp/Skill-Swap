@@ -35,7 +35,6 @@ feature "User searches for users", %q{
       user2 = FactoryGirl.create(:user)
       user3 = FactoryGirl.create(:user)
       visit users_path
-
       user3.username.should appear_before(user2.username)
       user2.username.should appear_before(user1.username)
       user1.username.should_not appear_before(user2.username)

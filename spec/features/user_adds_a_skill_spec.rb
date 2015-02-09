@@ -23,32 +23,32 @@ feature "User adds a skill", %q{
   end
 
   scenario "User submits a skill with all feilds" do
-    skill1 = FactoryGirl.build(:skill)
+    skill_1 = FactoryGirl.build(:skill)
     visit new_skill_path
-    fill_in "Name", with: skill1.name
+    fill_in "Name", with: skill_1.name
     select "Fitness", :from => "Category"
-    fill_in "Description", with: skill1.description
+    fill_in "Description", with: skill_1.description
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
-    expect(page).to have_content skill1.name
+    expect(page).to have_content skill_1.name
     expect(page).to_not have_content "error" || "errors"
   end
 
   scenario "User submits a skill with name and category filled in" do
-    skill1 = FactoryGirl.build(:skill)
+    skill_1 = FactoryGirl.build(:skill)
     visit new_skill_path
-    fill_in "Name", with: skill1.name
+    fill_in "Name", with: skill_1.name
     select "Fitness", :from => "Category"
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
-    expect(page).to have_content skill1.name
+    expect(page).to have_content skill_1.name
     expect(page).to_not have_content "error" || "errors"
   end
 
   scenario "User submits a skill without a category" do
-    skill1 = FactoryGirl.build(:skill)
+    skill_1 = FactoryGirl.build(:skill)
     visit new_skill_path
-    fill_in "Name", with: skill1.name
+    fill_in "Name", with: skill_1.name
     click_button "Create Skill"
     expect(page).to have_content "sucessfully"
   end

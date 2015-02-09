@@ -33,7 +33,6 @@
         <%= f.select :gender, ['Male', 'Female', 'Neutral'] %>
       </div>
 
-
       <div class="actions">
         <%= f.submit "Save Profile" %>
       </div>
@@ -46,12 +45,12 @@
     <div class="small-2 medium-6 large-6 columns">
       <div class="wanted_skill">
         <h4>Add a Skill You Want to Know</h4>
-        <%= link_to "Add Skill", new_user_wanted_skill_path(@user), class:"wanted_skill" %>
+        <%= link_to "Add Skill", new_user_user_skill_path(@user), class:"wanted_skill" %>
       </div>
 
       <div class="known_skill">
         <h4>Add a skill you know</h4>
-        <%= link_to "Add Skill", new_user_had_skill_path(@user) %>
+        <%= link_to "Add Skill", new_user_user_skill_path(@user) %>
       </div>
     </div>
 

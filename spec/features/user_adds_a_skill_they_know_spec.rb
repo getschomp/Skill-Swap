@@ -18,31 +18,31 @@ feature "User sucessfully adds a had skill to profile", %q{
     end
 
     scenario "User sucessfully adds a skill that they already know with optional feilds" do
-      skill1 = FactoryGirl.create(:skill)
+      skill_1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.known_skill") do
         click_on "Add Skill"
       end
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       select "Advanced", :from => "Current Skill Level?"
       fill_in "Describe your experience with this skill.",
       with: "I am a 2 time Tour de France winner"
       click_button "Add Skill to Profile"
       expect(page).to have_content "sucessfully"
-      expect(page).to have_content skill1.name
+      expect(page).to have_content skill_1.name
       expect(page).to_not have_content "error" || "errors"
     end
 
     scenario "User sucessfully adds a skill they know with just the name of the skill" do
-      skill1 = FactoryGirl.create(:skill)
+      skill_1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.known_skill") do
         click_on "Add Skill"
       end
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       click_button "Add Skill to Profile"
       expect(page).to have_content "sucessfully"
-      expect(page).to have_content skill1.name
+      expect(page).to have_content skill_1.name
       expect(page).to_not have_content "error" || "errors"
     end
 
@@ -58,11 +58,11 @@ feature "User sucessfully adds a had skill to profile", %q{
     scenario "a user can not add a skill to another users profile" do
       # no link to add a skill when you are not the current user
       # if you try to manually visit the path to add a skill you are not allowed
-      skill1 = FactoryGirl.create(:skill)
-      UserSkill.create(skill_id: skill1.id, user_id: @user.id, known?: true)
+      skill_1 = FactoryGirl.create(:skill)
+      UserSkill.create(skill_id: skill_1.id, user_id: @user.id, known?: true)
       click_on "Sign Out"
-      user2 = FactoryGirl.create(:user)
-      sign_in(user2)
+      user_1 = FactoryGirl.create(:user)
+      sign_in(user_1)
       visit edit_user_path(@user)
       expect(page).to_not have_content "Add Skill"
       visit user_path(@user)
@@ -72,10 +72,10 @@ feature "User sucessfully adds a had skill to profile", %q{
     end
 
     scenario "a user can not add the same skill to wanted skills twice" do
-      skill1 = FactoryGirl.create(:skill)
-      UserSkill.create(skill_id: skill1.id, user_id: @user.id, known?: true)
+      skill_1 = FactoryGirl.create(:skill)
+      UserSkill.create(skill_id: skill_1.id, user_id: @user.id, known?: true)
       visit new_user_skill_path(@user)
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       click_button "Add Skill to Profile"
       expect(page).to have_content "Error"
     end

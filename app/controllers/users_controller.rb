@@ -11,11 +11,13 @@ class UsersController < ApplicationController
     if params[:query]
       @users = User.search(params[:query]).page params[:page]
     elsif params[:sort]
-      @had_skill_id = params[:sort][:had_skill_id]
+      @known_skill_id = params[:sort][:known_skill_id]
       @wanted_skill_id = params[:sort][:wanted_skill_id]
       @miles = params[:sort][:miles]
-
-      @had_skill = HadSkill.find_by(skill_id: @had_skill_id)
+member do
+get :retract
+end
+      @known_skill = HadSkill.find_by(skill_id: @had_skill_id)
       @wanted_skill = WantedSkill.find_by(skill_id: @wanted_skill_id)
 
       @users = @had_skill.find_matching_users & @wanted_skill.find_matching_users

@@ -26,47 +26,47 @@ feature "User adds a wanted skills on profile", %q{
     end
 
     scenario "User sucessfully adds a skill that they want to learn with optional feilds" do
-      skill1 = FactoryGirl.create(:skill)
+      skill_1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         click_on "Add Skill"
       end
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       select "Beginner", :from => "How well do you know this skill?"
       select "Advanced", :from => "How skilled should your teacher be?"
       fill_in "Why do you want to learn this skill? Do you Have any experience with this skill?",
       with: "because I signed up for a bike race in January"
       click_button "Add Skill to Profile"
       expect(page).to have_content "sucessfully"
-      expect(page).to have_content skill1.name
+      expect(page).to have_content skill_1.name
       expect(page).to_not have_content "error" || "errors"
     end
     scenario "User sucessfully adds a skill that they want to learn with all feilds" do
-      skill1 = FactoryGirl.create(:skill)
+      skill_1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         click_on "Add Skill"
       end
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       select "Beginner", :from => "How well do you know this skill?"
       select "Advanced", :from => "How skilled should your teacher be?"
       fill_in "Why do you want to learn this skill? Do you Have any experience with this skill?",
       with: "because I signed up for a bike race in January"
       click_button "Add Skill to Profile"
       expect(page).to have_content "sucessfully"
-      expect(page).to have_content skill1.name
+      expect(page).to have_content skill_1.name
       expect(page).to_not have_content "error" || "errors"
     end
     scenario "User sucessfully adds a wanted skill without optional feilds" do
-      skill1 = FactoryGirl.create(:skill)
+      skill_1 = FactoryGirl.create(:skill)
       visit edit_user_path(@user)
       within(:css, "div.wanted_skill") do
         click_on "Add Skill"
       end
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       click_button "Add Skill to Profile"
       expect(page).to have_content "sucessfully"
-      expect(page).to have_content skill1.name
+      expect(page).to have_content skill_1.name
       expect(page).to_not have_content "error" || "errors"
     end
     scenario "User submits a form leaving every peice blank" do
@@ -78,12 +78,12 @@ feature "User adds a wanted skills on profile", %q{
       expect(page).to have_content "Error"
     end
     scenario "a user can not add a skill to another users profile" do
-      skill1 = FactoryGirl.create(:skill)
-      WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
+      skill_1 = FactoryGirl.create(:skill)
+      UserSkill.create(skill_id: skill_1.id, user_id: @user.id, known?: false)
       visit root_path
       click_on "Sign Out"
-      user2 = FactoryGirl.create(:user)
-      sign_in(user2)
+      user_2 = FactoryGirl.create(:user)
+      sign_in(user_2)
       visit edit_user_path(@user)
       expect(page).to_not have_content "Add Skill"
       visit user_path(@user)
@@ -92,10 +92,10 @@ feature "User adds a wanted skills on profile", %q{
       expect(page).to have_content "You are not authorized."
     end
     scenario "a user can not add the same skill to wanted skills twice" do
-      skill1 = Skill.create(name: "Running")
-      WantedSkill.create(skill_id: skill1.id, user_id: @user.id)
+      skill_1 = Skill.create(name: "Running")
+      UserSkill.create(skill_id: skill_1.id, user_id: @user.id, known?: false)
       visit new_user_wanted_skill_path(@user)
-      fill_in "Skill Name", with: skill1.name
+      fill_in "Skill Name", with: skill_1.name
       click_button "Add Skill to Profile"
       expect(page).to have_content "Error"
     end
